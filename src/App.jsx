@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import DevComponents from './pages/DevComponents.jsx';
 
 // Scrolls to the top of the page on every route change (matches the
 // scroll-to-top-on-navigate behaviour from the design reference).
@@ -65,6 +66,8 @@ export default function App() {
         <Route path="/program" element={<Placeholder title="Programme" />} />
         <Route path="/register" element={<Placeholder title="Register" />} />
         <Route path="/volunteer" element={<Placeholder title="Volunteer" />} />
+        {/* TEMPORARY: design-system showcase, removed in the final QA task. */}
+        <Route path="/dev/components" element={<DevComponents />} />
       </Routes>
     </>
   );
