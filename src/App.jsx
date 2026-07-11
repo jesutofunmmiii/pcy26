@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Nav from './layout/Nav.jsx';
 import Footer from './layout/Footer.jsx';
 import Home from './pages/Home.jsx';
+import About from './pages/About.jsx';
 import DevComponents from './pages/DevComponents.jsx';
 
 // Scrolls to the top of the page on every route change (matches the
@@ -66,7 +67,7 @@ export default function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<Placeholder title="About" />} />
+        <Route path="/about" element={<About />} />
         <Route path="/program" element={<Placeholder title="Programme" />} />
         <Route path="/register" element={<Placeholder title="Register" />} />
         <Route path="/volunteer" element={<Placeholder title="Volunteer" />} />
