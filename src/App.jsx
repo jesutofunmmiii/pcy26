@@ -4,6 +4,7 @@ import Nav from './layout/Nav.jsx';
 import Footer from './layout/Footer.jsx';
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
+import Program from './pages/Program.jsx';
 import DevComponents from './pages/DevComponents.jsx';
 
 // Scrolls to the top of the page on every route change (matches the
@@ -68,7 +69,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/program" element={<Placeholder title="Programme" />} />
+        <Route path="/program" element={<Program />} />
         <Route path="/register" element={<Placeholder title="Register" />} />
         <Route path="/volunteer" element={<Placeholder title="Volunteer" />} />
         {/* TEMPORARY: design-system showcase, removed in the final QA task. */}
