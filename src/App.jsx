@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import Nav from './layout/Nav.jsx';
+import Footer from './layout/Footer.jsx';
 import DevComponents from './pages/DevComponents.jsx';
 
 // Scrolls to the top of the page on every route change (matches the
@@ -60,6 +62,7 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <Nav />
       <Routes>
         <Route path="/" element={<Placeholder title="Home" />} />
         <Route path="/about" element={<Placeholder title="About" />} />
@@ -69,6 +72,7 @@ export default function App() {
         {/* TEMPORARY: design-system showcase, removed in the final QA task. */}
         <Route path="/dev/components" element={<DevComponents />} />
       </Routes>
+      <Footer />
     </>
   );
 }
