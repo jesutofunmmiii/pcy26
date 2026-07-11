@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import Program from './pages/Program.jsx';
 import Register from './pages/Register.jsx';
+import Volunteer from './pages/Volunteer.jsx';
 import DevComponents from './pages/DevComponents.jsx';
 
 // Scrolls to the top of the page on every route change (matches the
@@ -72,7 +73,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/program" element={<Program />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/volunteer" element={<Placeholder title="Volunteer" />} />
+        <Route path="/volunteer" element={<Volunteer />} />
         {/* TEMPORARY: design-system showcase, removed in the final QA task. */}
         <Route path="/dev/components" element={<DevComponents />} />
       </Routes>
