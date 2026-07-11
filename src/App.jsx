@@ -7,7 +7,9 @@ import About from './pages/About.jsx';
 import Program from './pages/Program.jsx';
 import Register from './pages/Register.jsx';
 import Volunteer from './pages/Volunteer.jsx';
-import DevComponents from './pages/DevComponents.jsx';
+import NotFound from './pages/NotFound.jsx';
+import { ScrollProgress, useScrollReveal } from './lib/scrollEffects.jsx';
+import { usePageMeta } from './lib/pageMeta.js';
 
 // Scrolls to the top of the page on every route change (matches the
 // scroll-to-top-on-navigate behaviour from the design reference).
@@ -19,64 +21,26 @@ function ScrollToTop() {
   return null;
 }
 
-// Temporary placeholder until each page is ported in its own task.
-function Placeholder({ title }) {
-  return (
-    <main
-      style={{
-        minHeight: '60vh',
-        display: 'grid',
-        placeItems: 'center',
-        padding: 'var(--space-8)',
-        textAlign: 'center',
-      }}
-    >
-      <div>
-        <p
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 'var(--text-xs)',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'var(--text-gold-safe)',
-            marginBottom: 'var(--space-3)',
-          }}
-        >
-          FPDI Policy Conference 2026
-        </p>
-        <h1
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'var(--text-4xl)',
-            lineHeight: 'var(--leading-heading)',
-            color: 'var(--text-heading)',
-            margin: 0,
-          }}
-        >
-          {title}
-        </h1>
-        <p style={{ color: 'var(--text-muted)', marginTop: 'var(--space-3)' }}>
-          This page is coming soon.
-        </p>
-      </div>
-    </main>
-  );
-}
-
 export default function App() {
+  const { pathname } = useLocation();
+  usePageMeta();
+  useScrollReveal();
   return (
     <>
       <ScrollToTop />
+      <ScrollProgress />
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/program" element={<Program />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/volunteer" element={<Volunteer />} />
-        {/* TEMPORARY: design-system showcase, removed in the final QA task. */}
-        <Route path="/dev/components" element={<DevComponents />} />
-      </Routes>
+      {/* Keyed by route so the page-enter transition replays on navigation. */}
+      <div key={pathname} className="page-enter">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/program" element={<Program />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/volunteer" element={<Volunteer />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
       <Footer />
     </>
   );

@@ -87,7 +87,7 @@ export default function Register() {
       </section>
 
       <section className="section" style={{ padding: 'var(--space-8) var(--layout-margin) var(--space-9)' }} id="reg-top">
-        <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 1fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
+        <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1.7fr 1fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
           {/* wizard */}
           <div>
             {/* stepper */}
@@ -121,11 +121,11 @@ export default function Register() {
                       <p className="eyebrow" style={{ marginBottom: 4 }}>Section 1 of 4</p>
                       <h3 style={{ margin: 0 }}>Personal information</h3>
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
+                    <div className="qa-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
                       <Input label="Full name *" placeholder="e.g. Adaeze Okonkwo" value={form.name} onChange={setE('name')} error={err(!form.name.trim()) ? 'Required' : undefined} />
                       <Input label="Email address *" type="email" placeholder="you@example.com" value={form.email} onChange={setE('email')} error={err(!emailOk) ? 'Enter a valid email' : undefined} />
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
+                    <div className="qa-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
                       <Input label="Phone number (WhatsApp accessible) *" placeholder="+234 800 000 0000" value={form.phone} onChange={setE('phone')} error={err(!form.phone.trim()) ? 'Required' : undefined} />
                       <Select label="Institutional or university affiliation *" placeholder="Select your university" value={form.institution} onChange={setE('institution')} options={NG_UNIVERSITY_OPTIONS} />
                     </div>

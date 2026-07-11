@@ -126,7 +126,7 @@ export default function Volunteer() {
       <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin) var(--space-8)' }}>
         <p className="eyebrow">Volunteer teams</p>
         <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '20ch' }}>Eight ways to be part of it.</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
+        <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
           {teams.map((t, i) => (
             <Card key={t.title} className="card-hover" featureCorner={i === 0} corner="top-left" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -144,7 +144,7 @@ export default function Volunteer() {
       {/* sign-up form */}
       <section style={{ background: 'var(--surface-green-tint)', padding: 'var(--space-9) 0' }}>
         <div className="section">
-          <div style={{ display: 'grid', gridTemplateColumns: '1.7fr 1fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
+          <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1.7fr 1fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
             <div>
               <p className="eyebrow">Apply to volunteer</p>
               <h2 style={{ margin: 'var(--space-3) 0 var(--space-6)' }}>Tell us where you fit.</h2>
@@ -153,11 +153,11 @@ export default function Volunteer() {
                 {/* Section 1 — About you */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
                   <p style={{ margin: 0, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-gold-safe)' }}>1 — About you</p>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
+                  <div className="qa-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
                     <Input label="Full name" placeholder="e.g. Tunde Bello" value={form.name} onChange={set('name')} error={submitted && !form.name.trim() ? 'Please enter your name' : undefined} />
                     <Input label="Email address" type="email" placeholder="you@example.com" value={form.email} onChange={set('email')} error={submitted && !emailOk ? 'Enter a valid email' : undefined} />
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
+                  <div className="qa-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
                     <Input label="Phone number (WhatsApp accessible)" placeholder="+234 800 000 0000" value={form.phone} onChange={set('phone')} error={submitted && !form.phone.trim() ? 'Please enter a phone number' : undefined} />
                     <Select label="Current affiliation / institution" placeholder="Select your university" value={form.institution} onChange={set('institution')} options={NG_UNIVERSITY_OPTIONS} />
                   </div>
