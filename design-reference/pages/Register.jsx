@@ -118,7 +118,7 @@ function Register({ showToast, onNavigate }) {
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
                       <Input label="Phone number (WhatsApp accessible) *" placeholder="+234 800 000 0000" value={form.phone} onChange={setE('phone')} error={err(!form.phone.trim()) ? 'Required' : undefined} />
-                      <Input label="Institutional or university affiliation *" placeholder="University of Ibadan" value={form.institution} onChange={setE('institution')} error={err(!form.institution.trim()) ? 'Required' : undefined} />
+                      <Select label="Institutional or university affiliation *" placeholder="Select your university" value={form.institution} onChange={setE('institution')} options={window.NG_UNIVERSITY_OPTIONS} />
                     </div>
                     <div>
                       <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-heading)', margin: '0 0 12px' }}>Type of delegate *</p>

@@ -47,7 +47,7 @@ function About({ onNavigate }) {
             </div>
           </div>
           <div style={{ height: 400, borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-raised)' }}>
-            <image-slot id="about-photo" shape="rect" placeholder="Drop an FPDI programme photo"></image-slot>
+            <img src={window.asset('gallery/about-minister.jpg')} alt="The Honourable Minister of Industry, Trade and Investment greeting a delegate at the Policy Conference for Youth" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
       </section>
