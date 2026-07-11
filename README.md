@@ -1,24 +1,61 @@
-# FPDI Policy Conference 2026 — build kit
+# FPDI Policy Conference 2026 — Website
 
-Everything Claude Code on the web needs to build the production site from the
-finished Claude Design export.
+Production build of the **2026 Policy Conference for Youth** site for FPDI
+(Future Pathways Development Initiative). Built with Vite + React 18 by porting
+the finished design in [`/design-reference`](./design-reference) — see
+[`CLAUDE.md`](./CLAUDE.md) for the full brief and porting rules.
 
-## What's in here
+## Tech stack
 
-- `CLAUDE.md` — the project brief Claude Code reads on every session (stack,
-  porting rules, design-token discipline, definition of done).
-- `TASKS.md` — 10 numbered prompts to copy-paste into claude.ai/code, one at a time.
-- `design-reference/` — the extracted design source:
-  - `pages/` — App, Nav, Footer, Home, About, Program, VenueMap, Register, Volunteer (exact JSX)
-  - `design-system/fpdi-components.bundle.js` — the 15 FPDI components
-  - `fpdi-design-system.css` — all tokens (colors, type, spacing, shape, motion)
-  - `public/assets/` — brand SVGs · `public/gallery/` — 13 event photos
+- **Vite** + **React 18** (JavaScript)
+- **react-router-dom** for routing (`/`, `/about`, `/program`, `/register`, `/volunteer`)
+- **lucide-react** for icons
+- Plain CSS via the FPDI design system tokens in
+  [`src/styles/fpdi-design-system.css`](./src/styles/fpdi-design-system.css) —
+  no Tailwind, no CSS-in-JS
 
-## How to use
+## Prerequisites
 
-1. Create a new GitHub repo (e.g. `fpdi-conference-2026`).
-2. Upload the entire contents of this kit to the repo root (GitHub web UI:
-   "Add file → Upload files", drag everything in, commit to main).
-3. Go to claude.ai/code, connect GitHub, select the repo.
-4. Run Task 1 from TASKS.md. Review the PR, merge, move to Task 2. Repeat.
-5. After Task 10, connect the repo to Vercel/Netlify for auto-deploys.
+- [Node.js](https://nodejs.org/) 18+ and npm
+
+## Getting started
+
+```bash
+# Install dependencies
+npm install
+
+# Start the dev server (http://localhost:5173)
+npm run dev
+
+# Create a production build in dist/
+npm run build
+
+# Preview the production build locally
+npm run preview
+```
+
+## Project structure
+
+```
+public/                     Brand SVGs (assets/) and event photos (gallery/)
+src/
+  main.jsx                  App entry — loads the design system CSS + router
+  App.jsx                   Route shell + scroll-to-top on navigate
+  styles/
+    fpdi-design-system.css  Design tokens and base styles (loaded globally)
+  lib/
+    submit.js               Backend-less form submission stub
+```
+
+## Routes
+
+| Route        | Page      |
+|--------------|-----------|
+| `/`          | Home      |
+| `/about`     | About     |
+| `/program`   | Programme |
+| `/register`  | Register  |
+| `/volunteer` | Volunteer |
+
+> The pages currently render placeholders. Each is ported from
+> `/design-reference` in its own task per [`TASKS.md`](./TASKS.md).
