@@ -16,6 +16,7 @@ function Nav({ page, onNavigate, overlay }) {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'program', label: 'Programme' },
+    { id: 'speakers', label: 'Speakers' },
     { id: 'volunteer', label: 'Volunteer' },
   ];
 
