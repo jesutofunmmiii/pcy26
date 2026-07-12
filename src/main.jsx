@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import './styles/fpdi-fonts.css';
 import './styles/fpdi-design-system.css';
 import App from './App.jsx';
 

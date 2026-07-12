@@ -1,0 +1,61 @@
+/* ============================================================
+   FPDI — Self-hosted webfonts (@font-face)
+   Replaces the Google Fonts @import in fpdi-design-system.css.
+   Files live in public/fonts/. Latin subset, woff2 only.
+   Weights match the design's actual usage:
+     Bricolage Grotesque 400/500/600/700 (display)
+     Figtree 400/500/600 (body)
+     IBM Plex Mono 500/600 (mono: eyebrows, labels, buttons)
+   font-display: swap keeps text visible during load.
+   ============================================================ */
+
+/* ---- Bricolage Grotesque (display) ---- */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/bricolage-grotesque-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/bricolage-grotesque-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/bricolage-grotesque-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: url('/fonts/bricolage-grotesque-700.woff2') format('woff2');
+}
+
+/* ---- Figtree (body) ---- */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: url('/fonts/figtree-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/figtree-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/figtree-600.woff2') format('woff2');
+}
+
+/* ---- IBM Plex Mono (mono) ---- */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal; font-weight: 500; font-display: swap;
+  src: url('/fonts/ibm-plex-mono-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal; font-weight: 600; font-display: swap;
+  src: url('/fonts/ibm-plex-mono-600.woff2') format('woff2');
+}
