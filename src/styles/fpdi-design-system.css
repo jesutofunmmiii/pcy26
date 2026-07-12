@@ -3,15 +3,11 @@
    Design-system tokens + component styles + site overrides
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&display=swap');
-
 /* ---------- tokens/fonts.css ---------- */
 /* FPDI Design System — Webfonts
-   All three families (Bricolage Grotesque, Figtree, IBM Plex Mono) are the
-   exact families specified in brand notes and are available on Google Fonts,
-   loaded here via CSS @import. No local substitution was necessary. */
-
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+   All three families (Bricolage Grotesque, Figtree, IBM Plex Mono) are now
+   self-hosted via @font-face in src/styles/fpdi-fonts.css, which is imported
+   before this file. The family names are unchanged. */
 
 :root {
   --font-display: 'Bricolage Grotesque', 'Figtree', system-ui, sans-serif;
