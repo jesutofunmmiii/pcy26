@@ -1,9 +1,12 @@
-// Backend-less form submission stub.
-//
-// The Register and Volunteer forms call this on a valid submit. There is no
-// backend yet, so it just logs the payload and resolves — wiring a real
-// endpoint later is a one-file change here.
-export async function submitForm(formName, data) {
-  console.log(`[submitForm] ${formName}`, data);
-  return Promise.resolve({ ok: true });
+// Form submission — posts to the serverless function at /api/submit, which
+// fans out to HubSpot, Google Sheets and Resend. Parses and returns the JSON
+// response ({ ok, results }); the caller branches on `ok`. A network failure
+// rejects (fetch throws / JSON parse fails), so callers can show an error state.
+export async function submitForm(formType, data) {
+  const res = await fetch('/api/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ formType, data }),
+  });
+  return res.json();
 }
