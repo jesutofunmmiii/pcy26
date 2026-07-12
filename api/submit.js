@@ -19,6 +19,8 @@
 // - HubSpot custom-property creation is best-effort: if the schema scope is
 //   missing or a property already exists, it's skipped gracefully.
 
+import { delegateEmail, volunteerEmail } from './emails.js';
+
 const HUBSPOT_TOKEN = process.env.HUBSPOT_TOKEN;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const SHEET_WEBAPP_URL = process.env.SHEET_WEBAPP_URL;
@@ -216,9 +218,9 @@ async function pushToSheet(type, data) {
 async function sendConfirmation(type, data, first) {
   const isVol = type === 'volunteer';
   const subject = isVol
-    ? 'We received your FPDI volunteer application'
-    : 'We received your FPDI delegate application';
-  const html = confirmationHtml(first, isVol);
+    ? 'Thanks for stepping up'
+    : 'Your delegate application is in';
+  const html = isVol ? volunteerEmail(first) : delegateEmail(first);
 
   const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -229,18 +231,3 @@ async function sendConfirmation(type, data, first) {
   return {};
 }
 
-function confirmationHtml(first, isVol) {
-  const hi = first ? `Hi ${first},` : 'Hello,';
-  const role = isVol ? 'volunteer application' : 'delegate application';
-  return `
-  <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;color:#333B31;line-height:1.6">
-    <p>${hi}</p>
-    <p>Thank you for your ${role} to the <strong>Policy Conference for Youths 2026</strong>,
-    holding <strong>Wednesday, 12 August 2026</strong> at
-    Trenchard Hall, University of Ibadan.</p>
-    <p>We've received your submission and it's now under review. Selection is competitive;
-    the secretariat will be in touch with next steps. Please keep an eye on this inbox
-    (and your spam folder, just in case).</p>
-    <p>Warm regards,<br/>The FPDI Secretariat<br/>Future Pathways Development Initiative</p>
-  </div>`;
-}
