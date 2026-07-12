@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { Input, Select, Radio, Button, Card, Icon, Toast } from '../components/index.js';
 import { NG_UNIVERSITY_OPTIONS } from '../data/ngUniversities.js';
@@ -64,7 +65,7 @@ export default function Volunteer() {
   const onNavigate = () => navigate('/register');
 
   const [form, setForm] = React.useState({
-    name: '', email: '', phone: '', location: '', institution: '',
+    name: '', email: '', phone: '+234 ', location: '', institution: '',
     team: '', why: '', portfolio: '', medical: '', onboarding: '', eventDay: '',
   });
   const [submitted, setSubmitted] = React.useState(false);
@@ -93,7 +94,7 @@ export default function Volunteer() {
 
   const emailOk = /.+@.+\..+/.test(form.email);
   const valid =
-    form.name.trim() && emailOk && form.phone.trim() && form.location &&
+    form.name.trim() && emailOk && form.phone.trim() && form.phone.trim() !== '+234' && form.location &&
     form.team && form.why.trim() && form.onboarding && form.eventDay &&
     (selCat !== 'medical' || form.medical);
 
@@ -104,7 +105,7 @@ export default function Volunteer() {
       const res = await submitForm('volunteer', form);
       if (res && res.ok) {
         showToast('Volunteer application received', 'Thank you for stepping up — we’ll be in touch about the onboarding briefing and your team assignment.');
-        setForm({ name: '', email: '', phone: '', location: '', institution: '', team: '', why: '', portfolio: '', medical: '', onboarding: '', eventDay: '' });
+        setForm({ name: '', email: '', phone: '+234 ', location: '', institution: '', team: '', why: '', portfolio: '', medical: '', onboarding: '', eventDay: '' });
         setSubmitted(false);
       } else {
         showToast('Something went wrong', 'Please try again or email info@futurepathways.ng', 'error');
@@ -166,7 +167,7 @@ export default function Volunteer() {
                     <Input label="Email address" type="email" placeholder="you@example.com" value={form.email} onChange={set('email')} error={submitted && !emailOk ? 'Enter a valid email' : undefined} />
                   </div>
                   <div className="qa-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
-                    <Input label="Phone number (WhatsApp accessible)" placeholder="+234 800 000 0000" value={form.phone} onChange={set('phone')} error={submitted && !form.phone.trim() ? 'Please enter a phone number' : undefined} />
+                    <Input label="Phone number (WhatsApp accessible)" placeholder="+234 800 000 0000" value={form.phone} onChange={set('phone')} error={submitted && (!form.phone.trim() || form.phone.trim() === '+234') ? 'Please enter a phone number' : undefined} />
                     <Select label="Current affiliation / institution" placeholder="Select your university" value={form.institution} onChange={set('institution')} options={NG_UNIVERSITY_OPTIONS} />
                   </div>
                   <VolRadioGroup
@@ -281,10 +282,11 @@ export default function Volunteer() {
         </div>
       </section>
 
-      {toast && (
+      {toast && createPortal(
         <div id="toast-host">
           <Toast variant={toast.variant || 'success'} title={toast.title} description={toast.description} onClose={() => setToast(null)} />
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
