@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Button } from '../components/index.js';
+import { Button, Icon } from '../components/index.js';
 
 // Maps a route path to the reference's `page` id, used for active-link styling
 // and to decide the transparent-over-hero overlay (home only).
@@ -18,6 +18,7 @@ export function Nav() {
   const page = PATH_TO_ID[pathname] || '';
   const overlay = pathname === '/';
   const [scrolled, setScrolled] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     if (!overlay) {
@@ -30,6 +31,11 @@ export function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [overlay]);
 
+  // Close the mobile menu whenever the route changes.
+  React.useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
   const transparent = overlay && !scrolled;
 
   const links = [
@@ -39,10 +45,13 @@ export function Nav() {
     { id: 'volunteer', label: 'Volunteer', to: '/volunteer' },
   ];
 
+  // Desktop link colour: gold/white over the transparent hero, green/body on solid.
   const linkColor = (l) => {
     if (transparent) return page === l.id ? 'var(--gold-500)' : 'rgba(255,255,255,0.88)';
     return page === l.id ? 'var(--green-700)' : 'var(--text-body)';
   };
+  // The mobile panel always sits on a light surface, so links use solid colours.
+  const panelLinkColor = (l) => (page === l.id ? 'var(--green-700)' : 'var(--text-body)');
 
   return (
     <header
@@ -81,7 +90,9 @@ export function Nav() {
             style={{ height: 42, width: 'auto' }}
           />
         </Link>
-        <nav style={{ display: 'flex', gap: 30, alignItems: 'center' }}>
+
+        {/* Desktop links */}
+        <nav className="nav-desktop-links" style={{ display: 'flex', gap: 30, alignItems: 'center' }}>
           {links.map((l) => (
             <Link
               key={l.id}
@@ -108,6 +119,60 @@ export function Nav() {
             Apply now
           </Button>
         </nav>
+
+        {/* Mobile hamburger toggle */}
+        <button
+          type="button"
+          className="nav-mobile-toggle"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((o) => !o)}
+          style={{
+            width: 44,
+            height: 44,
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            color: transparent ? '#fff' : 'var(--text-heading)',
+          }}
+        >
+          <Icon name={menuOpen ? 'x' : 'menu'} size={24} />
+        </button>
+      </div>
+
+      {/* Mobile disclosure panel */}
+      <div className={`nav-mobile-panel${menuOpen ? ' open' : ''}`}>
+        {links.map((l) => (
+          <Link
+            key={l.id}
+            to={l.to}
+            onClick={() => setMenuOpen(false)}
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontWeight: 600,
+              fontSize: 16,
+              padding: '10px 0',
+              color: panelLinkColor(l),
+            }}
+          >
+            {l.label}
+          </Link>
+        ))}
+        <Button
+          variant="accent"
+          size="sm"
+          icon="arrow-right"
+          iconPosition="end"
+          onClick={() => {
+            setMenuOpen(false);
+            navigate('/register');
+          }}
+          style={{ alignSelf: 'flex-start', marginTop: 'var(--space-2)' }}
+        >
+          Apply now
+        </Button>
       </div>
     </header>
   );

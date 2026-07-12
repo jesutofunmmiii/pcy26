@@ -81,7 +81,7 @@ export default function Program() {
           {schedule.map((s, i) => {
             const muted = s.type === 'Transition' || s.type === 'Break';
             return (
-              <div key={i} style={{
+              <div key={i} className="qa-prog-row" style={{
                 display: 'grid', gridTemplateColumns: '132px 150px 1fr', gap: 'var(--space-5)',
                 padding: muted ? '14px 0' : 'var(--space-5) 0', borderBottom: '1px solid var(--border-default)',
                 alignItems: 'start', background: muted ? 'transparent' : 'transparent',
@@ -108,7 +108,7 @@ export default function Program() {
         <div className="section">
           <p className="eyebrow">Session deep-dives</p>
           <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '20ch' }}>What each session is designed to do.</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-5)' }}>
+          <div className="qa-cards-2 reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-5)' }}>
             {deepDives.map((d) => (
               <Card key={d.title} className="card-hover" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -134,7 +134,7 @@ export default function Program() {
       </section>
 
       {/* CTA */}
-      <section style={{ background: 'var(--green-900)' }}>
+      <section className="reveal" style={{ background: 'var(--green-900)' }}>
         <div className="section" style={{ padding: 'var(--space-9) var(--layout-margin)', textAlign: 'center' }}>
           <h2 style={{ color: '#fff', margin: '0 auto var(--space-5)', maxWidth: '22ch' }}>Be in the room for every session.</h2>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>

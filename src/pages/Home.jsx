@@ -94,7 +94,7 @@ export default function Home() {
       {/* ============ THE CONVENING + DETAILS CARD ============ */}
       <section className="section" style={{ padding: 'var(--space-6) var(--layout-margin) var(--space-9)' }}>
         {/* fact row */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-6)', paddingBottom: 'var(--space-7)', marginBottom: 'var(--space-8)', borderBottom: '1px solid var(--border-default)' }}>
+        <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-6)', paddingBottom: 'var(--space-7)', marginBottom: 'var(--space-8)', borderBottom: '1px solid var(--border-default)' }}>
           {facts.map((f) => (
             <div key={f.label} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
               <Icon name={f.icon} size={22} color="var(--green-700)" />
@@ -105,7 +105,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
+        <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
           <div>
             <p className="eyebrow">About the conference</p>
             <h2 style={{ margin: 'var(--space-3) 0 var(--space-5)', maxWidth: '18ch' }}>This is not a conference of lament. It is a working session.</h2>
@@ -150,7 +150,7 @@ export default function Home() {
           <p className="eyebrow">Five breakout tracks</p>
           <h2 style={{ margin: 'var(--space-3) 0 var(--space-2)', maxWidth: '22ch' }}>Where the working sessions dig in.</h2>
           <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-7)' }}>Five concurrent, facilitated rooms. Each produces a one-pager of priority recommendations fed into the closing communiqué.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
+          <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
             {tracks.map((t) => (
               <Card key={t.title} className="card-hover" featureCorner={t.feature} corner="top-left" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -177,7 +177,7 @@ export default function Home() {
           </div>
           <Button variant="primary" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('program')}>View the full programme</Button>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-5)' }}>
+        <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-5)' }}>
           {moments.map((m) => (
             <Card key={m.title} className="card-hover" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -208,7 +208,7 @@ export default function Home() {
 
 function HomeCta({ onNavigate }) {
   return (
-    <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)' }}>
+    <section className="reveal" style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)' }}>
       <img src="/assets/rising-arc-line.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '70%', objectFit: 'cover', opacity: 0.4 }} />
       <div className="section" style={{ position: 'relative', padding: 'var(--space-9) var(--layout-margin)', textAlign: 'center' }}>
         <p className="eyebrow" style={{ color: 'var(--gold-500)', textAlign: 'center', margin: '0 auto' }}>12 August 2026 · Trenchard Hall, Ibadan</p>
@@ -236,7 +236,7 @@ function Watch() {
     <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin) 0' }}>
       <p className="eyebrow">Watch</p>
       <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '24ch' }}>Excerpts from Policy Conference for Youth 2025</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
+      <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
         {videos.map((v) => (
           <a key={v.vid} href={'https://www.youtube.com/watch?v=' + v.vid} target="_blank" rel="noopener noreferrer"
             className="card-hover" style={{ display: 'block', background: 'var(--surface-card)', border: 'var(--border-card)', borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-card)', color: 'inherit' }}>
@@ -273,7 +273,7 @@ function Gallery() {
       <div className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
         <p className="eyebrow" style={{ color: 'var(--gold-500)' }}>PCY·2025</p>
         <h2 style={{ color: '#fff', margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '20ch' }}>Moments from the conference floor.</h2>
-        <div className="pcy-masonry">
+        <div className="pcy-masonry reveal-stagger">
           {photos.map((src, i) => (
             <figure key={src}>
               <img src={'/gallery/' + src} alt={'2025 Policy Conference for Youth — moment ' + (i + 1)} loading="lazy" />

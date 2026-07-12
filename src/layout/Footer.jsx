@@ -33,6 +33,7 @@ export function Footer() {
   return (
     <footer style={{ background: '#04220C', color: 'rgba(255,255,255,0.72)' }}>
       <div
+        className="qa-footer"
         style={{
           maxWidth: 'none',
           margin: 0,

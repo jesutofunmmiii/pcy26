@@ -44,8 +44,8 @@ export default function About() {
       </section>
 
       {/* why we exist */}
-      <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)', alignItems: 'center' }}>
+      <section className="section reveal" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
+        <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)', alignItems: 'center' }}>
           <div>
             <p className="eyebrow">Why we exist</p>
             <h2 style={{ margin: 'var(--space-3) 0 var(--space-5)', maxWidth: '16ch' }}>Africa is at a turning point.</h2>
@@ -71,7 +71,7 @@ export default function About() {
         <div className="section">
           <p className="eyebrow">What guides us</p>
           <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)' }}>Vision, mission and goal.</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
+          <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
             {[
               { icon: 'eye', head: 'Our vision', body: 'To strengthen good governance through developing and implementing effective, citizen-driven policies — and to inspire and strengthen citizen action and engagement in Africa.' },
               { icon: 'target', head: 'Our mission', body: 'To catalyze a generation of African youth leaders who can influence, design and implement inclusive, forward-thinking public policies across the continent.', feature: true },
@@ -88,11 +88,11 @@ export default function About() {
       </section>
 
       {/* theory of change */}
-      <section style={{ background: 'var(--green-900)', color: '#fff' }}>
+      <section className="reveal" style={{ background: 'var(--green-900)', color: '#fff' }}>
         <div className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
           <p className="eyebrow" style={{ color: 'var(--gold-500)' }}>Our theory of change</p>
           <h2 style={{ color: '#fff', margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '20ch' }}>How change actually happens.</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-7)' }}>
+          <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-7)' }}>
             <div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--gold-500)', marginBottom: 'var(--space-4)' }}>If we —</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -121,7 +121,7 @@ export default function About() {
 
       {/* legitimacy problem — why this conference */}
       <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
+        <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
           <div>
             <p className="eyebrow">Why we're hosting this</p>
             <h2 style={{ margin: 'var(--space-3) 0 0', maxWidth: '14ch' }}>The legitimacy problem.</h2>
