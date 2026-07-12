@@ -72,8 +72,8 @@ export default function Volunteer() {
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
   const setVal = (k) => (v) => setForm({ ...form, [k]: v });
 
-  const showToast = (title, description) => {
-    setToast({ title, description });
+  const showToast = (title, description, variant = 'success') => {
+    setToast({ title, description, variant });
     setTimeout(() => setToast(null), 5000);
   };
 
@@ -97,13 +97,21 @@ export default function Volunteer() {
     form.team && form.why.trim() && form.onboarding && form.eventDay &&
     (selCat !== 'medical' || form.medical);
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     if (!valid) { setSubmitted(true); return; }
-    submitForm('volunteer', form);
-    showToast('Volunteer application received', 'Thank you for stepping up — we’ll be in touch about the onboarding briefing and your team assignment.');
-    setForm({ name: '', email: '', phone: '', location: '', institution: '', team: '', why: '', portfolio: '', medical: '', onboarding: '', eventDay: '' });
-    setSubmitted(false);
+    try {
+      const res = await submitForm('volunteer', form);
+      if (res && res.ok) {
+        showToast('Volunteer application received', 'Thank you for stepping up — we’ll be in touch about the onboarding briefing and your team assignment.');
+        setForm({ name: '', email: '', phone: '', location: '', institution: '', team: '', why: '', portfolio: '', medical: '', onboarding: '', eventDay: '' });
+        setSubmitted(false);
+      } else {
+        showToast('Something went wrong', 'Please try again or email info@futurepathways.ng', 'error');
+      }
+    } catch {
+      showToast('Something went wrong', 'Please try again or email info@futurepathways.ng', 'error');
+    }
   };
 
   return (
@@ -275,7 +283,7 @@ export default function Volunteer() {
 
       {toast && (
         <div id="toast-host">
-          <Toast variant="success" title={toast.title} description={toast.description} onClose={() => setToast(null)} />
+          <Toast variant={toast.variant || 'success'} title={toast.title} description={toast.description} onClose={() => setToast(null)} />
         </div>
       )}
     </div>

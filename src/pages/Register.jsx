@@ -18,8 +18,8 @@ export default function Register() {
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
   const setE = (k) => (e) => set(k, e.target.value);
 
-  const showToast = (title, description) => {
-    setToast({ title, description });
+  const showToast = (title, description, variant = 'success') => {
+    setToast({ title, description, variant });
     setTimeout(() => setToast(null), 5000);
   };
 
@@ -50,14 +50,22 @@ export default function Register() {
   };
   const back = () => { setTried(false); setStep((s) => Math.max(s - 1, 0)); window.scrollTo({ top: 320, behavior: 'smooth' }); };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
     setTried(true);
     if (!stepValid(3)) return;
-    submitForm('register', form);
-    showToast('Delegate application submitted', "Selection is competitive — we'll review your statecraft pitch and email your decision before 12 August.");
-    setForm(BLANK); setStep(0); setTried(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      const res = await submitForm('register', form);
+      if (res && res.ok) {
+        showToast('Delegate application submitted', "Selection is competitive — we'll review your statecraft pitch and email your decision before 12 August.");
+        setForm(BLANK); setStep(0); setTried(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        showToast('Something went wrong', 'Please try again or email info@futurepathways.ng', 'error');
+      }
+    } catch {
+      showToast('Something went wrong', 'Please try again or email info@futurepathways.ng', 'error');
+    }
   };
 
   const included = [
@@ -314,7 +322,7 @@ export default function Register() {
 
       {toast && (
         <div id="toast-host">
-          <Toast variant="success" title={toast.title} description={toast.description} onClose={() => setToast(null)} />
+          <Toast variant={toast.variant || 'success'} title={toast.title} description={toast.description} onClose={() => setToast(null)} />
         </div>
       )}
     </div>
