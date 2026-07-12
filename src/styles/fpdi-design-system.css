@@ -64,6 +64,7 @@
 
   /* Borders */
   --border-default: var(--neutral-border);
+  --border-strong: #AEB8AA; /* stronger divider / placeholder silhouette */
   --border-focus: var(--gold-500);
 
   /* Brand action colors */
@@ -373,6 +374,7 @@ html { scroll-behavior: smooth; }
   }
   @media (max-width: 620px) {
     .qa-prog-row { grid-template-columns: 1fr !important; gap: 4px !important; }
+    .qa-speaker-row { grid-template-columns: 1fr !important; gap: var(--space-4) !important; }
   }
   @media (max-width: 560px) {
     .qa-cards { grid-template-columns: 1fr !important; }
