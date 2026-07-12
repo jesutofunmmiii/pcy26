@@ -259,7 +259,7 @@ a:hover { color: var(--text-link-hover); }
 /* ---------- site overrides (from Conference Website.html) ---------- */
 html { scroll-behavior: smooth; }
   body { margin: 0; }
-  #toast-host { position: fixed; bottom: 24px; right: 24px; z-index: 2000; }
+  #toast-host { position: fixed; top: 88px; right: 24px; z-index: 2000; }
   a { text-decoration: none; }
 
   /* Scroll-progress bar (top of viewport, above the nav) */

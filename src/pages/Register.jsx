@@ -1,11 +1,12 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { Input, Select, Radio, Checkbox, Button, Card, Icon, Badge, Toast } from '../components/index.js';
 import { NG_UNIVERSITY_OPTIONS } from '../data/ngUniversities.js';
 import { submitForm } from '../lib/submit.js';
 
 export default function Register() {
   const BLANK = {
-    name: '', email: '', phone: '', institution: '', delegateType: '',
+    name: '', email: '', phone: '+234 ', institution: '', delegateType: '',
     travelFrom: '', convoy: '', room: '',        // standard out-of-state
     hub: '',                                      // policy hub delegation
     pillar: '', pitch: '',                        // statecraft alignment
@@ -30,7 +31,7 @@ export default function Register() {
   const steps = ['Personal information', 'Logistics', 'Statecraft alignment', 'Final declaration'];
 
   const stepValid = (s) => {
-    if (s === 0) return form.name.trim() && emailOk && form.phone.trim() && form.institution.trim() && form.delegateType;
+    if (s === 0) return form.name.trim() && emailOk && form.phone.trim() && form.phone.trim() !== '+234' && form.institution.trim() && form.delegateType;
     if (s === 1) {
       if (form.delegateType === 'out-of-state') return form.travelFrom && form.convoy && form.room;
       if (form.delegateType === 'policy-hub') return form.hub;
@@ -134,7 +135,7 @@ export default function Register() {
                       <Input label="Email address *" type="email" placeholder="you@example.com" value={form.email} onChange={setE('email')} error={err(!emailOk) ? 'Enter a valid email' : undefined} />
                     </div>
                     <div className="qa-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
-                      <Input label="Phone number (WhatsApp accessible) *" placeholder="+234 800 000 0000" value={form.phone} onChange={setE('phone')} error={err(!form.phone.trim()) ? 'Required' : undefined} />
+                      <Input label="Phone number (WhatsApp accessible) *" placeholder="+234 800 000 0000" value={form.phone} onChange={setE('phone')} error={err(!form.phone.trim() || form.phone.trim() === '+234') ? 'Required' : undefined} />
                       <Select label="Institutional or university affiliation *" placeholder="Select your university" value={form.institution} onChange={setE('institution')} options={NG_UNIVERSITY_OPTIONS} />
                     </div>
                     <div>
@@ -320,10 +321,11 @@ export default function Register() {
         </div>
       </section>
 
-      {toast && (
+      {toast && createPortal(
         <div id="toast-host">
           <Toast variant={toast.variant || 'success'} title={toast.title} description={toast.description} onClose={() => setToast(null)} />
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
