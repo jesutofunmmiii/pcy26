@@ -105,9 +105,6 @@ export function Footer() {
             <a href="mailto:info@futurepathways.ng" style={{ fontSize: 14, color: 'rgba(255,255,255,0.78)' }}>
               info@futurepathways.ng
             </a>
-            <a href="mailto:info@futurepathways.ng" style={{ fontSize: 14, color: 'rgba(255,255,255,0.78)' }}>
-              info@futurepathways.ng
-            </a>
             <a href="tel:+2348133977784" style={{ fontSize: 14, color: 'rgba(255,255,255,0.78)' }}>
               +234 813 397 7784
             </a>
