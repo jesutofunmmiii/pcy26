@@ -19,6 +19,11 @@ const META = {
     description:
       'The full-day programme for the 2026 Policy Conference for Youth — a ministerial keynote, a panel, five breakout tracks, Open House talks and the Policy Challenge finals.',
   },
+  '/speakers': {
+    title: 'Speakers — FPDI Policy Conference 2026',
+    description:
+      'Meet the speakers of the 2026 Policy Conference for Youth — policymakers, practitioners and changemakers leading the conversations. More voices are being confirmed.',
+  },
   '/register': {
     title: 'Apply as a delegate — FPDI Policy Conference 2026',
     description:

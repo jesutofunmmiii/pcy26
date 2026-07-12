@@ -8,6 +8,7 @@ const PATH_TO_ID = {
   '/': 'home',
   '/about': 'about',
   '/program': 'program',
+  '/speakers': 'speakers',
   '/register': 'register',
   '/volunteer': 'volunteer',
 };
@@ -42,6 +43,7 @@ export function Nav() {
     { id: 'home', label: 'Home', to: '/' },
     { id: 'about', label: 'About', to: '/about' },
     { id: 'program', label: 'Programme', to: '/program' },
+    { id: 'speakers', label: 'Speakers', to: '/speakers' },
     { id: 'volunteer', label: 'Volunteer', to: '/volunteer' },
   ];
 
