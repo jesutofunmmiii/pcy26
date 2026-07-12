@@ -113,10 +113,16 @@ export function Footer() {
             </a>
           </div>
           <div style={{ display: 'flex', gap: 10 }}>
-            {['IG', 'YT', 'X'].map((s) => (
+            {[
+              ['IG', 'https://www.instagram.com/fpdiafrica/'],
+              ['YT', 'https://www.youtube.com/@fpdiafrica'],
+              ['X', 'https://x.com/FPDIAfrica'],
+            ].map(([s, href]) => (
               <a
                 key={s}
-                href="#"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={s}
                 style={{
                   width: 38,
