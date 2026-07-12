@@ -235,8 +235,8 @@ function confirmationHtml(first, isVol) {
   return `
   <div style="font-family:Arial,Helvetica,sans-serif;max-width:560px;margin:0 auto;color:#333B31;line-height:1.6">
     <p>${hi}</p>
-    <p>Thank you for your ${role} to the <strong>FPDI Policy Conference 2026</strong> —
-    the Policy Conference for Youth, holding <strong>Wednesday, 12 August 2026</strong> at
+    <p>Thank you for your ${role} to the <strong>Policy Conference for Youths 2026</strong>,
+    holding <strong>Wednesday, 12 August 2026</strong> at
     Trenchard Hall, University of Ibadan.</p>
     <p>We've received your submission and it's now under review. Selection is competitive;
     the secretariat will be in touch with next steps. Please keep an eye on this inbox
