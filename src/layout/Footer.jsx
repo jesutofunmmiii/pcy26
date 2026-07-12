@@ -102,14 +102,11 @@ export function Footer() {
               marginBottom: 'var(--space-6)',
             }}
           >
-            <a href="mailto:conference@fpdi.org" style={{ fontSize: 14, color: 'rgba(255,255,255,0.78)' }}>
-              conference@fpdi.org
+            <a href="mailto:info@futurepathways.ng" style={{ fontSize: 14, color: 'rgba(255,255,255,0.78)' }}>
+              info@futurepathways.ng
             </a>
-            <a href="mailto:delegates@fpdi.org" style={{ fontSize: 14, color: 'rgba(255,255,255,0.78)' }}>
-              delegates@fpdi.org
-            </a>
-            <a href="tel:+2348000000000" style={{ fontSize: 14, color: 'rgba(255,255,255,0.78)' }}>
-              +234 800 000 0000
+            <a href="tel:+2348133977784" style={{ fontSize: 14, color: 'rgba(255,255,255,0.78)' }}>
+              +234 813 397 7784
             </a>
           </div>
           <div style={{ display: 'flex', gap: 10 }}>
