@@ -31,7 +31,7 @@ const HUBSPOT_PROPERTY_MAP = {
   register: {
     institution: 'fpdi_institution',
     travelFrom: 'fpdi_travelling_from',
-    transition: 'fpdi_transit_convoy',
+    convoy: 'fpdi_transit_convoy',
     room: 'fpdi_room_allocation',
     hub: 'fpdi_hub',
     pillar: 'fpdi_reform_pillar',
