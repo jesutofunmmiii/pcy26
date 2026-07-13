@@ -73,8 +73,7 @@ export default function Speakers() {
                 </div>
                 <div>
                   <h3 style={{ margin: '0 0 8px', color: 'var(--green-700)', fontSize: 'var(--text-2xl)' }}>{s.name}</h3>
-                  <p style={{ margin: '0 0 4px', color: 'var(--text-heading)', fontWeight: 600, fontSize: 15 }}>{s.role}</p>
-                  <p style={{ margin: '0 0 14px', color: 'var(--text-muted)', fontSize: 14 }}>{s.org}</p>
+                  <p style={{ margin: '0 0 14px', color: 'var(--text-heading)', fontWeight: 600, fontSize: 15 }}>{s.role}</p>
                   {s.instagram ? (
                     <a className="ig-link" href={s.instagram} target="_blank" rel="noopener noreferrer" style={{
                       display: 'inline-flex', alignItems: 'center', gap: 8, textDecoration: 'none',
@@ -95,7 +94,7 @@ export default function Speakers() {
                 <div className="bio-panel" style={{
                   background: 'var(--surface-green-tint)', border: '1px solid var(--border-default)',
                   borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)',
-                  margin: '0 0 var(--space-6)',
+                  margin: '0 0 var(--space-6)', maxWidth: 760,
                 }}>
                   <p style={{ margin: '0 0 var(--space-4)', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--text-gold-safe)' }}>About {s.name}</p>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
