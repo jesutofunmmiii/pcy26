@@ -72,9 +72,6 @@ export default function Register() {
   const included = [
     { icon: 'ticket', text: 'Full-day access to every plenary, breakout and Open House talk' },
     { icon: 'utensils', text: 'Networking lunch and refreshments' },
-    { icon: 'notebook-pen', text: 'Delegate pack: programme, policy briefs and notepad' },
-    { icon: 'file-badge', text: 'Certificate of participation' },
-    { icon: 'file-text', text: 'The published conference communiqué' },
   ];
 
   const err = (cond) => tried && cond;
