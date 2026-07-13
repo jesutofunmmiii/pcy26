@@ -17,7 +17,7 @@ const META = {
   '/program': {
     title: 'Programme — FPDI Policy Conference 2026',
     description:
-      'The full-day programme for the 2026 Policy Conference for Youth — a ministerial keynote, a panel, five breakout tracks, Open House talks and the Policy Challenge finals.',
+      'The full-day programme for the 2026 Policy Conference for Youth — a ministerial keynote, a panel, four breakout tracks, Open House talks and the Policy Challenge finals.',
   },
   '/speakers': {
     title: 'Speakers — FPDI Policy Conference 2026',

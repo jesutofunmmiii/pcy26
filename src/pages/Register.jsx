@@ -72,9 +72,6 @@ export default function Register() {
   const included = [
     { icon: 'ticket', text: 'Full-day access to every plenary, breakout and Open House talk' },
     { icon: 'utensils', text: 'Networking lunch and refreshments' },
-    { icon: 'notebook-pen', text: 'Delegate pack: programme, policy briefs and notepad' },
-    { icon: 'file-badge', text: 'Certificate of participation' },
-    { icon: 'file-text', text: 'The published conference communiqué' },
   ];
 
   const err = (cond) => tried && cond;
@@ -223,11 +220,10 @@ export default function Register() {
                     </div>
                     <Select label="Which reform pillar are you addressing?" placeholder="Choose a pillar" value={form.pillar} onChange={setE('pillar')}
                       options={[
-                        { value: 'judicial', label: 'Judicial reform & rule of law' },
-                        { value: 'electoral', label: 'Electoral integrity & accountability' },
-                        { value: 'finance', label: 'Public finance & anti-corruption' },
-                        { value: 'federalism', label: 'Federalism & local governance' },
-                        { value: 'civic', label: 'Civic engagement & the social contract' },
+                        { value: 'policy', label: 'Policy & Governance' },
+                        { value: 'creative', label: 'The Creative Economy' },
+                        { value: 'technology', label: 'Technology & Innovation' },
+                        { value: 'corporate', label: 'Corporate Careers & Leadership' },
                       ]} />
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                       <label style={{ fontSize: 'var(--text-sm)', fontWeight: 500, color: 'var(--text-heading)' }}>

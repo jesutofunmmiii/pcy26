@@ -32,11 +32,10 @@ export default function Home() {
   ];
 
   const tracks = [
-    { icon: 'scale', title: 'Judicial reform & rule of law', room: 'Room 1' },
-    { icon: 'vote', title: 'Electoral integrity & accountability', room: 'Room 2' },
-    { icon: 'landmark', title: 'Public finance & anti-corruption', room: 'Room 3', feature: true },
-    { icon: 'network', title: 'Federalism & local governance', room: 'Room 4' },
-    { icon: 'users', title: 'Civic engagement & the new social contract', room: 'Room 5' },
+    { icon: 'landmark', title: 'Policy & Governance', room: 'Track 1', feature: true },
+    { icon: 'palette', title: 'The Creative Economy', room: 'Track 2' },
+    { icon: 'cpu', title: 'Technology & Innovation', room: 'Track 3' },
+    { icon: 'briefcase', title: 'Corporate Careers & Leadership', room: 'Track 4' },
   ];
 
   const moments = [
@@ -66,7 +65,7 @@ export default function Home() {
               Rebuilding trust in the <span style={{ color: 'var(--gold-500)' }}>Nigerian state.</span>
             </h1>
             <p className="rise rise-3" style={{ color: 'rgba(255,255,255,0.85)', fontSize: 'var(--text-lg)', fontStyle: 'italic', maxWidth: '52ch', lineHeight: 1.7 }}>
-              A full-day working session convening policymakers, academics, civil society leaders and emerging youth voices — to interrogate the governance deficit honestly and propose structural pathways forward.
+              A full-day working session convening policymakers, academics, civil society leaders, and emerging young voices — to ethically address the governance deficit, and propose structural pathways forward.
             </p>
             <div className="rise rise-4" style={{ display: 'flex', gap: 16, marginTop: 'var(--space-6)', flexWrap: 'wrap' }}>
               <Button variant="accent" size="sm" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')} className="glow-cta" style={{ borderRadius: 'var(--radius-pill)' }}>Apply now</Button>
@@ -108,7 +107,7 @@ export default function Home() {
         <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
           <div>
             <p className="eyebrow">About the conference</p>
-            <h2 style={{ margin: 'var(--space-3) 0 var(--space-5)', maxWidth: '18ch' }}>This is not a conference of lament. It is a working session.</h2>
+            <h2 style={{ margin: 'var(--space-3) 0 var(--space-5)', maxWidth: '18ch' }}>This is not a conference of just talks. It is a working session.</h2>
             <p style={{ color: 'var(--text-body)' }}>
               Nigeria's democratic experiment has crossed a quarter-century, yet public trust in the judiciary, legislature, executive and civil service continues to erode. Citizens increasingly perceive government as distant, unaccountable and captured by narrow interests.
             </p>
@@ -147,9 +146,9 @@ export default function Home() {
       {/* ============ REFORM TRACKS ============ */}
       <section style={{ background: 'var(--surface-green-tint)', padding: 'var(--space-9) 0' }}>
         <div className="section">
-          <p className="eyebrow">Five breakout tracks</p>
+          <p className="eyebrow">Four breakout tracks</p>
           <h2 style={{ margin: 'var(--space-3) 0 var(--space-2)', maxWidth: '22ch' }}>Where the working sessions dig in.</h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-7)' }}>Five concurrent, facilitated rooms. Each produces a one-pager of priority recommendations fed into the closing communiqué.</p>
+          <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-7)' }}>Four concurrent, facilitated rooms. Each produces a one-pager of priority recommendations fed into the closing communiqué.</p>
           <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
             {tracks.map((t) => (
               <Card key={t.title} className="card-hover" featureCorner={t.feature} corner="top-left" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>

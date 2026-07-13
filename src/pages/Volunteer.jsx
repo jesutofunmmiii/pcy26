@@ -257,8 +257,7 @@ export default function Volunteer() {
                   ['calendar-days', 'One full day — Wed, 12 August 2026, 10:00 AM to 4:00 PM.'],
                   ['video', 'A mandatory virtual onboarding briefing before the conference.'],
                   ['users', 'A clear role within your assigned team.'],
-                  ['shirt', 'A branded volunteer T-shirt, meals and refreshments.'],
-                  ['file-badge', 'A certificate recognising your contribution.'],
+                  ['utensils', 'Meals and refreshments.'],
                 ].map(([icon, text]) => (
                   <div key={text} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                     <Icon name={icon} size={18} color="var(--green-500)" />
