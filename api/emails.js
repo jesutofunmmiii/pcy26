@@ -39,7 +39,7 @@ function shell(inner) {
 <html lang="en"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="color-scheme" content="light"/>
-<title>Policy Conference for Youths 2026</title></head>
+<title>Policy Conference for Youth 2026</title></head>
 <body style="margin:0;padding:0;background:${BRAND.pageBg};">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${BRAND.pageBg};padding:24px 0;">
 <tr><td align="center">
@@ -47,7 +47,7 @@ function shell(inner) {
 
     <!-- Header banner (single baked image: rising-arc panel + icon) -->
     <tr><td style="padding:0;font-size:0;line-height:0;">
-      <img src="${HEADER_URL}" width="560" alt="Policy Conference for Youths 2026"
+      <img src="${HEADER_URL}" width="560" alt="Policy Conference for Youth 2026"
         style="display:block;width:100%;max-width:560px;height:auto;border:0;outline:none;text-decoration:none;"/>
     </td></tr>
 
@@ -97,7 +97,7 @@ export function delegateEmail(first) {
         ${hi}
       </p>
       <p style="font-family:${FONT_BODY};color:${BRAND.body};font-size:15px;line-height:1.7;margin:0 0 16px;">
-        Thank you for applying to be a delegate at the <strong>Policy Conference for Youths 2026</strong>,
+        Thank you for applying to be a delegate at the <strong>Policy Conference for Youth 2026</strong>,
         holding <strong>Wednesday, 12 August 2026</strong> at Trenchard Hall, University of Ibadan.
       </p>
       <p style="font-family:${FONT_BODY};color:${BRAND.body};font-size:15px;line-height:1.7;margin:0 0 20px;">
@@ -106,7 +106,7 @@ export function delegateEmail(first) {
       </p>
       ${button('Explore the conference', SITE_URL)}
       <p style="font-family:${FONT_BODY};color:${BRAND.body};font-size:15px;line-height:1.7;margin:24px 0 8px;">
-        Regards,<br/>Policy Conference for Youths 26.
+        Regards,<br/>Policy Conference for Youth 26.
       </p>
     </td></tr>`;
   return shell(inner);
@@ -121,7 +121,7 @@ export function volunteerEmail(first) {
         ${hi}
       </p>
       <p style="font-family:${FONT_BODY};color:${BRAND.body};font-size:15px;line-height:1.7;margin:0 0 16px;">
-        Thank you for offering to volunteer at the <strong>Policy Conference for Youths 2026</strong>,
+        Thank you for offering to volunteer at the <strong>Policy Conference for Youth 2026</strong>,
         holding <strong>Wednesday, 12 August 2026</strong> at Trenchard Hall, University of Ibadan.
         Volunteers are the engine of the day, and we're glad you want to be part of it.
       </p>
@@ -131,7 +131,7 @@ export function volunteerEmail(first) {
       </p>
       ${button('Learn about the day', PROGRAM_URL)}
       <p style="font-family:${FONT_BODY};color:${BRAND.body};font-size:15px;line-height:1.7;margin:24px 0 8px;">
-        Regards,<br/>Policy Conference for Youths 26.
+        Regards,<br/>Policy Conference for Youth 26.
       </p>
     </td></tr>`;
   return shell(inner);
