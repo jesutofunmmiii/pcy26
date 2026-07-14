@@ -8,7 +8,7 @@ const PAGE_PATHS = {
   about: '/about',
   program: '/program',
   speakers: '/speakers',
-  register: '/register',
+  register: '/delegate',
   volunteer: '/volunteer',
 };
 

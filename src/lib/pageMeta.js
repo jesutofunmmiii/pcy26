@@ -24,7 +24,7 @@ const META = {
     description:
       'Meet the speakers of the 2026 Policy Conference for Youth — policymakers, practitioners and changemakers leading the conversations. More voices are being confirmed.',
   },
-  '/register': {
+  '/delegate': {
     title: 'Apply as a delegate — FPDI Policy Conference 2026',
     description:
       'Apply for a delegate seat at the 2026 Policy Conference for Youth. Applications are free and selection is competitive.',

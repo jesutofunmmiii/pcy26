@@ -62,7 +62,7 @@ function VolRadioGroup({ label, name, value, onChange, options, error, direction
 
 export default function Volunteer() {
   const navigate = useNavigate();
-  const onNavigate = () => navigate('/register');
+  const onNavigate = () => navigate('/delegate');
 
   const [form, setForm] = React.useState({
     name: '', email: '', phone: '+234 ', location: '', institution: '',
