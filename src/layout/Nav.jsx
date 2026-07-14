@@ -9,7 +9,7 @@ const PATH_TO_ID = {
   '/about': 'about',
   '/program': 'program',
   '/speakers': 'speakers',
-  '/register': 'register',
+  '/delegate': 'register',
   '/volunteer': 'volunteer',
 };
 
@@ -116,7 +116,7 @@ export function Nav() {
             size="sm"
             icon="arrow-right"
             iconPosition="end"
-            onClick={() => navigate('/register')}
+            onClick={() => navigate('/delegate')}
           >
             Apply now
           </Button>
@@ -169,7 +169,7 @@ export function Nav() {
           iconPosition="end"
           onClick={() => {
             setMenuOpen(false);
-            navigate('/register');
+            navigate('/delegate');
           }}
           style={{ alignSelf: 'flex-start', marginTop: 'var(--space-2)' }}
         >

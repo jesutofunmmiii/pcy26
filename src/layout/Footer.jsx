@@ -6,7 +6,7 @@ const ID_TO_PATH = {
   home: '/',
   about: '/about',
   program: '/program',
-  register: '/register',
+  register: '/delegate',
   volunteer: '/volunteer',
 };
 

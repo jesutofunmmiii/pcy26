@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Nav from './layout/Nav.jsx';
 import Footer from './layout/Footer.jsx';
 import Home from './pages/Home.jsx';
@@ -38,7 +38,9 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/program" element={<Program />} />
           <Route path="/speakers" element={<Speakers />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/delegate" element={<Register />} />
+          {/* Old path kept as a redirect so existing links/bookmarks still work. */}
+          <Route path="/register" element={<Navigate to="/delegate" replace />} />
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
