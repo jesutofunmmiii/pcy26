@@ -39,10 +39,10 @@ export default function Home() {
   ];
 
   const moments = [
-    { time: '10:10', tag: 'Keynote', title: 'Ministerial keynote address', desc: 'A serving or former minister frames the institutional trust deficit and signals reform priorities.' },
-    { time: '10:45', tag: 'Panel', title: 'Panel discussion — Alpha', desc: 'Three analytical lenses on why trust keeps falling, with live Slido audience questions.' },
-    { time: '11:20', tag: 'Keynote', title: "Founder's session", desc: 'AO speaks to why this convening exists — and challenges the room on what happens next.' },
-    { time: '2:10', tag: 'Finals', title: 'Policy Challenge finals', desc: 'Three finalist teams present reform proposals to the judges. Winner announced at close.' },
+    { time: '10:35', tag: 'Panel', title: 'Panel — "Real Talk: Rebuilding Trust in The Nigerian State"', desc: 'Distinct lenses on why trust keeps falling, with live Slido audience questions.' },
+    { time: '11:15', tag: 'Keynote', title: "Founder's session", desc: 'The Founder speaks to why this convening exists — and challenges the room on what happens next.' },
+    { time: '11:40', tag: 'Finals', title: 'Policy Challenge finals', desc: 'Three finalist teams present reform proposals to the judges. Winner announced at close.' },
+    { time: '2:45', tag: 'Fireside', title: 'Fireside chat — "The Smallest Unit of Trust"', desc: 'An intimate conversation on rebuilding trust between citizens and institutions, one interaction at a time.' },
   ];
 
   return (

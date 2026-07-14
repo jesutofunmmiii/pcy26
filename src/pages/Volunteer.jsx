@@ -199,7 +199,7 @@ export default function Volunteer() {
                   {selCat === 'media' ? (
                     <VolTextarea
                       label="Portfolio, past work or social handles"
-                      note="For media applicants (social media / photography / videography). Share a link if applicable."
+                      note="For media & graphics design applicants (social media, content creation, graphics design, photography, videography). Share a link if applicable."
                       placeholder="Links to a portfolio, past work, or accounts you’ve managed."
                       value={form.portfolio}
                       onChange={set('portfolio')}
