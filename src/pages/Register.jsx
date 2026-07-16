@@ -33,7 +33,7 @@ export default function Register() {
   const stepValid = (s) => {
     if (s === 0) return form.name.trim() && emailOk && form.phone.trim() && form.phone.trim() !== '+234' && form.institution.trim() && form.delegateType;
     if (s === 1) {
-      if (form.delegateType === 'out-of-state') return form.travelFrom && form.convoy && form.room;
+      if (form.delegateType === 'out-of-state') return form.travelFrom && form.convoy;
       if (form.delegateType === 'policy-hub') return form.hub;
       return true; // in-state has nothing to fill
     }
@@ -183,13 +183,9 @@ export default function Register() {
                           ]} />
                         {err(!form.travelFrom) && <span style={{ color: 'var(--status-error)', fontSize: 13, marginTop: -10 }}>Required</span>}
                         <RadioGroup
-                          label="To ensure safe and coordinated transit, the secretariat is linking regional delegates with the official Policy Hub travel convoys. Do you wish to be absorbed into the Hub's subsidised transit arrangement from your state? *"
+                          label="To ensure safe and coordinated transit, the secretariat is linking delegates from the state/cities listed above with the official Policy Hub travel convoys. Do you wish to be absorbed into the Hub's subsidised transit arrangement from your state? *"
                           name="convoy" value={form.convoy} onChange={(v) => set('convoy', v)} error={err(!form.convoy)}
                           options={[['yes', 'Yes, connect me with the Hub convoy'], ['no', 'No, I am handling my private transit']]} />
-                        <RadioGroup
-                          label="The conference secretariat is providing allocated rooms for regional delegates travelling down. Do you require a room allocation in Ibadan? *"
-                          name="room" value={form.room} onChange={(v) => set('room', v)} error={err(!form.room)}
-                          options={[['yes', 'Yes, I require a room'], ['no', 'No, my lodging is sorted']]} />
                       </React.Fragment>
                     )}
 
