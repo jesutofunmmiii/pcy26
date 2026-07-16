@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Nav from './layout/Nav.jsx';
+import LogoIntro from './components/LogoIntro.jsx';
 import Footer from './layout/Footer.jsx';
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
@@ -22,12 +23,29 @@ function ScrollToTop() {
   return null;
 }
 
+// Decide once, at load, whether the logo intro should play: only when it
+// hasn't been seen this browser session and reduced motion isn't requested.
+// Computed in the parent so <LogoIntro /> never mounts when it should be skipped.
+function shouldPlayIntro() {
+  if (typeof window === 'undefined') return false;
+  try {
+    if (sessionStorage.getItem('fpdi_intro_seen')) return false;
+  } catch {
+    return false;
+  }
+  return !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 export default function App() {
   const { pathname } = useLocation();
+  const [playIntro, setPlayIntro] = useState(shouldPlayIntro);
   usePageMeta();
   useScrollReveal();
   return (
     <>
+      {pathname === '/' && playIntro && (
+        <LogoIntro onDone={() => setPlayIntro(false)} />
+      )}
       <ScrollToTop />
       <ScrollProgress />
       <Nav />
