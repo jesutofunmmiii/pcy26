@@ -183,7 +183,7 @@ export default function Register() {
                           ]} />
                         {err(!form.travelFrom) && <span style={{ color: 'var(--status-error)', fontSize: 13, marginTop: -10 }}>Required</span>}
                         <RadioGroup
-                          label="To ensure safe and coordinated transit, the secretariat is linking delegates from the state/cities listed above with the official Policy Hub travel convoys. Do you wish to be absorbed into the Hub's subsidised transit arrangement from your state? *"
+                          label="To ensure safe and coordinated transit, the secretariat is linking delegates from the states/cities listed above with the official Policy Hub travel convoys. Do you wish to be absorbed into the Hub's subsidised transit arrangement from your state? *"
                           name="convoy" value={form.convoy} onChange={(v) => set('convoy', v)} error={err(!form.convoy)}
                           options={[['yes', 'Yes, connect me with the Hub convoy'], ['no', 'No, I am handling my private transit']]} />
                       </React.Fragment>
@@ -193,7 +193,18 @@ export default function Register() {
                       <RadioGroup
                         label="Hub identification *"
                         name="hub" value={form.hub} onChange={(v) => set('hub', v)} error={err(!form.hub)}
-                        options={[['lasu', 'Lagos State University'], ['osun', 'Osun State University'], ['unilorin', 'University of Ilorin']]} />
+                        options={[
+                          ['University of Ibadan', 'University of Ibadan'],
+                          ['University of Ilorin', 'University of Ilorin'],
+                          ['Lead City University, Ibadan', 'Lead City University, Ibadan'],
+                          ['Federal University of Technology, Akure (FUTA)', 'Federal University of Technology, Akure (FUTA)'],
+                          ['Federal University Oye-Ekiti (FUOYE)', 'Federal University Oye-Ekiti (FUOYE)'],
+                          ['Adeleke University, Ede', 'Adeleke University, Ede'],
+                          ['Landmark University, Omu-Aran', 'Landmark University, Omu-Aran'],
+                          ['Covenant University, Ota', 'Covenant University, Ota'],
+                          ['Bowen University, Iwo', 'Bowen University, Iwo'],
+                          ['Abiola Ajimobi Technical University, Ibadan', 'Abiola Ajimobi Technical University, Ibadan'],
+                        ]} />
                     )}
 
                     {form.delegateType === 'in-state' && (
