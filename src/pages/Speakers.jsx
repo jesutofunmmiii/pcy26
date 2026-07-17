@@ -22,19 +22,19 @@ export default function Speakers() {
   // Speaker 1 is confirmed; the rest are placeholders to be announced.
   const speakers = [
     {
-      name: 'Dr Ayokunnu Ojeniyi',
+      name: 'Mr Ayokunnu Ojeniyi',
       role: 'Convener & Founder, Future Pathways Development Initiative (FPDI)',
       org: 'Managing Partner, Reverso Business Services · Founder, FPDI',
       photo: 'assets/speaker-ayokunnu-ojeniyi.webp',
       instagram: 'https://www.instagram.com/ayokunnuojeniyi/',
       instagramHandle: '@ayokunnuojeniyi',
       bio: [
-        "Dr. Ayokunnu Ojeniyi is a public policy expert, entrepreneur, and nation-builder with over a decade of experience driving systems-level reform across Nigeria's public and private sectors. He believes, unapologetically, that Nigeria can work, and has spent his career making that belief actionable.",
+        "Mr Ayokunnu Ojeniyi is a public policy expert, entrepreneur, and nation-builder with over a decade of experience driving systems-level reform across Nigeria's public and private sectors. He believes, unapologetically, that Nigeria can work, and has spent his career making that belief actionable.",
         "As Project Manager at the Presidential Enabling Business Environment Council (PEBEC) and Technical Adviser in the Office of the Vice President, he was instrumental in reforms that moved Nigeria up 39 places on the World Bank's Ease of Doing Business Index, one of the most significant jumps in the country's history. That work touched everything from business registration and land documentation to digital public services and MSME credit access.",
         'With a track record spanning multimillion-dollar reform programmes across North and West Africa, Ayokunnu is known for blending policy intelligence with on-the-ground execution. His expertise sits at the intersection of public policy, product management, and business climate reform, with a particular focus on making government work better for the people it serves.',
         'He is Managing Partner at Reverso Business Services, a boutique advisory firm focused on public sector reform and governance, and Founder of the Future Pathways Development Initiative (FPDI), a Pan-African for-impact organisation equipping young Nigerians to co-create better policies and lead public sector transformation.',
         'Ayokunnu continues to advise development agencies, state governments, and reform-focused institutions across the continent. His north star remains the same: building a functional Nigeria from the inside out.',
-        'We are pleased to welcome Dr. Ayokunnu Ojeniyi as a speaker at the Policy Conference for Youth 2026.',
+        'We are pleased to welcome Mr Ayokunnu Ojeniyi as a speaker at the Policy Conference for Youth 2026.',
       ],
     },
   ];
