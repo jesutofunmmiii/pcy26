@@ -57,7 +57,7 @@ export function VenueMap() {
     {
       icon: 'car',
       head: 'By car',
-      body: 'Enter through the UI Main Gate on Oyo Road; Trenchard Hall is 1.2 km in, just past Zik’s Roundabout.',
+      body: 'Enter through the UI Main Gate on Oyo Road; KAAF Auditorium is 1.2 km in, just past Zik’s Roundabout.',
     },
     {
       icon: 'bus',
@@ -67,7 +67,7 @@ export function VenueMap() {
     {
       icon: 'square-parking',
       head: 'Parking',
-      body: 'Reserved delegate parking at the Trenchard Hall forecourt and the adjacent lot.',
+      body: 'Reserved delegate parking at the KAAF Auditorium forecourt and the adjacent lot.',
     },
   ];
 
@@ -88,7 +88,7 @@ export function VenueMap() {
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <p className="eyebrow">Getting there</p>
             <h2 style={{ margin: 'var(--space-3) 0 var(--space-4)', maxWidth: '14ch' }}>
-              Find us at Trenchard Hall.
+              Find us at KAAF Auditorium.
             </h2>
             <p style={{ color: 'var(--text-body)', margin: '0 0 var(--space-5)' }}>
               University of Ibadan, Oduduwa Road, Ibadan, Oyo State — the country’s oldest
@@ -132,7 +132,7 @@ export function VenueMap() {
             </div>
             <div style={{ marginTop: 'var(--space-6)' }}>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Trenchard+Hall+University+of+Ibadan"
+                href="https://www.google.com/maps/search/?api=1&query=KAAF+Auditorium%2C+Department+of+Human+Nutrition+and+Dietetics%2C+University+of+Ibadan%2C+Ibadan%2C+Oyo+State"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -163,7 +163,7 @@ export function VenueMap() {
               width="100%"
               style={{ display: 'block' }}
               role="img"
-              aria-label="Illustrated map of University of Ibadan showing Trenchard Hall"
+              aria-label="Illustrated map of University of Ibadan showing KAAF Auditorium"
             >
               <rect x="0" y="0" width="880" height="600" fill={paper} />
 
@@ -221,7 +221,7 @@ export function VenueMap() {
               <Grove pts={[[60, 120, 13], [95, 150, 12], [50, 185, 12]]} />
               <Grove pts={[[250, 150, 12], [280, 120, 11]]} />
 
-              {/* ===== Venue: Trenchard Hall ===== */}
+              {/* ===== Venue: KAAF Auditorium ===== */}
               <g>
                 <ellipse cx="440" cy="356" rx="86" ry="16" fill="rgba(6,46,16,0.12)" />
                 {/* body */}
@@ -252,7 +252,7 @@ export function VenueMap() {
               </g>
 
               {/* labels */}
-              <Label x={440} y={398} size={23}>Trenchard Hall</Label>
+              <Label x={440} y={398} size={23}>KAAF Auditorium</Label>
               <Label x={330} y={202} size={16}>Zik’s Roundabout</Label>
               <Label x={182} y={74} anchor="middle" size={16}>Kenneth Dike Library</Label>
               <Label x={745} y={520} size={16}>Botanical Garden</Label>

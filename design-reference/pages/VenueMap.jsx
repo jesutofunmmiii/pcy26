@@ -37,9 +37,9 @@ function VenueMap() {
   );
 
   const directions = [
-    { icon: 'car', head: 'By car', body: 'Enter through the UI Main Gate on Oyo Road; Trenchard Hall is 1.2 km in, just past Zik’s Roundabout.' },
+    { icon: 'car', head: 'By car', body: 'Enter through the UI Main Gate on Oyo Road; KAAF Auditorium is 1.2 km in, just past Zik’s Roundabout.' },
     { icon: 'bus', head: 'Campus shuttle', body: 'Free delegate shuttles run from the Main Gate every 15 minutes on conference day.' },
-    { icon: 'square-parking', head: 'Parking', body: 'Reserved delegate parking at the Trenchard Hall forecourt and the adjacent lot.' },
+    { icon: 'square-parking', head: 'Parking', body: 'Reserved delegate parking at the KAAF Auditorium forecourt and the adjacent lot.' },
   ];
 
   return (
@@ -58,7 +58,7 @@ function VenueMap() {
           {/* ---- info column ---- */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <p className="eyebrow">Getting there</p>
-            <h2 style={{ margin: 'var(--space-3) 0 var(--space-4)', maxWidth: '14ch' }}>Find us at Trenchard Hall.</h2>
+            <h2 style={{ margin: 'var(--space-3) 0 var(--space-4)', maxWidth: '14ch' }}>Find us at KAAF Auditorium.</h2>
             <p style={{ color: 'var(--text-body)', margin: '0 0 var(--space-5)' }}>
               University of Ibadan, Oduduwa Road, Ibadan, Oyo State — the country’s oldest university, at the heart of the campus.
             </p>
@@ -76,7 +76,7 @@ function VenueMap() {
               ))}
             </div>
             <div style={{ marginTop: 'var(--space-6)' }}>
-              <a href="https://www.google.com/maps/search/?api=1&query=Trenchard+Hall+University+of+Ibadan" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.google.com/maps/search/?api=1&query=KAAF+Auditorium%2C+Department+of+Human+Nutrition+and+Dietetics%2C+University+of+Ibadan%2C+Ibadan%2C+Oyo+State" target="_blank" rel="noopener noreferrer">
                 <Button variant="accent" icon="arrow-up-right" iconPosition="end" style={{ borderRadius: 'var(--radius-pill)' }}>Get directions</Button>
               </a>
             </div>
@@ -84,7 +84,7 @@ function VenueMap() {
 
           {/* ---- illustrated map ---- */}
           <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-default)', boxShadow: 'var(--shadow-card)', background: paper }}>
-            <svg viewBox="0 0 880 600" width="100%" style={{ display: 'block' }} role="img" aria-label="Illustrated map of University of Ibadan showing Trenchard Hall">
+            <svg viewBox="0 0 880 600" width="100%" style={{ display: 'block' }} role="img" aria-label="Illustrated map of University of Ibadan showing KAAF Auditorium">
               <rect x="0" y="0" width="880" height="600" fill={paper} />
 
               {/* faint plot lines */}
@@ -137,7 +137,7 @@ function VenueMap() {
               <Grove pts={[[60,120,13],[95,150,12],[50,185,12]]} />
               <Grove pts={[[250,150,12],[280,120,11]]} />
 
-              {/* ===== Venue: Trenchard Hall ===== */}
+              {/* ===== Venue: KAAF Auditorium ===== */}
               <g>
                 <ellipse cx="440" cy="356" rx="86" ry="16" fill="rgba(6,46,16,0.12)" />
                 {/* body */}
@@ -162,7 +162,7 @@ function VenueMap() {
               </g>
 
               {/* labels */}
-              <Label x={440} y={398} size={23}>Trenchard Hall</Label>
+              <Label x={440} y={398} size={23}>KAAF Auditorium</Label>
               <Label x={330} y={202} size={16}>Zik’s Roundabout</Label>
               <Label x={182} y={74} anchor="middle" size={16}>Kenneth Dike Library</Label>
               <Label x={745} y={520} size={16}>Botanical Garden</Label>

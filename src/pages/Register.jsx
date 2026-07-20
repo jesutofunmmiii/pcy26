@@ -318,7 +318,7 @@ export default function Register() {
                 <Icon name="calendar-check" size={20} color="var(--green-700)" />
                 <span style={{ fontWeight: 600, color: 'var(--text-heading)' }}>Wed, 12 August 2026</span>
               </div>
-              <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>10:00 AM – 4:00 PM · Trenchard Hall, University of Ibadan.</p>
+              <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>10:00 AM – 4:00 PM · KAAF Auditorium, University of Ibadan.</p>
             </Card>
           </div>
         </div>

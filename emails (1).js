@@ -70,7 +70,7 @@ function shell(inner) {
         </td>
       </tr></table>
       <div style="font-family:${FONT_BODY};color:#9FB3A2;font-size:11px;margin-top:14px;">
-        Wed 12 August 2026 · Trenchard Hall, University of Ibadan
+        Wed 12 August 2026 · KAAF Auditorium, University of Ibadan
       </div>
     </td></tr>
 
@@ -98,7 +98,7 @@ export function delegateEmail(first) {
       </p>
       <p style="font-family:${FONT_BODY};color:${BRAND.body};font-size:15px;line-height:1.7;margin:0 0 16px;">
         Thank you for applying to be a delegate at the <strong>Policy Conference for Youth 2026</strong>,
-        holding <strong>Wednesday, 12 August 2026</strong> at Trenchard Hall, University of Ibadan.
+        holding <strong>Wednesday, 12 August 2026</strong> at KAAF Auditorium, University of Ibadan.
       </p>
       <p style="font-family:${FONT_BODY};color:${BRAND.body};font-size:15px;line-height:1.7;margin:0 0 20px;">
         Selection is competitive. Your submission is now under review, and the secretariat
@@ -122,7 +122,7 @@ export function volunteerEmail(first) {
       </p>
       <p style="font-family:${FONT_BODY};color:${BRAND.body};font-size:15px;line-height:1.7;margin:0 0 16px;">
         Thank you for offering to volunteer at the <strong>Policy Conference for Youth 2026</strong>,
-        holding <strong>Wednesday, 12 August 2026</strong> at Trenchard Hall, University of Ibadan.
+        holding <strong>Wednesday, 12 August 2026</strong> at KAAF Auditorium, University of Ibadan.
         Volunteers are the engine of the day, and we're glad you want to be part of it.
       </p>
       <p style="font-family:${FONT_BODY};color:${BRAND.body};font-size:15px;line-height:1.7;margin:0 0 20px;">
