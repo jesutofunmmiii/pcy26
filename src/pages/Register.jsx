@@ -180,6 +180,7 @@ export default function Register() {
                           options={[
                             { value: 'ilorin', label: 'Ilorin' }, { value: 'osogbo', label: 'Osogbo' },
                             { value: 'lagos', label: 'Lagos' }, { value: 'ekiti', label: 'Ekiti' }, { value: 'ondo', label: 'Ondo' },
+                            { value: 'ogun', label: 'Ogun' },
                           ]} />
                         {err(!form.travelFrom) && <span style={{ color: 'var(--status-error)', fontSize: 13, marginTop: -10 }}>Required</span>}
                         <RadioGroup
@@ -204,6 +205,8 @@ export default function Register() {
                           ['Covenant University, Ota', 'Covenant University, Ota'],
                           ['Bowen University, Iwo', 'Bowen University, Iwo'],
                           ['Abiola Ajimobi Technical University, Ibadan', 'Abiola Ajimobi Technical University, Ibadan'],
+                          ['Lagos State University', 'Lagos State University'],
+                          ['Osun State University', 'Osun State University'],
                         ]} />
                     )}
 
