@@ -12,7 +12,7 @@ function Home({ onNavigate }) {
   const facts = [
     { icon: 'calendar-days', label: 'Date', value: 'Wed, 12 August 2026' },
     { icon: 'clock', label: 'Time', value: '10:00 AM – 4:00 PM' },
-    { icon: 'map-pin', label: 'Venue', value: 'Trenchard Hall, U. of Ibadan' },
+    { icon: 'map-pin', label: 'Venue', value: 'KAAF Auditorium, U. of Ibadan' },
     { icon: 'layout-grid', label: 'Format', value: 'Plenary · Breakouts · Open House' },
   ];
 
@@ -113,7 +113,7 @@ function Home({ onNavigate }) {
                 ['Theme', 'Rebuilding Trust in the Nigerian State'],
                 ['Date', 'Wednesday, 12 August 2026'],
                 ['Time', '10:00 AM – 4:00 PM'],
-                ['Venue', 'Trenchard Hall, University of Ibadan'],
+                ['Venue', 'KAAF Auditorium, University of Ibadan'],
                 ['Format', 'Plenary + Breakouts + Open House'],
                 ['Host', 'Future Pathways Development Initiative'],
               ].map(([k, v]) => (
@@ -197,7 +197,7 @@ function HomeCta({ onNavigate }) {
     <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)' }}>
       <img src={window.asset('assets/rising-arc-line.svg')} alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '70%', objectFit: 'cover', opacity: 0.4 }} />
       <div className="section" style={{ position: 'relative', padding: 'var(--space-9) var(--layout-margin)', textAlign: 'center' }}>
-        <p className="eyebrow" style={{ color: 'var(--gold-500)', textAlign: 'center', margin: '0 auto' }}>12 August 2026 · Trenchard Hall, Ibadan</p>
+        <p className="eyebrow" style={{ color: 'var(--gold-500)', textAlign: 'center', margin: '0 auto' }}>12 August 2026 · KAAF Auditorium, Ibadan</p>
         <h2 style={{ color: '#fff', margin: 'var(--space-4) auto var(--space-5)', maxWidth: '20ch' }}>Take a seat where the reform agenda is written.</h2>
         <p style={{ color: 'rgba(255,255,255,0.8)', maxWidth: '52ch', margin: '0 auto var(--space-6)' }}>
           Delegate places are limited and registration is free. Reserve yours and join the working session.

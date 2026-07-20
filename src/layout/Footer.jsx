@@ -162,7 +162,7 @@ export function Footer() {
             color: 'rgba(255,255,255,0.5)',
           }}
         >
-          <span>Trenchard Hall, University of Ibadan · 12 August 2026</span>
+          <span>KAAF Auditorium, University of Ibadan · 12 August 2026</span>
           <span>© 2026 FPDI · Paths that rise</span>
         </div>
       </div>

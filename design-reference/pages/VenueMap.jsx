@@ -37,9 +37,9 @@ function VenueMap() {
   );
 
   const directions = [
-    { icon: 'car', head: 'By car', body: 'Enter through the UI Main Gate on Oyo Road; Trenchard Hall is 1.2 km in, just past Zik’s Roundabout.' },
-    { icon: 'bus', head: 'Campus shuttle', body: 'Free delegate shuttles run from the Main Gate every 15 minutes on conference day.' },
-    { icon: 'square-parking', head: 'Parking', body: 'Reserved delegate parking at the Trenchard Hall forecourt and the adjacent lot.' },
+    { icon: 'car', head: 'By car', body: 'Use the UCH main gate on Queen Elizabeth II Road, near Agodi Gardens; the KAAF Auditorium sits within the College of Medicine, at the Faculty of Public Health.' },
+    { icon: 'bus', head: 'Campus shuttle', body: 'Free delegate shuttles link the UI main campus and the College of Medicine every 15 minutes on conference day.' },
+    { icon: 'square-parking', head: 'Parking', body: 'Reserved delegate parking at the KAAF Auditorium forecourt and the adjacent lot.' },
   ];
 
   return (
@@ -58,9 +58,9 @@ function VenueMap() {
           {/* ---- info column ---- */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <p className="eyebrow">Getting there</p>
-            <h2 style={{ margin: 'var(--space-3) 0 var(--space-4)', maxWidth: '14ch' }}>Find us at Trenchard Hall.</h2>
+            <h2 style={{ margin: 'var(--space-3) 0 var(--space-4)', maxWidth: '14ch' }}>Find us at KAAF Auditorium.</h2>
             <p style={{ color: 'var(--text-body)', margin: '0 0 var(--space-5)' }}>
-              University of Ibadan, Oduduwa Road, Ibadan, Oyo State — the country’s oldest university, at the heart of the campus.
+              College of Medicine, University of Ibadan, Queen Elizabeth II Road, Ibadan, Oyo State — inside the University College Hospital complex, at the Faculty of Public Health.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
               {directions.map((d) => (
@@ -76,7 +76,7 @@ function VenueMap() {
               ))}
             </div>
             <div style={{ marginTop: 'var(--space-6)' }}>
-              <a href="https://www.google.com/maps/search/?api=1&query=Trenchard+Hall+University+of+Ibadan" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.google.com/maps/search/?api=1&query=KAAF+Auditorium%2C+Department+of+Human+Nutrition+and+Dietetics%2C+University+of+Ibadan%2C+Ibadan%2C+Oyo+State" target="_blank" rel="noopener noreferrer">
                 <Button variant="accent" icon="arrow-up-right" iconPosition="end" style={{ borderRadius: 'var(--radius-pill)' }}>Get directions</Button>
               </a>
             </div>
@@ -84,7 +84,7 @@ function VenueMap() {
 
           {/* ---- illustrated map ---- */}
           <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', border: '1px solid var(--border-default)', boxShadow: 'var(--shadow-card)', background: paper }}>
-            <svg viewBox="0 0 880 600" width="100%" style={{ display: 'block' }} role="img" aria-label="Illustrated map of University of Ibadan showing Trenchard Hall">
+            <svg viewBox="0 0 880 600" width="100%" style={{ display: 'block' }} role="img" aria-label="Illustrated map of the University of Ibadan College of Medicine showing the KAAF Auditorium">
               <rect x="0" y="0" width="880" height="600" fill={paper} />
 
               {/* faint plot lines */}
@@ -116,7 +116,7 @@ function VenueMap() {
                 <path d="M330 -20 C 350 160 300 300 340 630" stroke="#CBD4C4" strokeWidth="2" strokeDasharray="2 12" />
               </g>
 
-              {/* roundabout (Zik's) */}
+              {/* roundabout */}
               <g>
                 <circle cx="330" cy="248" r="30" fill={roadFill} stroke={roadCase} strokeWidth="6" />
                 <circle cx="330" cy="248" r="12" fill={lawnDeep} />
@@ -137,18 +137,21 @@ function VenueMap() {
               <Grove pts={[[60,120,13],[95,150,12],[50,185,12]]} />
               <Grove pts={[[250,150,12],[280,120,11]]} />
 
-              {/* ===== Venue: Trenchard Hall ===== */}
+              {/* ===== Venue: KAAF Auditorium (modern auditorium) ===== */}
               <g>
-                <ellipse cx="440" cy="356" rx="86" ry="16" fill="rgba(6,46,16,0.12)" />
+                <ellipse cx="440" cy="360" rx="88" ry="16" fill="rgba(6,46,16,0.12)" />
+                {/* curved auditorium roof */}
+                <path d="M366 314 Q 440 286 514 314 L514 322 L366 322 Z" fill="#FFD64D" stroke="#B38800" strokeWidth="2" strokeLinejoin="round" />
                 {/* body */}
-                <rect x="372" y="300" width="136" height="58" rx="4" fill="var(--gold-500)" stroke="#B38800" strokeWidth="2" />
-                {/* portico pediment */}
-                <path d="M366 300 L440 268 L514 300 Z" fill="#FFD64D" stroke="#B38800" strokeWidth="2" strokeLinejoin="round" />
-                {/* columns */}
-                <g fill="#F5F1E4" stroke="#C9A22E" strokeWidth="1">
-                  {[388,410,432,454,476,498].map((cx) => <rect key={cx} x={cx} y="304" width="7" height="50" rx="1.5" />)}
+                <rect x="372" y="320" width="136" height="38" rx="4" fill="var(--gold-500)" stroke="#B38800" strokeWidth="2" />
+                {/* glass frontage */}
+                <g stroke="#C9A22E" strokeWidth="1.5">
+                  {[396,420,444,468,492].map((mx) => <line key={mx} x1={mx} y1="328" x2={mx} y2="352" />)}
                 </g>
-                <rect x="372" y="349" width="136" height="9" fill="#E6AF00" />
+                {/* base */}
+                <rect x="372" y="352" width="136" height="8" fill="#E6AF00" />
+                {/* entrance canopy */}
+                <rect x="418" y="344" width="44" height="14" rx="2" fill="#F5F1E4" stroke="#C9A22E" strokeWidth="1" />
               </g>
 
               {/* pin above venue */}
@@ -162,12 +165,13 @@ function VenueMap() {
               </g>
 
               {/* labels */}
-              <Label x={440} y={398} size={23}>Trenchard Hall</Label>
-              <Label x={330} y={202} size={16}>Zik’s Roundabout</Label>
-              <Label x={182} y={74} anchor="middle" size={16}>Kenneth Dike Library</Label>
-              <Label x={745} y={520} size={16}>Botanical Garden</Label>
-              <Label x={166} y={288} size={16}>Faculty of Arts</Label>
-              <Label x={150} y={562} anchor="start" size={16}>UI Main Gate →</Label>
+              <Label x={440} y={396} size={22}>KAAF Auditorium</Label>
+              <Label x={440} y={417} size={13}>Faculty of Public Health</Label>
+              <Label x={690} y={240} size={16}>University College Hospital</Label>
+              <Label x={166} y={288} size={16}>College of Medicine</Label>
+              <Label x={745} y={520} size={16}>Agodi Gardens</Label>
+              <Label x={512} y={588} size={15}>Queen Elizabeth II Road</Label>
+              <Label x={150} y={562} anchor="start" size={16}>UCH Main Gate →</Label>
 
               {/* main gate marker */}
               <g transform="translate(120,540)">

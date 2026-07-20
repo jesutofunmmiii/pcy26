@@ -126,7 +126,7 @@ export default function Volunteer() {
             Be the <span style={{ color: 'var(--gold-500)' }}>operational backbone.</span>
           </h1>
           <p className="rise rise-3" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'var(--text-lg)', maxWidth: '62ch' }}>
-            We’re building the execution team for the Policy Conference for Youth 2026 — Wednesday, 12 August at Trenchard Hall, University of Ibadan. Eight teams keep the day moving, from accreditation and floor management to media, catering and setup. It’s a volunteer role, but the standard is strictly professional. Find where you deliver the most impact and apply below.
+            We’re building the execution team for the Policy Conference for Youth 2026 — Wednesday, 12 August at KAAF Auditorium, University of Ibadan. Eight teams keep the day moving, from accreditation and floor management to media, catering and setup. It’s a volunteer role, but the standard is strictly professional. Find where you deliver the most impact and apply below.
           </p>
         </div>
       </section>
