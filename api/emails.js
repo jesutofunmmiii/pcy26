@@ -70,7 +70,7 @@ function shell(inner) {
         </td>
       </tr></table>
       <div style="font-family:${FONT_BODY};color:#9FB3A2;font-size:11px;margin-top:14px;">
-        Wed 12 August 2026 · KAAF Auditorium, University of Ibadan
+        Wed 12 August 2026 · KAAF Auditorium, Department of Human Nutrition and Dietetics, University of Ibadan
       </div>
     </td></tr>
 
