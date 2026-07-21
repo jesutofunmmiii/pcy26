@@ -49,7 +49,7 @@ function Footer({ onNavigate }) {
           display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
           fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)',
         }}>
-          <span>KAAF Auditorium, University of Ibadan · 12 August 2026</span>
+          <span>KAAF Auditorium, Department of Human Nutrition and Dietetics, University of Ibadan · 12 August 2026</span>
           <span>© 2026 FPDI · Paths that rise</span>
         </div>
       </div>

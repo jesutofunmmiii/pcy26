@@ -7,7 +7,7 @@ const META = {
   '/': {
     title: 'FPDI Policy Conference 2026 — Rebuilding trust in the Nigerian state',
     description:
-      'The 2026 Policy Conference for Youth — a full-day working session on rebuilding trust in the Nigerian state. Wednesday, 12 August 2026, KAAF Auditorium, University of Ibadan.',
+      'The 2026 Policy Conference for Youth — a full-day working session on rebuilding trust in the Nigerian state. Wednesday, 12 August 2026, KAAF Auditorium, Department of Human Nutrition and Dietetics, University of Ibadan.',
   },
   '/about': {
     title: 'About FPDI — Policy Conference 2026',
