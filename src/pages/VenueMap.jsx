@@ -53,16 +53,21 @@ export function VenueMap() {
     </text>
   );
 
+  const landmarks = [
+    'A1 Kitchen — a popular food spot just behind the auditorium.',
+    'Faculty of Economics — in the same academic zone.',
+  ];
+
   const directions = [
     {
       icon: 'car',
       head: 'By car',
-      body: 'Use the UCH main gate on Queen Elizabeth II Road, near Agodi Gardens; the KAAF Auditorium sits within the College of Medicine, at the Faculty of Public Health.',
+      body: 'Enter through UI’s First or Second Gate and follow the map link straight to the auditorium.',
     },
     {
       icon: 'bus',
       head: 'Campus shuttle',
-      body: 'Free delegate shuttles link the UI main campus and the College of Medicine every 15 minutes on conference day.',
+      body: 'Board a shuttle at UI First Gate (main campus); it runs straight to the auditorium.',
     },
     {
       icon: 'square-parking',
@@ -91,10 +96,30 @@ export function VenueMap() {
               Find us at KAAF Auditorium.
             </h2>
             <p style={{ color: 'var(--text-body)', margin: '0 0 var(--space-5)' }}>
-              College of Medicine, University of Ibadan, Queen Elizabeth II Road, Ibadan,
-              Oyo State — inside the University College Hospital complex, at the Faculty of
-              Public Health.
+              Department of Human Nutrition and Dietetics, University of Ibadan (UI),
+              Ibadan, Oyo State.
             </p>
+            <div style={{ marginBottom: 'var(--space-5)' }}>
+              <div style={{ fontWeight: 600, color: 'var(--text-heading)', fontSize: 15, marginBottom: 'var(--space-2)' }}>
+                Nearby facilities &amp; landmarks
+              </div>
+              <ul
+                style={{
+                  margin: 0,
+                  paddingLeft: '1.2em',
+                  color: 'var(--text-body)',
+                  fontSize: 14,
+                  lineHeight: 1.55,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 4,
+                }}
+              >
+                {landmarks.map((l) => (
+                  <li key={l}>{l}</li>
+                ))}
+              </ul>
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
               {directions.map((d) => (
                 <div key={d.head} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
@@ -164,7 +189,7 @@ export function VenueMap() {
               width="100%"
               style={{ display: 'block' }}
               role="img"
-              aria-label="Illustrated map of the University of Ibadan College of Medicine showing the KAAF Auditorium"
+              aria-label="Illustrated map of the University of Ibadan showing the KAAF Auditorium"
             >
               <rect x="0" y="0" width="880" height="600" fill={paper} />
 
@@ -257,12 +282,12 @@ export function VenueMap() {
 
               {/* labels */}
               <Label x={440} y={396} size={22}>KAAF Auditorium</Label>
-              <Label x={440} y={417} size={13}>Faculty of Public Health</Label>
-              <Label x={690} y={240} size={16}>University College Hospital</Label>
-              <Label x={166} y={288} size={16}>College of Medicine</Label>
-              <Label x={745} y={520} size={16}>Agodi Gardens</Label>
-              <Label x={512} y={588} size={15}>Queen Elizabeth II Road</Label>
-              <Label x={150} y={562} anchor="start" size={16}>UCH Main Gate →</Label>
+              <Label x={440} y={417} size={13}>Human Nutrition &amp; Dietetics</Label>
+              <Label x={690} y={240} size={16}>Faculty of Economics</Label>
+              <Label x={166} y={288} size={16}>A1 Kitchen</Label>
+              <Label x={745} y={520} size={16}>UI Second Gate</Label>
+              <Label x={512} y={588} size={15}>University of Ibadan</Label>
+              <Label x={150} y={562} anchor="start" size={16}>UI First Gate →</Label>
 
               {/* main gate marker */}
               <g transform="translate(120,540)">
