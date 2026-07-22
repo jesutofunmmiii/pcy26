@@ -183,6 +183,7 @@ const list = [
   'Spiritan University, Nneochi',
   'Summit University, Offa',
   'Tansian University, Umunya',
+  'The Polytechnic, Ibadan (Omololu Olunloyo Polytechnic)',
   'Thomas Adewumi University, Oko',
   'Topfaith University, Mkpatak',
   'Trinity University, Ofada',
