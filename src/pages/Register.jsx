@@ -207,6 +207,7 @@ export default function Register() {
                           ['Abiola Ajimobi Technical University, Ibadan', 'Abiola Ajimobi Technical University, Ibadan'],
                           ['Lagos State University', 'Lagos State University'],
                           ['Osun State University', 'Osun State University'],
+                          ['University of Lagos', 'University of Lagos'],
                         ]} />
                     )}
 
