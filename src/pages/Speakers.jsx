@@ -37,9 +37,21 @@ export default function Speakers() {
         'We are pleased to welcome Mr Ayokunnu Ojeniyi as a speaker at the Policy Conference for Youth 2026.',
       ],
     },
+    {
+      name: 'Khalil Nur Khalil',
+      role: 'Economic Adviser, Katsina State Government',
+      photo: 'assets/speaker-khalil-nur-khalil.webp',
+      teaser: "Economic Adviser to the Katsina State Government and former Executive Secretary of the Kaduna Investment Promotion Agency, where he became Nigeria's youngest parastatal chief executive at 28.",
+      bio: [
+        'Khalil Nur Khalil is the Economic Adviser to the Katsina State Government, appointed in October 2023, where he is working to build a globally competitive subnational economy for job creation and inclusive, sustainable growth.',
+        'He graduated first class (High Honours) in Economics from the Eastern Mediterranean University, Famagusta, where he was the best graduating student in his department. He began his career at the Kaduna Investment Promotion Agency (KADIPA), rising from Technical Assistant to Manager, Investor Relations, and then Acting Head of Investor Relations — a period in which he helped facilitate more than $600 million in investment in the first quarter of 2020 alone, the largest non-oil FDI inflow in Nigeria at the time.',
+        "In March 2021 he was appointed substantive Director of Investment Intelligence at KADIPA, making him the youngest director of a public institution in Nigeria's civil service at 28. Seven months later he became Executive Secretary of KADIPA and the youngest chief executive of a government parastatal in Nigeria. In that role he attracted over $1.8 billion into Kaduna State, supported the creation of more than 25,000 jobs, and drove the passage of the amended KADIPA law and the adoption of the National Startup Act — making Kaduna the first state government in Nigeria to do so.",
+        'He is a recipient of The Future Awards Africa Prize for Professional Services (2022) and the Under 30 CEOs Award for Politics and Governance (2022), and was named by StateCraft Inc among the 100 most influential "Powers Behind the State" in 2023.',
+      ],
+    },
   ];
 
-  const PLACEHOLDER_COUNT = 13;
+  const PLACEHOLDER_COUNT = 12;
 
   return (
     <div>
@@ -125,7 +137,7 @@ export default function Speakers() {
               </div>
               <div>
                 <h3 style={{ margin: '0 0 8px', color: 'var(--text-muted)', fontSize: 'var(--text-2xl)', fontWeight: 500 }}>To be announced</h3>
-                <p style={{ margin: 0, fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Speaker {String(i + 2).padStart(2, '0')}</p>
+                <p style={{ margin: 0, fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Speaker {String(i + 3).padStart(2, '0')}</p>
               </div>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)', border: '1px solid var(--border-default)', borderRadius: 'var(--radius-pill)', padding: '8px 18px' }}>Coming soon</span>
             </div>
