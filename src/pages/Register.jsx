@@ -276,6 +276,9 @@ export default function Register() {
                         ['hub', 'A recognised Policy Hub'],
                         ['social', 'Social media (X/Twitter, LinkedIn, Instagram)'],
                         ['referral', 'Direct referral from a colleague, mentor, or speaker'],
+                        ['aiesec', 'AIESEC'],
+                        ['jci', 'Junior Chamber International (JCI)'],
+                        ['uisrc', "University of Ibadan Students' Union SRC"],
                         ['other', 'Other'],
                       ]} />
                     {form.heard === 'other' && (
