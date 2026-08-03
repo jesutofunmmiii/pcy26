@@ -38,9 +38,26 @@ export default function Speakers() {
       ],
     },
     {
+      name: 'Hon. Seyi Adisa',
+      role: 'Founder, African Governance Institute for Development (AGID)',
+      photo: 'assets/speaker-seyi-adisa.webp',
+      instagram: 'https://www.instagram.com/seyiadisa_/',
+      instagramHandle: '@seyiadisa_',
+      teaser: 'Lawyer, public administrator, and John Maxwell Leadership coach. Former Honourable Member for Afijio Constituency in the Oyo State House of Assembly and Principal Private Secretary to the late Governor Abiola Ajimobi — both before the age of 40.',
+      bio: [
+        'Seyi Adisa is a public administrator, lawyer, inspirational speaker, and John Maxwell Leadership coach whose work sits at the intersection of law, policy, and people.',
+        "He read law at the University of Birmingham, completed the Legal Practice Course at BPP Law School, and holds a Master's degree in Public Administration, also from Birmingham. He is a Fellow of the Institute of Chartered Secretaries and Administrators (ICSAN).",
+        'He served as Honourable Member representing Afijio Constituency in the Oyo State House of Assembly (2019–2023), and as Principal Private Secretary to the Governor of Oyo State, Sen. Abiola Ajimobi (2011–2019) — both before the age of 40. In 2025 he was nominated to the Governing Council of Abiola Ajimobi Technical University.',
+        'He is Co-Founder and Partner at Tunde & Adisa Legal Practitioners, where he leads the Public Policy and Government Advisory practice, advising Ministries, Departments and Agencies on complex legal and policy matters. In 2023 he founded the African Governance Institute for Development (AGID) to train leaders and educate citizens on good governance.',
+        "He was named among MIPAD's Top 100 Most Influential People of African Descent Under 40 in the Politics and Governance category, and in 2023 was selected as one of only 22 leaders across Africa for the Archbishop Desmond Tutu Fellowship.",
+      ],
+    },
+    {
       name: 'Khalil Nur Khalil',
       role: 'Economic Adviser, Katsina State Government',
       photo: 'assets/speaker-khalil-nur-khalil.webp',
+      instagram: 'https://www.instagram.com/khalilnk92/',
+      instagramHandle: '@khalilnk92',
       teaser: "Economic Adviser to the Katsina State Government and former Executive Secretary of the Kaduna Investment Promotion Agency, where he became Nigeria's youngest parastatal chief executive at 28.",
       bio: [
         'Khalil Nur Khalil is the Economic Adviser to the Katsina State Government, appointed in October 2023, where he is working to build a globally competitive subnational economy for job creation and inclusive, sustainable growth.',
@@ -51,7 +68,7 @@ export default function Speakers() {
     },
   ];
 
-  const PLACEHOLDER_COUNT = 12;
+  const PLACEHOLDER_COUNT = 11;
 
   return (
     <div>
@@ -137,7 +154,7 @@ export default function Speakers() {
               </div>
               <div>
                 <h3 style={{ margin: '0 0 8px', color: 'var(--text-muted)', fontSize: 'var(--text-2xl)', fontWeight: 500 }}>To be announced</h3>
-                <p style={{ margin: 0, fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Speaker {String(i + 3).padStart(2, '0')}</p>
+                <p style={{ margin: 0, fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Speaker {String(i + 4).padStart(2, '0')}</p>
               </div>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)', border: '1px solid var(--border-default)', borderRadius: 'var(--radius-pill)', padding: '8px 18px' }}>Coming soon</span>
             </div>
