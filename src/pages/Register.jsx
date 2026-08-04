@@ -278,6 +278,7 @@ export default function Register() {
                         ['referral', 'Direct referral from a colleague, mentor, or speaker'],
                         ['aiesec', 'AIESEC'],
                         ['jci', 'Junior Chamber International (JCI)'],
+                        ['shapers', 'Global Shapers Community Ibadan'],
                         ['uisrc', "University of Ibadan Students' Union SRC"],
                         ['other', 'Other'],
                       ]} />
