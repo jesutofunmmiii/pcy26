@@ -18,14 +18,14 @@ export function Footer() {
         ['Home', 'home'],
         ['About the conference', 'about'],
         ['Full programme', 'program'],
-        ['Apply as a delegate', 'register'],
+        ['Watch it live', 'register'],
       ],
     },
     {
       head: 'Get involved',
       links: [
         ['Volunteer with us', 'volunteer'],
-        ['Apply as a delegate', 'register'],
+        ['Register to stream', 'register'],
         ['The Policy Challenge', 'program'],
       ],
     },
