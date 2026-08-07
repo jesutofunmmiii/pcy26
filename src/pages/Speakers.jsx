@@ -19,7 +19,7 @@ export default function Speakers() {
   const [openBio, setOpenBio] = React.useState(null);
   const toggleBio = (name) => setOpenBio((cur) => (cur === name ? null : name));
 
-  // Speaker 1 is confirmed; the rest are placeholders to be announced.
+  // Confirmed speakers first; remaining slots are placeholders to be announced.
   const speakers = [
     {
       name: 'Mr Ayokunnu Ojeniyi',
@@ -66,9 +66,68 @@ export default function Speakers() {
         'He is a recipient of The Future Awards Africa Prize for Professional Services (2022) and the Under 30 CEOs Award for Politics and Governance (2022), and was named by StateCraft Inc among the 100 most influential "Powers Behind the State" in 2023.',
       ],
     },
+    {
+      name: 'Damilola O. Adefulire',
+      role: 'Executive Director, Youth Be Involved',
+      photo: 'assets/speaker-damilola-adefulire.webp',
+      instagram: 'https://www.instagram.com/dadefulire/',
+      instagramHandle: '@dadefulire',
+      teaser: 'Youth engagement strategist and civic leader whose programmes have reached over 1.2 million young Nigerians nationwide.',
+      bio: [
+        'Damilola Oreoluwa Adefulire is a youth engagement strategist, civic leader, and Founder of Youth Be Involved (YBI), a youth-led organisation dedicated to strengthening active citizenship among young Nigerians.',
+        'Through YBI, she has led programmes reaching over 1.2 million young Nigerians nationwide, both in person and digitally.',
+        "She received a Special Recognition Award from TIME 100 Nigeria and was named among Nigeria's 40 Under 40 Emerging Leaders in recognition of her contributions to youth development and civic engagement.",
+        'She holds a Bachelor of Laws (LL.B.) and a Master of Laws (LL.M.). Her work focuses on youth inclusion in governance, public policy, and civic innovation — helping young Nigerians move from awareness to action.',
+      ],
+    },
+    {
+      name: 'Daniel Otabor',
+      role: 'Author, Nation Builder & Leadership Advocate',
+      photo: 'assets/speaker-daniel-otabor.webp',
+      instagram: 'https://www.instagram.com/danielotabor/',
+      instagramHandle: '@danielotabor',
+      teaser: 'Author of Dear Leader and founder of RunForNigeria. TEDx speaker whose leadership programmes have reached more than 20,000 young Africans.',
+      bio: [
+        'Daniel Otabor is an author, nation builder, and leadership advocate whose work over the past decade has shaped conversations on governance, leadership development, and national transformation across Africa.',
+        'He has directly influenced more than 20,000 young Africans through leadership and governance platforms, trained over 1,000 professionals in public speaking, and reached more than 13,000 university students through immersive workshops on leadership, civic responsibility, and nation-building.',
+        'In 2017 he launched #SpeakWithDaniel, a public-speaking initiative. As a TEDx speaker he has addressed audiences on leadership, governance, public service, and the intersection of technology and society.',
+        'In 2021 he published Dear Leader: A 365-Day Approach to Leadership, which inspired The Leadership Responsibility for Nation-Building, an annual conference equipping citizens with practical strategies for change. In 2022 he founded RunForNigeria, preparing emerging leaders to take up roles in governance.',
+        'He received the Royal Young Leadership Award from the Ooni of Ife in 2021, and the Governance Award at The Future Awards Africa 2025.',
+      ],
+    },
+    {
+      name: 'Adebayo Akande',
+      role: 'SSA, ICT & E-Governance, Oyo State',
+      photo: 'assets/speaker-adebayo-akande.webp',
+      instagram: 'https://www.instagram.com/chief_akande/',
+      instagramHandle: '@chief_akande',
+      teaser: 'Serial entrepreneur across technology, media and education, and Senior Special Assistant to the Oyo State Governor on ICT and E-Governance.',
+      bio: [
+        'Bayo Akande is a serial entrepreneur whose work spans technology, media, art and entertainment. He is Founder and CEO of Orb Solutions, a full-service technology company delivering managed services, IT support, and web and mobile development — including financial trading platforms, e-commerce marketplaces and university management systems for clients such as Total E&P Nigeria.',
+        'In 2013 he founded West Midlands CBT Ltd., which conducts computer-based examinations for the University of Ibadan, the National Open University of Nigeria and JAMB, and has tested roughly half a million students electronically. He also co-founded West Midlands Open University, offering open, distance and e-learning programmes.',
+        'He co-founded two radio stations, Splash FM and Lagelu FM, with a combined daily listenership of about 2.5 million, and continues to serve on their boards.',
+        'He entered public service in 2019 as Special Adviser to the Oyo State Governor on ICT and E-Governance, transitioning to Senior Special Assistant in 2023. He is also Director General of the Oyo State Infrastructure Maintenance and Regulatory Agency. Under his leadership Oyo State has been named best state in ICT Infrastructure, best state in ICT Human Capacity Development, and overall best state in Digital Technology at the Nigerian National Council on Digital Economy across 2021–2024.',
+        'He holds an M.Sc. in Business and Management from Aston University and a B.Eng. in Chemical Engineering from the University of Sheffield.',
+      ],
+    },
+    {
+      name: 'Arinola Addo Daniel',
+      role: 'Executive Director, Future Pathways Development Initiative',
+      photo: 'assets/speaker-arinola-addo-daniel.webp',
+      instagram: 'https://www.instagram.com/arinoladaniel_/',
+      instagramHandle: '@arinoladaniel_',
+      teaser: "Strategy and operations leader and public policy advocate, building one of Nigeria's largest communities of emerging policymakers.",
+      bio: [
+        'Arinola Addo Daniel is a strategist, operations leader, and public policy advocate whose work sits at the intersection of governance, technology, leadership development, and social impact.',
+        "As Executive Director of the Future Pathways Development Initiative (FPDI), he leads work on governance reform, citizen engagement, and policy innovation — building one of Nigeria's largest communities of emerging policymakers across tertiary institutions in all six geopolitical zones.",
+        'He previously served as Country Manager at SeedDEV, championing digital literacy, STEM education, and technology empowerment initiatives that equipped thousands of young Africans with future-ready skills.',
+        'He has held leadership positions with Milsat Technologies, Akure Tech Hub, Emerging Communities Africa, AIESEC, and Future Academy Africa, leading cross-functional teams, supporting startup growth, and delivering technology-enabled solutions.',
+        'His work is guided by a commitment to evidence-based decision-making, leadership development, and building systems that enable individuals and institutions to thrive.',
+      ],
+    },
   ];
 
-  const PLACEHOLDER_COUNT = 11;
+  const PLACEHOLDER_COUNT = 7;
 
   return (
     <div>
@@ -154,7 +213,7 @@ export default function Speakers() {
               </div>
               <div>
                 <h3 style={{ margin: '0 0 8px', color: 'var(--text-muted)', fontSize: 'var(--text-2xl)', fontWeight: 500 }}>To be announced</h3>
-                <p style={{ margin: 0, fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Speaker {String(i + 4).padStart(2, '0')}</p>
+                <p style={{ margin: 0, fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Speaker {String(i + 8).padStart(2, '0')}</p>
               </div>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text-muted)', border: '1px solid var(--border-default)', borderRadius: 'var(--radius-pill)', padding: '8px 18px' }}>Coming soon</span>
             </div>
