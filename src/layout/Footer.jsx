@@ -6,6 +6,7 @@ const ID_TO_PATH = {
   home: '/',
   about: '/about',
   program: '/program',
+  challenge: '/policy-challenge',
   register: '/delegate',
   volunteer: '/volunteer',
 };
@@ -26,7 +27,7 @@ export function Footer() {
       links: [
         ['Volunteer with us', 'volunteer'],
         ['Register to stream', 'register'],
-        ['The Policy Challenge', 'program'],
+        ['The Policy Challenge', 'challenge'],
       ],
     },
   ];
