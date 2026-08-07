@@ -1,0 +1,277 @@
+function Home({ onNavigate }) {
+  const { Button, Card, Badge, Icon } = window.FPDIDesignSystem_ca687e;
+
+  // Hero background slideshow — cycles through the gallery photos
+  const heroSlides = ['g13.webp', 'g05.webp', 'g10.webp', 'g01.webp', 'g08.webp', 'g12.webp', 'g04.webp', 'g09.webp'];
+  const [slide, setSlide] = React.useState(0);
+  React.useEffect(() => {
+    const t = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+
+  const facts = [
+    { icon: 'calendar-days', label: 'Date', value: 'Wed, 12 August 2026' },
+    { icon: 'clock', label: 'Time', value: '9:00 AM – 3:40 PM' },
+    { icon: 'map-pin', label: 'Venue', value: 'KAAF Auditorium, U. of Ibadan' },
+    { icon: 'layout-grid', label: 'Format', value: 'Keynote · Panel · SpotOn talks' },
+  ];
+
+  const tracks = [
+    { icon: 'sunrise', title: 'Arrival and framing', room: 'Act one', when: '9:00 – 11:00', desc: 'Registration and breakfast, a theatre performance, the welcome, and the keynote address.' },
+    { icon: 'landmark', title: 'The long working session', room: 'Act two', when: '11:00 – 1:40', feature: true, desc: 'The panel, the Founder’s session, the Policy Challenge finals, a fireside chat, and an hour of Model National Assembly.' },
+    { icon: 'presentation', title: 'Lunch and the SpotOn talks', room: 'Act three', when: '1:40 – 3:05', desc: 'Lunch and a reconvene, then three TEDx-style SpotOn talks.' },
+    { icon: 'trophy', title: 'Awards and close', room: 'Act four', when: '3:05 – 3:40', desc: 'Policy Challenge awards, vision casting, and closing networking.' },
+  ];
+
+  const moments = [
+    { time: '10:35', tag: 'Keynote', title: 'Keynote address', desc: 'Seyi Adisa frames the institutional trust deficit and where rebuilding has to begin.' },
+    { time: '11:00', tag: 'Panel', title: 'Real talk: rebuilding trust', desc: 'Four voices on stage, moderated by Chimchetaram Okoli, with audience polls running.' },
+    { time: '12:40', tag: 'Simulation', title: 'Model National Assembly', desc: 'An hour on the floor with the Centre for Governance Development, testing reform against process.' },
+    { time: '2:20', tag: 'SpotOn', title: 'Three SpotOn talks', desc: 'TEDx-style talks from Daniel Otabor, Arinola Daniel and Adebayo Akande.' },
+  ];
+
+  return (
+    <div>
+      {/* ============ HERO ============ */}
+      <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)', minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+        {heroSlides.map((src, i) => (
+          <img key={src} src={window.asset('gallery/' + src)} alt="" style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 28%',
+            opacity: i === slide ? 1 : 0, transition: 'opacity 1200ms ease-in-out',
+          }} />
+        ))}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(6,46,16,0.88) 0%, rgba(6,46,16,0.66) 45%, rgba(6,46,16,0.40) 100%)' }} />
+        <div style={{ position: 'relative', padding: 'var(--space-8) clamp(24px, 6vw, 120px)', width: '100%' }}>
+          <div style={{ maxWidth: 660 }}>
+            <span className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>
+              In-person seats filled · Stream live
+            </span>
+            <h1 className="rise rise-2" style={{ color: '#fff', fontSize: 'var(--text-5xl)', fontWeight: 500, lineHeight: 'var(--leading-tight)', maxWidth: '15ch', margin: 'var(--space-5) 0 var(--space-5)' }}>
+              Rebuilding trust in the <span style={{ color: 'var(--gold-500)' }}>Nigerian state.</span>
+            </h1>
+            <p className="rise rise-3" style={{ color: 'rgba(255,255,255,0.85)', fontSize: 'var(--text-lg)', fontStyle: 'italic', maxWidth: '52ch', lineHeight: 1.7 }}>
+              A full-day working session convening policymakers, academics, civil society leaders, and emerging young voices — to ethically address the governance deficit, and propose structural pathways forward.
+            </p>
+            <div className="rise rise-4" style={{ display: 'flex', gap: 16, marginTop: 'var(--space-6)', flexWrap: 'wrap' }}>
+              <Button variant="accent" size="sm" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')} className="glow-cta" style={{ borderRadius: 'var(--radius-pill)' }}>Watch it live</Button>
+              <Button variant="secondary" size="sm" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.5)', background: 'transparent', borderRadius: 'var(--radius-pill)' }} onClick={() => onNavigate('program')}>Explore the conference</Button>
+            </div>
+          </div>
+        </div>
+        {/* scroll cue + slide dots */}
+        <div style={{ position: 'absolute', left: 0, right: 0, bottom: 'var(--space-6)', padding: '0 clamp(24px, 6vw, 120px)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ width: 32, height: 1, background: 'rgba(255,255,255,0.5)' }}></span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)' }}>Scroll</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {heroSlides.map((_, i) => (
+              <button key={i} aria-label={'Slide ' + (i + 1)} onClick={() => setSlide(i)} style={{
+                width: i === slide ? 22 : 8, height: 8, borderRadius: 'var(--radius-pill)', border: 'none', padding: 0, cursor: 'pointer',
+                background: i === slide ? 'var(--gold-500)' : 'rgba(255,255,255,0.4)', transition: 'all 300ms var(--ease-out)',
+              }}></button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ THE CONVENING + DETAILS CARD ============ */}
+      <section className="section" style={{ padding: 'var(--space-6) var(--layout-margin) var(--space-9)' }}>
+        {/* fact row */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-6)', paddingBottom: 'var(--space-7)', marginBottom: 'var(--space-8)', borderBottom: '1px solid var(--border-default)' }}>
+          {facts.map((f) => (
+            <div key={f.label} style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+              <Icon name={f.icon} size={22} color="var(--green-700)" />
+              <div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{f.label}</div>
+                <div style={{ color: 'var(--text-heading)', fontWeight: 600, fontSize: 15, marginTop: 2 }}>{f.value}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
+          <div>
+            <p className="eyebrow">About the conference</p>
+            <h2 style={{ margin: 'var(--space-3) 0 var(--space-5)', maxWidth: '18ch' }}>This is not a conference of just talks. It is a working session.</h2>
+            <p style={{ color: 'var(--text-body)' }}>
+              Nigeria's democratic experiment has crossed a quarter-century, yet public trust in the judiciary, legislature, executive and civil service continues to erode. Citizens increasingly perceive government as distant, unaccountable and captured by narrow interests.
+            </p>
+            <p style={{ color: 'var(--text-body)' }}>
+              <strong style={{ color: 'var(--text-heading)' }}>Rebuilding Trust in the Nigerian State</strong> brings together policymakers, academics, civil society and emerging voices to interrogate this deficit honestly and propose structural pathways forward — oriented toward reform, not rhetoric.
+            </p>
+            <div style={{ display: 'flex', gap: 16, marginTop: 'var(--space-5)', flexWrap: 'wrap' }}>
+              <Button variant="primary" onClick={() => onNavigate('about')}>Read about FPDI</Button>
+              <Button variant="secondary" onClick={() => onNavigate('program')}>How the day is structured</Button>
+            </div>
+          </div>
+
+          <Card featureCorner corner="top-right" padding="var(--space-6)" style={{ position: 'sticky', top: 92, background: 'linear-gradient(160deg, var(--green-900) 0%, #0c3016 100%)', border: '1px solid rgba(240,193,75,0.18)', boxShadow: '0 24px 60px -24px rgba(4,34,12,0.55)' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#F4C95D', marginBottom: 'var(--space-4)' }}>Conference details</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {[
+                ['Theme', 'Rebuilding Trust in the Nigerian State'],
+                ['Date', 'Wednesday, 12 August 2026'],
+                ['Time', '9:00 AM – 3:40 PM'],
+                ['Venue', 'KAAF Auditorium, University of Ibadan'],
+                ['Format', 'Four acts · Keynote, panel, Model National Assembly, SpotOn talks'],
+                ['Host', 'Future Pathways Development Initiative'],
+              ].map(([k, v]) => (
+                <div key={k} style={{ display: 'flex', justifyContent: 'space-between', gap: 16, alignItems: 'baseline', borderBottom: '1px solid rgba(255,255,255,0.12)', paddingBottom: 10 }}>
+                  <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>{k}</span>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: '#fff', textAlign: 'right', maxWidth: '62%' }}>{v}</span>
+                </div>
+              ))}
+            </div>
+            <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')} style={{ width: '100%', marginTop: 'var(--space-5)', justifyContent: 'center' }}>Watch it live</Button>
+            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', textAlign: 'center', margin: '10px 0 0' }}>Physical seats are gone. Online participation is open and free.</p>
+          </Card>
+        </div>
+      </section>
+
+      {/* ============ REFORM TRACKS ============ */}
+      <section style={{ background: 'var(--surface-green-tint)', padding: 'var(--space-9) 0' }}>
+        <div className="section">
+          <p className="eyebrow">The day in four acts</p>
+          <h2 style={{ margin: 'var(--space-3) 0 var(--space-2)', maxWidth: '22ch' }}>How the working day is built.</h2>
+          <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-7)' }}>Six hours and forty minutes, paced so the argument builds instead of repeating.</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-5)' }}>
+            {tracks.map((t) => (
+              <Card key={t.title} className="card-hover" featureCorner={t.feature} corner="top-left" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <Icon name={t.icon} size={28} color="var(--green-500)" />
+                  <Badge variant="neutral">{t.room}</Badge>
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 4px' }}>{t.title}</h4>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-muted)' }}>{t.when}</span>
+                </div>
+                <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>{t.desc}</p>
+              </Card>
+            ))}
+          </div>
+          <div style={{ marginTop: 'var(--space-6)' }}>
+            <Button variant="secondary" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('program')}>See all sessions</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ PROGRAMME HIGHLIGHTS ============ */}
+      <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 16, marginBottom: 'var(--space-7)' }}>
+          <div>
+            <p className="eyebrow">Highlights of the day</p>
+            <h2 style={{ margin: 'var(--space-3) 0 0', maxWidth: '18ch' }}>A day paced to sustain energy and reward participation.</h2>
+          </div>
+          <Button variant="primary" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('program')}>View the full programme</Button>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-5)' }}>
+          {moments.map((m) => (
+            <Card key={m.title} className="card-hover" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 600, color: 'var(--green-700)' }}>{m.time}</span>
+                <Badge variant="gold">{m.tag}</Badge>
+              </div>
+              <h4 style={{ margin: 0, fontSize: 'var(--text-lg)' }}>{m.title}</h4>
+              <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>{m.desc}</p>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* ============ WATCH / IN ACTION ============ */}
+      <Watch />
+
+      {/* ============ CONFERENCE FLOOR GALLERY ============ */}
+      <Gallery />
+
+      {/* ============ VENUE / GETTING THERE MAP ============ */}
+      <VenueMap />
+
+      {/* ============ CLOSING CTA BAND ============ */}
+      <HomeCta onNavigate={onNavigate} />
+    </div>
+  );
+}
+
+function HomeCta({ onNavigate }) {
+  const { Button } = window.FPDIDesignSystem_ca687e;
+  return (
+    <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)' }}>
+      <img src={window.asset('assets/rising-arc-line.svg')} alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '70%', objectFit: 'cover', opacity: 0.4 }} />
+      <div className="section" style={{ position: 'relative', padding: 'var(--space-9) var(--layout-margin)', textAlign: 'center' }}>
+        <p className="eyebrow" style={{ color: 'var(--gold-500)', textAlign: 'center', margin: '0 auto' }}>12 August 2026 · KAAF Auditorium, Ibadan</p>
+        <h2 style={{ color: '#fff', margin: 'var(--space-4) auto var(--space-5)', maxWidth: '20ch' }}>Watch the reform agenda being written.</h2>
+        <p style={{ color: 'rgba(255,255,255,0.8)', maxWidth: '52ch', margin: '0 auto var(--space-6)' }}>
+          Every physical seat is taken, but the full day streams live. Register online and follow the working session from anywhere.
+        </p>
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Watch it live</Button>
+          <Button variant="secondary" size="lg" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.5)', background: 'transparent' }} onClick={() => onNavigate('volunteer')}>Volunteer with us</Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Watch() {
+  const { Icon } = window.FPDIDesignSystem_ca687e;
+  const videos = [
+    { vid: 'qeGyxZJyk08', title: "Our Founder, Ayokunnu Ojeniyi's speech" },
+    { vid: 'nWJPZUlvsWY', title: 'The Hon. Minister, Dr Jumoke Oduwole' },
+    { vid: '3sdingGBu-M', title: 'Team One — Policy Challenge winners' },
+  ];
+  const fallback = (e, id) => { if (!e.target.dataset.fb) { e.target.dataset.fb = 1; e.target.src = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg'; } };
+  return (
+    <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin) 0' }}>
+      <p className="eyebrow">Watch</p>
+      <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '24ch' }}>Excerpts from Policy Conference for Youth 2025</h2>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
+        {videos.map((v) => (
+          <a key={v.vid} href={'https://www.youtube.com/watch?v=' + v.vid} target="_blank" rel="noopener noreferrer"
+            className="card-hover" style={{ display: 'block', background: 'var(--surface-card)', border: 'var(--border-card)', borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-card)', color: 'inherit' }}>
+            <div style={{ position: 'relative', aspectRatio: '16 / 9', background: 'var(--green-900)' }}>
+              <img src={'https://img.youtube.com/vi/' + v.vid + '/maxresdefault.jpg'} onError={(e) => fallback(e, v.vid)} alt={v.title}
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: 58, height: 58, borderRadius: '50%', background: 'rgba(6,46,16,0.78)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-raised)' }}>
+                  <Icon name="play" size={24} color="#fff" />
+                </div>
+              </div>
+            </div>
+            <div style={{ padding: 'var(--space-5)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
+              <h4 style={{ margin: 0, fontSize: 'var(--text-lg)' }}>{v.title}</h4>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.04em', textTransform: 'uppercase', color: 'var(--text-gold-safe)', whiteSpace: 'nowrap' }}>
+                Watch <Icon name="external-link" size={13} color="var(--text-gold-safe)" />
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Gallery() {
+  // Real photos from the 2025 Policy Conference for Youth — natural-aspect masonry
+  const photos = [
+    'g13.webp', 'g01.webp', 'g06.jpg', 'g11.webp', 'g08.webp', 'g03.webp', 'g12.webp',
+    'g05.webp', 'g07.jpg', 'g02.webp', 'g10.webp', 'g04.webp', 'g09.webp',
+  ];
+  return (
+    <section style={{ background: 'var(--green-900)', marginTop: 'var(--space-9)' }}>
+      <div className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
+        <p className="eyebrow" style={{ color: 'var(--gold-500)' }}>PCY·2025</p>
+        <h2 style={{ color: '#fff', margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '20ch' }}>Moments from the conference floor.</h2>
+        <div className="pcy-masonry">
+          {photos.map((src, i) => (
+            <figure key={src}>
+              <img src={window.asset('gallery/' + src)} alt={'2025 Policy Conference for Youth — moment ' + (i + 1)} loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+window.Home = Home;
