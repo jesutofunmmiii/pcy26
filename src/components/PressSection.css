@@ -1,0 +1,258 @@
+/* ============================================================
+   PCY2026 in the News — section stylesheet
+   Tokens are scoped to .pcy-press (not :root) so they can't
+   collide with the site-wide design system.
+   ============================================================ */
+
+.pcy-press {
+  --press-green-900: #062E10;
+  --press-gold-500: #FFC300;
+  --press-font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --press-font-body: 'Figtree', system-ui, sans-serif;
+  --press-font-mono: 'IBM Plex Mono', monospace;
+  --press-space-3: 12px;
+  --press-space-4: 16px;
+  --press-space-5: 24px;
+  --press-space-6: 32px;
+  --press-space-7: 48px;
+  --press-space-9: 132px;
+  --press-radius-sm: 6px;
+  --press-radius-lg: 16px;
+  --press-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --press-max-width: 1200px;
+  --press-margin: 32px;
+
+  position: relative;
+  overflow: hidden;
+  background: var(--press-green-900);
+  padding: var(--press-space-9) 0;
+  font-family: var(--press-font-body);
+}
+
+.pcy-press__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.pcy-press__wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 46, 16, 0.92) 0%,
+    rgba(6, 46, 16, 0.80) 40%,
+    rgba(6, 46, 16, 0.94) 100%
+  );
+}
+
+.pcy-press__inner { position: relative; }
+
+.pcy-press .section {
+  max-width: var(--press-max-width);
+  margin: 0 auto;
+  padding: 0 var(--press-margin);
+}
+
+.pcy-press__eyebrow {
+  font-family: var(--press-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--press-gold-500);
+  margin: 0 0 var(--press-space-4);
+}
+
+.pcy-press__title {
+  font-family: var(--press-font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-size: 1.9rem;
+  line-height: 1.26;
+  color: #fff;
+  margin: var(--press-space-3) 0 var(--press-space-4);
+  max-width: 20ch;
+}
+
+.pcy-press__lede {
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0;
+  max-width: 58ch;
+  line-height: 1.75;
+}
+
+.pcy-press__stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--press-space-5);
+  padding: var(--press-space-6) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  margin: var(--press-space-7) 0;
+}
+
+.pcy-press__stat-n {
+  font-family: var(--press-font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--press-gold-500);
+  line-height: 1.1;
+}
+
+.pcy-press__stat-l {
+  font-family: var(--press-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 6px;
+}
+
+/* Marquee ---------------------------------------------------- */
+
+.pcy-press .press-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.pcy-press .press-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: pressScroll 60s linear infinite;
+}
+
+.pcy-press .press-marquee:hover .press-track,
+.pcy-press .press-marquee:focus-within .press-track {
+  animation-play-state: paused;
+}
+
+@keyframes pressScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pcy-press .press-track { animation: none; }
+  .pcy-press .press-marquee { overflow-x: auto; }
+}
+
+/* Cards ------------------------------------------------------ */
+
+.pcy-press .press-card {
+  width: 340px;
+  flex: 0 0 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: inherit;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--press-radius-lg);
+  padding: var(--press-space-5);
+  backdrop-filter: blur(2px);
+  transition:
+    transform 180ms var(--press-ease-out),
+    border-color 180ms var(--press-ease-out),
+    background 180ms var(--press-ease-out);
+}
+
+.pcy-press .press-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 195, 0, 0.55);
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.pcy-press .press-card:focus-visible {
+  outline: 2px solid var(--press-gold-500);
+  outline-offset: 3px;
+}
+
+.press-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.press-card__outlet {
+  font-family: var(--press-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--press-gold-500);
+}
+
+.press-card__date {
+  font-family: var(--press-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.pcy-press .press-card__title {
+  font-family: var(--press-font-display);
+  font-weight: 500;
+  letter-spacing: -0.008em;
+  margin: 0;
+  color: #fff;
+  font-size: 1.125rem;
+  line-height: 1.35;
+}
+
+.press-card__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.press-card__cta {
+  font-family: var(--press-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.press-card__cta svg {
+  width: 13px;
+  height: 13px;
+  stroke: var(--press-gold-500);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.press-card__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--press-radius-sm);
+  object-fit: contain;
+  flex: 0 0 auto;
+  background: #fff;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 900px) {
+  .pcy-press { padding: 80px 0; }
+  .pcy-press__stats { grid-template-columns: repeat(2, 1fr); row-gap: var(--press-space-6); }
+  .pcy-press .press-card { width: 280px; flex: 0 0 280px; }
+}
