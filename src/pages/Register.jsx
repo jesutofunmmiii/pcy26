@@ -1,80 +1,33 @@
 import React from 'react';
-import { createPortal } from 'react-dom';
-import { Input, Select, Radio, Checkbox, Button, Card, Icon, Badge, Toast } from '../components/index.js';
-import { NG_UNIVERSITY_OPTIONS } from '../data/ngUniversities.js';
-import { submitForm } from '../lib/submit.js';
+import { useNavigate } from 'react-router-dom';
+import { Button, Card, Icon, Badge } from '../components/index.js';
+
+// Delegate applications are closed; this page is now virtual/streaming
+// registration. The physical-seat form has been retired, but the serverless
+// endpoint (src/lib/submit.js → /api/submit, with its HubSpot / Google Sheets /
+// Resend fan-out and application_type tagging) is left fully intact and is still
+// used by the Volunteer form — it is simply no longer referenced here.
+const EVENTBRITE_URL = 'https://www.eventbrite.com/e/the-policy-conference-for-youths-2026-tickets-1996803816969?keep_tld=true';
+
+// Maps the reference's `page` ids to router paths.
+const PAGE_PATHS = {
+  home: '/',
+  about: '/about',
+  program: '/program',
+  challenge: '/policy-challenge',
+  speakers: '/speakers',
+  register: '/delegate',
+  volunteer: '/volunteer',
+};
 
 export default function Register() {
-  const BLANK = {
-    name: '', email: '', phone: '+234 ', institution: '', delegateType: '',
-    travelFrom: '', convoy: '', room: '',        // standard out-of-state
-    hub: '',                                      // policy hub delegation
-    pillar: '', pitch: '',                        // statecraft alignment
-    heard: '', heardOther: '', agree: false,      // final declaration
-  };
-  const [form, setForm] = React.useState(BLANK);
-  const [step, setStep] = React.useState(0);      // 0..3
-  const [tried, setTried] = React.useState(false);
-  const [toast, setToast] = React.useState(null);
-  const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
-  const setE = (k) => (e) => set(k, e.target.value);
+  const navigate = useNavigate();
+  const onNavigate = (page) => navigate(PAGE_PATHS[page] || '/');
 
-  const showToast = (title, description, variant = 'success') => {
-    setToast({ title, description, variant });
-    setTimeout(() => setToast(null), 5000);
-  };
-
-  const emailOk = /.+@.+\..+/.test(form.email);
-  const pitchWords = form.pitch.trim() ? form.pitch.trim().split(/\s+/).length : 0;
-
-  // steps: personal → logistics → statecraft → declaration
-  const steps = ['Personal information', 'Logistics', 'Statecraft alignment', 'Final declaration'];
-
-  const stepValid = (s) => {
-    if (s === 0) return form.name.trim() && emailOk && form.phone.trim() && form.phone.trim() !== '+234' && form.institution.trim() && form.delegateType;
-    if (s === 1) {
-      if (form.delegateType === 'out-of-state') return form.travelFrom && form.convoy;
-      if (form.delegateType === 'policy-hub') return form.hub;
-      return true; // in-state has nothing to fill
-    }
-    if (s === 2) return form.pitch.trim() && pitchWords <= 50;
-    if (s === 3) return form.heard && form.agree && (form.heard !== 'other' || form.heardOther.trim());
-    return true;
-  };
-
-  const next = () => {
-    setTried(true);
-    if (!stepValid(step)) return;
-    setTried(false);
-    setStep((s) => Math.min(s + 1, 3));
-    window.scrollTo({ top: 320, behavior: 'smooth' });
-  };
-  const back = () => { setTried(false); setStep((s) => Math.max(s - 1, 0)); window.scrollTo({ top: 320, behavior: 'smooth' }); };
-
-  const submit = async (e) => {
-    e.preventDefault();
-    setTried(true);
-    if (!stepValid(3)) return;
-    try {
-      const res = await submitForm('register', form);
-      if (res && res.ok) {
-        showToast('Delegate application submitted', "Selection is competitive — we'll review your statecraft pitch and email your decision before 12 August.");
-        setForm(BLANK); setStep(0); setTried(false);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        showToast('Something went wrong', 'Please try again or email info@futurepathways.ng', 'error');
-      }
-    } catch {
-      showToast('Something went wrong', 'Please try again or email info@futurepathways.ng', 'error');
-    }
-  };
-
-  const included = [
-    { icon: 'ticket', text: 'Full-day access to every plenary, breakout and Open House talk' },
-    { icon: 'utensils', text: 'Networking lunch and refreshments' },
+  const online = [
+    { icon: 'radio', text: 'Live stream of all four acts, from the keynote to the closing awards' },
+    { icon: 'message-square', text: 'Put questions to speakers through the moderated stream chat' },
   ];
-
-  const err = (cond) => tried && cond;
 
   return (
     <div>
@@ -82,285 +35,82 @@ export default function Register() {
       <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)' }}>
         <img src="/assets/rising-arc.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '58%', objectFit: 'cover', opacity: 0.4 }} />
         <div style={{ position: 'relative', padding: 'var(--space-9) clamp(24px, 6vw, 120px) var(--space-8)' }}>
-          <p className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>Delegate application · Selection is competitive</p>
-          <h1 className="rise rise-2" style={{ color: '#fff', fontSize: 'var(--text-4xl)', fontWeight: 500, lineHeight: 'var(--leading-tight)', maxWidth: '17ch', margin: 'var(--space-4) 0 var(--space-5)' }}>
-            Apply for your <span style={{ color: 'var(--gold-500)' }}>delegate seat.</span>
+          <p className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>Delegate application · Closed</p>
+          <h1 className="rise rise-2" style={{ color: '#fff', fontSize: 'var(--text-4xl)', fontWeight: 500, lineHeight: 'var(--leading-tight)', maxWidth: '18ch', margin: 'var(--space-4) 0 var(--space-5)' }}>
+            The hall is full. <span style={{ color: 'var(--gold-500)' }}>The conversation isn't.</span>
           </h1>
-          <p className="rise rise-3" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'var(--text-lg)', maxWidth: '60ch' }}>
-            We're not looking for passive attendees. We select delegates ready to move from theoretical advocacy to designing rigorous, structural blueprints for institutional reform. Complete the application below — incomplete or superficial submissions are set aside.
+          <p className="rise rise-3" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'var(--text-lg)', maxWidth: '62ch' }}>
+            Every physical seat at the KAAF Auditorium has been allocated, and delegate applications are now closed. The full day still reaches you: register for online participation and follow the keynote, the panel, the Model National Assembly and the SpotOn talks live.
           </p>
+          <div className="rise rise-4" style={{ marginTop: 'var(--space-6)' }}>
+            <a href={EVENTBRITE_URL} target="_blank" rel="noopener noreferrer">
+              <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" className="glow-cta">Register for online participation</Button>
+            </a>
+          </div>
         </div>
       </section>
 
-      <section className="section" style={{ padding: 'var(--space-8) var(--layout-margin) var(--space-9)' }} id="reg-top">
+      <section className="section" style={{ padding: 'var(--space-8) var(--layout-margin) var(--space-9)' }}>
         <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1.7fr 1fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
-          {/* wizard */}
-          <div>
-            {/* stepper */}
-            <div style={{ display: 'flex', gap: 8, marginBottom: 'var(--space-6)', flexWrap: 'wrap' }}>
-              {steps.map((label, i) => {
-                const active = i === step, done = i < step;
-                return (
-                  <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10, flex: '1 1 0', minWidth: 120 }}>
-                    <div style={{
-                      width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 600,
-                      background: done ? 'var(--green-500)' : active ? 'var(--green-900)' : 'var(--surface-sunken)',
-                      color: (done || active) ? '#fff' : 'var(--text-muted)',
-                      border: active ? '2px solid var(--gold-500)' : '1px solid var(--border-default)',
-                    }}>
-                      {done ? <Icon name="check" size={15} color="#fff" /> : i + 1}
-                    </div>
-                    <span style={{ fontSize: 12.5, fontWeight: active ? 600 : 500, color: active ? 'var(--text-heading)' : 'var(--text-muted)', lineHeight: 1.2 }}>{label}</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
+            <Card featureCorner corner="top-right" padding="var(--space-7)" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+                <p className="eyebrow" style={{ margin: 0 }}>Online participation · Open</p>
+                <Badge variant="success">Free</Badge>
+              </div>
+              <div>
+                <h2 style={{ margin: '0 0 12px' }}>Attend from wherever you are</h2>
+                <p style={{ margin: 0, maxWidth: 'var(--measure-max)', color: 'var(--text-body)' }}>
+                  Online registration takes a minute and closes when the stream opens on the morning of 12 August. You will receive your stream link by email the day before, and a reminder an hour before the opening plenary.
+                </p>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, borderTop: '1px solid var(--border-default)', paddingTop: 'var(--space-5)' }}>
+                {online.map((it) => (
+                  <div key={it.text} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                    <Icon name={it.icon} size={18} color="var(--green-500)" />
+                    <span style={{ fontSize: 15, color: 'var(--text-body)' }}>{it.text}</span>
                   </div>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
+                <a href={EVENTBRITE_URL} target="_blank" rel="noopener noreferrer">
+                  <Button variant="primary" size="lg" icon="arrow-right" iconPosition="end">Register for online participation</Button>
+                </a>
+                <span style={{ fontSize: 13.5, color: 'var(--text-muted)' }}>Registration is handled on Eventbrite.</span>
+              </div>
+            </Card>
 
-            <Card padding="var(--space-7)">
-              <form onSubmit={submit}>
-                {/* ---------- STEP 0: PERSONAL INFORMATION ---------- */}
-                {step === 0 && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
-                    <div>
-                      <p className="eyebrow" style={{ marginBottom: 4 }}>Section 1 of 4</p>
-                      <h3 style={{ margin: 0 }}>Personal information</h3>
-                    </div>
-                    <div className="qa-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
-                      <Input label="Full name *" placeholder="e.g. Adaeze Okonkwo" value={form.name} onChange={setE('name')} error={err(!form.name.trim()) ? 'Required' : undefined} />
-                      <Input label="Email address *" type="email" placeholder="you@example.com" value={form.email} onChange={setE('email')} error={err(!emailOk) ? 'Enter a valid email' : undefined} />
-                    </div>
-                    <div className="qa-stack-sm" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
-                      <Input label="Phone number (WhatsApp accessible) *" placeholder="+234 800 000 0000" value={form.phone} onChange={setE('phone')} error={err(!form.phone.trim() || form.phone.trim() === '+234') ? 'Required' : undefined} />
-                      <Select label="Institutional or university affiliation *" placeholder="Select your university" value={form.institution} onChange={setE('institution')} options={NG_UNIVERSITY_OPTIONS} />
-                    </div>
-                    <div>
-                      <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-heading)', margin: '0 0 12px' }}>Type of delegate *</p>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                        {[
-                          ['in-state', 'In-state delegate', 'I am resident in, or will be commuting locally from within, Ibadan.'],
-                          ['out-of-state', 'Standard out-of-state delegate', 'Travelling in from another state.'],
-                          ['policy-hub', 'Official Policy Hub delegation', 'Pre-registered through a recognised Policy Hub.'],
-                        ].map(([val, label, desc]) => (
-                          <label key={val} onClick={() => set('delegateType', val)} style={{
-                            display: 'flex', gap: 12, padding: 'var(--space-4)', cursor: 'pointer',
-                            border: `1.5px solid ${form.delegateType === val ? 'var(--green-500)' : 'var(--border-default)'}`,
-                            background: form.delegateType === val ? 'var(--surface-green-tint)' : '#fff',
-                            borderRadius: 'var(--radius-md)', transition: 'all var(--duration-fast) var(--ease-out)',
-                          }}>
-                            <Radio name="delegateType" checked={form.delegateType === val} onChange={() => set('delegateType', val)} />
-                            <div>
-                              <div style={{ fontWeight: 600, color: 'var(--text-heading)', fontSize: 15 }}>{label}</div>
-                              <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>{desc}</div>
-                            </div>
-                          </label>
-                        ))}
-                      </div>
-                      {err(!form.delegateType) && <span style={{ color: 'var(--status-error)', fontSize: 13 }}>Please choose a delegate type.</span>}
-                    </div>
-                  </div>
-                )}
-
-                {/* ---------- STEP 1: LOGISTICS (branching) ---------- */}
-                {step === 1 && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
-                    <div>
-                      <p className="eyebrow" style={{ marginBottom: 4 }}>Section 2 of 4</p>
-                      <h3 style={{ margin: 0 }}>
-                        {form.delegateType === 'out-of-state' ? 'Standard out-of-state delegate'
-                          : form.delegateType === 'policy-hub' ? 'The Policy Hub delegation'
-                          : 'Logistics'}
-                      </h3>
-                    </div>
-
-                    {form.delegateType === 'out-of-state' && (
-                      <React.Fragment>
-                        <Select label="Where are you travelling from?" placeholder="Select your state / city" value={form.travelFrom} onChange={setE('travelFrom')}
-                          options={[
-                            { value: 'ilorin', label: 'Ilorin' }, { value: 'osogbo', label: 'Osogbo' },
-                            { value: 'lagos', label: 'Lagos' }, { value: 'ekiti', label: 'Ekiti' }, { value: 'ondo', label: 'Ondo' },
-                            { value: 'ogun', label: 'Ogun' },
-                          ]} />
-                        {err(!form.travelFrom) && <span style={{ color: 'var(--status-error)', fontSize: 13, marginTop: -10 }}>Required</span>}
-                        <RadioGroup
-                          label="To ensure safe and coordinated transit, the secretariat is linking delegates from the states/cities listed above with the official Policy Hub travel convoys. Do you wish to be absorbed into the Hub's subsidised transit arrangement from your state? *"
-                          name="convoy" value={form.convoy} onChange={(v) => set('convoy', v)} error={err(!form.convoy)}
-                          options={[['yes', 'Yes, connect me with the Hub convoy'], ['no', 'No, I am handling my private transit']]} />
-                      </React.Fragment>
-                    )}
-
-                    {form.delegateType === 'policy-hub' && (
-                      <RadioGroup
-                        label="Hub identification *"
-                        name="hub" value={form.hub} onChange={(v) => set('hub', v)} error={err(!form.hub)}
-                        options={[
-                          ['University of Ibadan', 'University of Ibadan'],
-                          ['University of Ilorin', 'University of Ilorin'],
-                          ['Lead City University, Ibadan', 'Lead City University, Ibadan'],
-                          ['Federal University of Technology, Akure (FUTA)', 'Federal University of Technology, Akure (FUTA)'],
-                          ['Federal University Oye-Ekiti (FUOYE)', 'Federal University Oye-Ekiti (FUOYE)'],
-                          ['Adeleke University, Ede', 'Adeleke University, Ede'],
-                          ['Landmark University, Omu-Aran', 'Landmark University, Omu-Aran'],
-                          ['Covenant University, Ota', 'Covenant University, Ota'],
-                          ['Bowen University, Iwo', 'Bowen University, Iwo'],
-                          ['Abiola Ajimobi Technical University, Ibadan', 'Abiola Ajimobi Technical University, Ibadan'],
-                          ['Lagos State University', 'Lagos State University'],
-                          ['Osun State University', 'Osun State University'],
-                          ['University of Lagos', 'University of Lagos'],
-                        ]} />
-                    )}
-
-                    {form.delegateType === 'in-state' && (
-                      <Card style={{ background: 'var(--surface-green-tint)', border: 'none', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                        <Icon name="map-pin" size={20} color="var(--green-700)" />
-                        <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>
-                          As an in-state delegate, no travel or lodging arrangements are needed. Continue to the statecraft alignment section.
-                        </p>
-                      </Card>
-                    )}
-                  </div>
-                )}
-
-                {/* ---------- STEP 2: STATECRAFT ALIGNMENT ---------- */}
-                {step === 2 && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
-                    <div>
-                      <p className="eyebrow" style={{ marginBottom: 4 }}>Section 3 of 4 · The policy pitch</p>
-                      <h3 style={{ margin: 0 }}>The statecraft alignment</h3>
-                    </div>
-                    <Select label="Which reform pillar are you addressing?" placeholder="Choose a pillar" value={form.pillar} onChange={setE('pillar')}
-                      options={[
-                        { value: 'policy', label: 'Policy & Governance' },
-                        { value: 'creative', label: 'The Creative Economy' },
-                        { value: 'technology', label: 'Technology & Innovation' },
-                        { value: 'corporate', label: 'Corporate Careers & Leadership' },
-                      ]} />
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                      <label style={{ fontSize: 'var(--text-sm)', fontWeight: 500, color: 'var(--text-heading)' }}>
-                        Identify one structural failure in the Nigerian public sector within your chosen pillar, and briefly state how you would design a policy mechanism to fix it. (Max 50 words) *
-                      </label>
-                      <textarea
-                        value={form.pitch}
-                        onChange={setE('pitch')}
-                        rows={6}
-                        placeholder="Name the failure, then the mechanism. Precision over breadth."
-                        style={{
-                          padding: '12px 14px', borderRadius: 'var(--radius-sm)',
-                          border: `1.5px solid ${err(!form.pitch.trim() || pitchWords > 50) ? 'var(--status-error)' : 'var(--border-default)'}`,
-                          background: '#fff', fontFamily: 'var(--font-body)', fontSize: 'var(--text-md)',
-                          color: 'var(--text-body)', outline: 'none', resize: 'vertical', lineHeight: 'var(--leading-body)',
-                        }}
-                      />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--text-xs)' }}>
-                        <span style={{ color: err(!form.pitch.trim()) ? 'var(--status-error)' : 'var(--text-muted)' }}>
-                          {err(!form.pitch.trim()) ? 'A pitch is required' : 'One failure. One mechanism.'}
-                        </span>
-                        <span style={{ fontFamily: 'var(--font-mono)', color: pitchWords > 50 ? 'var(--status-error)' : 'var(--text-muted)' }}>{pitchWords} / 50 words</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* ---------- STEP 3: FINAL DECLARATION ---------- */}
-                {step === 3 && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
-                    <div>
-                      <p className="eyebrow" style={{ marginBottom: 4 }}>Section 4 of 4</p>
-                      <h3 style={{ margin: 0 }}>Final declaration</h3>
-                    </div>
-                    <RadioGroup
-                      label="How did you hear about us? *"
-                      name="heard" value={form.heard} onChange={(v) => set('heard', v)} error={err(!form.heard)}
-                      options={[
-                        ['hub', 'A recognised Policy Hub'],
-                        ['social', 'Social media (X/Twitter, LinkedIn, Instagram)'],
-                        ['referral', 'Direct referral from a colleague, mentor, or speaker'],
-                        ['aiesec', 'AIESEC'],
-                        ['jci', 'Junior Chamber International (JCI)'],
-                        ['shapers', 'Global Shapers Community Ibadan'],
-                        ['uisrc', "University of Ibadan Students' Union SRC"],
-                        ['other', 'Other'],
-                      ]} />
-                    {form.heard === 'other' && (
-                      <Input label="Please specify" placeholder="How did you hear about us?" value={form.heardOther} onChange={setE('heardOther')} error={err(!form.heardOther.trim()) ? 'Required' : undefined} />
-                    )}
-                    <div style={{ borderTop: '1px solid var(--border-default)', paddingTop: 'var(--space-5)' }}>
-                      <Checkbox
-                        label="I understand that selection is highly competitive and that as a delegate, I am expected to conduct myself with the utmost professionalism, intellectual rigor, and respect for the strategic objectives of the convergence."
-                        checked={form.agree} onChange={(e) => set('agree', e.target.checked)} />
-                      {err(!form.agree) && <span style={{ color: 'var(--status-error)', fontSize: 13 }}>You must agree to submit.</span>}
-                    </div>
-                  </div>
-                )}
-
-                {/* nav buttons */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, marginTop: 'var(--space-7)', flexWrap: 'wrap' }}>
-                  <Button variant="secondary" type="button" onClick={back} disabled={step === 0} icon="arrow-left" style={step === 0 ? { visibility: 'hidden' } : undefined}>Back</Button>
-                  {step < 3
-                    ? <Button variant="primary" type="button" onClick={next} icon="arrow-right" iconPosition="end">Continue</Button>
-                    : <Button variant="accent" type="submit" size="lg" icon="arrow-right" iconPosition="end">Submit delegate application</Button>}
-                </div>
-              </form>
+            <Card style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+              <Icon name="users" size={20} color="var(--green-700)" />
+              <div>
+                <h4 style={{ margin: '0 0 6px' }}>Already applied for a physical seat?</h4>
+                <p style={{ margin: 0, fontSize: 14.5, color: 'var(--text-body)' }}>
+                  Your application still stands. Decisions were emailed to every applicant — check the inbox and spam folder of the address you applied with. If nothing arrived, write to the secretariat and we will confirm your status.
+                </p>
+              </div>
             </Card>
           </div>
 
           {/* sidebar */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)', position: 'sticky', top: 92 }}>
-            <Card featureCorner corner="top-right" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-gold-safe)' }}>What's included</div>
-                <Badge variant="success">Free</Badge>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {included.map((it) => (
-                  <div key={it.text} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                    <Icon name={it.icon} size={18} color="var(--green-500)" />
-                    <span style={{ fontSize: 14, color: 'var(--text-body)' }}>{it.text}</span>
-                  </div>
-                ))}
-              </div>
-            </Card>
             <Card style={{ background: 'var(--surface-green-tint)', border: 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <Icon name="calendar-check" size={20} color="var(--green-700)" />
                 <span style={{ fontWeight: 600, color: 'var(--text-heading)' }}>Wed, 12 August 2026</span>
               </div>
-              <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>10:00 AM – 4:00 PM · KAAF Auditorium, University of Ibadan.</p>
+              <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>9:00 AM – 3:40 PM · KAAF Auditorium, University of Ibadan — streamed live.</p>
+            </Card>
+            <Card style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-gold-safe)' }}>While you wait</div>
+              <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>Read the running order and the speakers you will hear from before the stream opens.</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-start' }}>
+                <Button variant="secondary" onClick={() => onNavigate('program')} icon="arrow-right" iconPosition="end">See the programme</Button>
+                <Button variant="secondary" onClick={() => onNavigate('speakers')} icon="arrow-right" iconPosition="end">Meet the speakers</Button>
+              </div>
             </Card>
           </div>
         </div>
       </section>
-
-      {toast && createPortal(
-        <div id="toast-host">
-          <Toast variant={toast.variant || 'success'} title={toast.title} description={toast.description} onClose={() => setToast(null)} />
-        </div>,
-        document.body
-      )}
-    </div>
-  );
-}
-
-// Card-style radio group used across the branching sections.
-function RadioGroup({ label, name, value, onChange, options, error }) {
-  return (
-    <div>
-      <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--text-heading)', margin: '0 0 12px', maxWidth: '62ch' }}>{label}</p>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {options.map(([val, text]) => (
-          <label key={val} onClick={() => onChange(val)} style={{
-            display: 'flex', gap: 12, alignItems: 'center', padding: '12px var(--space-4)', cursor: 'pointer',
-            border: `1.5px solid ${value === val ? 'var(--green-500)' : 'var(--border-default)'}`,
-            background: value === val ? 'var(--surface-green-tint)' : '#fff',
-            borderRadius: 'var(--radius-md)', transition: 'all var(--duration-fast) var(--ease-out)',
-          }}>
-            <Radio name={name} checked={value === val} onChange={() => onChange(val)} />
-            <span style={{ fontSize: 14.5, color: 'var(--text-heading)' }}>{text}</span>
-          </label>
-        ))}
-      </div>
-      {error && <span style={{ color: 'var(--status-error)', fontSize: 13 }}>Please select an option.</span>}
     </div>
   );
 }

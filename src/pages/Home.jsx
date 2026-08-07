@@ -8,6 +8,8 @@ const PAGE_PATHS = {
   home: '/',
   about: '/about',
   program: '/program',
+  challenge: '/policy-challenge',
+  speakers: '/speakers',
   register: '/delegate',
   volunteer: '/volunteer',
 };
@@ -26,23 +28,23 @@ export default function Home() {
 
   const facts = [
     { icon: 'calendar-days', label: 'Date', value: 'Wed, 12 August 2026' },
-    { icon: 'clock', label: 'Time', value: '10:00 AM – 4:00 PM' },
+    { icon: 'clock', label: 'Time', value: '9:00 AM – 3:40 PM' },
     { icon: 'map-pin', label: 'Venue', value: 'KAAF Auditorium, U. of Ibadan' },
-    { icon: 'layout-grid', label: 'Format', value: 'Plenary · Breakouts · Open House' },
+    { icon: 'layout-grid', label: 'Format', value: 'Keynote · Panel · SpotOn talks' },
   ];
 
   const tracks = [
-    { icon: 'landmark', title: 'Policy & Governance', room: 'Track 1', feature: true },
-    { icon: 'palette', title: 'The Creative Economy', room: 'Track 2' },
-    { icon: 'cpu', title: 'Technology & Innovation', room: 'Track 3' },
-    { icon: 'briefcase', title: 'Corporate Careers & Leadership', room: 'Track 4' },
+    { icon: 'sunrise', title: 'Arrival and framing', room: 'Act one', when: '9:00 – 11:00', desc: 'Registration and breakfast, a theatre performance, the welcome, and the keynote address.' },
+    { icon: 'landmark', title: 'The long working session', room: 'Act two', when: '11:00 – 1:40', feature: true, desc: 'The panel, the Founder’s session, the Policy Challenge finals, a fireside chat, and an hour of Model National Assembly.' },
+    { icon: 'presentation', title: 'Lunch and the SpotOn talks', room: 'Act three', when: '1:40 – 3:05', desc: 'Lunch and a reconvene, then three TEDx-style SpotOn talks.' },
+    { icon: 'trophy', title: 'Awards and close', room: 'Act four', when: '3:05 – 3:40', desc: 'Policy Challenge awards, vision casting, and closing networking.' },
   ];
 
   const moments = [
-    { time: '10:35', tag: 'Panel', title: 'Panel — "Real Talk: Rebuilding Trust in The Nigerian State"', desc: 'Distinct lenses on why trust keeps falling, with live Slido audience questions.' },
-    { time: '11:15', tag: 'Keynote', title: "Founder's session", desc: 'The Founder speaks to why this convening exists — and challenges the room on what happens next.' },
-    { time: '11:40', tag: 'Finals', title: 'Policy Challenge finals', desc: 'Three finalist teams present reform proposals to the judges. Winner announced at close.' },
-    { time: '2:45', tag: 'Fireside', title: 'Fireside chat — "The Smallest Unit of Trust"', desc: 'An intimate conversation on rebuilding trust between citizens and institutions, one interaction at a time.' },
+    { time: '10:35', tag: 'Keynote', title: 'Keynote address', desc: 'Seyi Adisa frames the institutional trust deficit and where rebuilding has to begin.' },
+    { time: '11:00', tag: 'Panel', title: 'Real talk: rebuilding trust', desc: 'Four voices on stage, moderated by Chimchetaram Okoli, with audience polls running.' },
+    { time: '12:40', tag: 'Simulation', title: 'Model National Assembly', desc: 'An hour on the floor with the Centre for Governance Development, testing reform against process.' },
+    { time: '2:20', tag: 'SpotOn', title: 'Three SpotOn talks', desc: 'TEDx-style talks from Daniel Otabor, Arinola Daniel and Adebayo Akande.' },
   ];
 
   return (
@@ -59,7 +61,7 @@ export default function Home() {
         <div style={{ position: 'relative', padding: 'var(--space-8) clamp(24px, 6vw, 120px)', width: '100%' }}>
           <div style={{ maxWidth: 660 }}>
             <span className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>
-              Delegate applications open
+              In-person seats filled · Stream live
             </span>
             <h1 className="rise rise-2" style={{ color: '#fff', fontSize: 'var(--text-5xl)', fontWeight: 500, lineHeight: 'var(--leading-tight)', maxWidth: '15ch', margin: 'var(--space-5) 0 var(--space-5)' }}>
               Rebuilding trust in the <span style={{ color: 'var(--gold-500)' }}>Nigerian state.</span>
@@ -68,7 +70,7 @@ export default function Home() {
               A full-day working session convening policymakers, academics, civil society leaders, and emerging young voices — to ethically address the governance deficit, and propose structural pathways forward.
             </p>
             <div className="rise rise-4" style={{ display: 'flex', gap: 16, marginTop: 'var(--space-6)', flexWrap: 'wrap' }}>
-              <Button variant="accent" size="sm" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')} className="glow-cta" style={{ borderRadius: 'var(--radius-pill)' }}>Apply now</Button>
+              <Button variant="accent" size="sm" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')} className="glow-cta" style={{ borderRadius: 'var(--radius-pill)' }}>Watch it live</Button>
               <Button variant="secondary" size="sm" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.5)', background: 'transparent', borderRadius: 'var(--radius-pill)' }} onClick={() => onNavigate('program')}>Explore the conference</Button>
             </div>
           </div>
@@ -126,9 +128,9 @@ export default function Home() {
               {[
                 ['Theme', 'Rebuilding Trust in the Nigerian State'],
                 ['Date', 'Wednesday, 12 August 2026'],
-                ['Time', '10:00 AM – 4:00 PM'],
+                ['Time', '9:00 AM – 3:40 PM'],
                 ['Venue', 'KAAF Auditorium, University of Ibadan'],
-                ['Format', 'Plenary + Breakouts + Open House'],
+                ['Format', 'Four acts · Keynote, panel, Model National Assembly, SpotOn talks'],
                 ['Host', 'Future Pathways Development Initiative'],
               ].map(([k, v]) => (
                 <div key={k} style={{ display: 'flex', justifyContent: 'space-between', gap: 16, alignItems: 'baseline', borderBottom: '1px solid rgba(255,255,255,0.12)', paddingBottom: 10 }}>
@@ -137,8 +139,8 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')} style={{ width: '100%', marginTop: 'var(--space-5)', justifyContent: 'center' }}>Apply now</Button>
-            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', textAlign: 'center', margin: '10px 0 0' }}>Delegate places are limited and selection is competitive. Applying is free.</p>
+            <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')} style={{ width: '100%', marginTop: 'var(--space-5)', justifyContent: 'center' }}>Watch it live</Button>
+            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', textAlign: 'center', margin: '10px 0 0' }}>Physical seats are gone. Online participation is open and free.</p>
           </Card>
         </div>
       </section>
@@ -146,23 +148,26 @@ export default function Home() {
       {/* ============ REFORM TRACKS ============ */}
       <section style={{ background: 'var(--surface-green-tint)', padding: 'var(--space-9) 0' }}>
         <div className="section">
-          <p className="eyebrow">Four breakout tracks</p>
-          <h2 style={{ margin: 'var(--space-3) 0 var(--space-2)', maxWidth: '22ch' }}>Where the working sessions dig in.</h2>
-          <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-7)' }}>Four concurrent, facilitated rooms. Each produces a one-pager of priority recommendations fed into the closing communiqué.</p>
-          <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
+          <p className="eyebrow">The day in four acts</p>
+          <h2 style={{ margin: 'var(--space-3) 0 var(--space-2)', maxWidth: '22ch' }}>How the working day is built.</h2>
+          <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-7)' }}>Six hours and forty minutes, paced so the argument builds instead of repeating.</p>
+          <div className="qa-cards-2 reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-5)' }}>
             {tracks.map((t) => (
               <Card key={t.title} className="card-hover" featureCorner={t.feature} corner="top-left" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                   <Icon name={t.icon} size={28} color="var(--green-500)" />
                   <Badge variant="neutral">{t.room}</Badge>
                 </div>
-                <h4 style={{ margin: 0 }}>{t.title}</h4>
+                <div>
+                  <h4 style={{ margin: '0 0 4px' }}>{t.title}</h4>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-muted)' }}>{t.when}</span>
+                </div>
+                <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>{t.desc}</p>
               </Card>
             ))}
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 12, padding: 'var(--space-5)' }}>
-              <p style={{ margin: 0, color: 'var(--text-body)', fontSize: 15 }}>Delegates are assigned to a room on the day and help shape the communiqué.</p>
-              <Button variant="secondary" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('program')} style={{ alignSelf: 'flex-start' }}>See all sessions</Button>
-            </div>
+          </div>
+          <div style={{ marginTop: 'var(--space-6)' }}>
+            <Button variant="secondary" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('program')}>See all sessions</Button>
           </div>
         </div>
       </section>
@@ -211,12 +216,12 @@ function HomeCta({ onNavigate }) {
       <img src="/assets/rising-arc-line.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '70%', objectFit: 'cover', opacity: 0.4 }} />
       <div className="section" style={{ position: 'relative', padding: 'var(--space-9) var(--layout-margin)', textAlign: 'center' }}>
         <p className="eyebrow" style={{ color: 'var(--gold-500)', textAlign: 'center', margin: '0 auto' }}>12 August 2026 · KAAF Auditorium, Ibadan</p>
-        <h2 style={{ color: '#fff', margin: 'var(--space-4) auto var(--space-5)', maxWidth: '20ch' }}>Take a seat where the reform agenda is written.</h2>
+        <h2 style={{ color: '#fff', margin: 'var(--space-4) auto var(--space-5)', maxWidth: '20ch' }}>Watch the reform agenda being written.</h2>
         <p style={{ color: 'rgba(255,255,255,0.8)', maxWidth: '52ch', margin: '0 auto var(--space-6)' }}>
-          Delegate places are limited and registration is free. Reserve yours and join the working session.
+          Every physical seat is taken, but the full day streams live. Register online and follow the working session from anywhere.
         </p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Apply now</Button>
+          <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Watch it live</Button>
           <Button variant="secondary" size="lg" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.5)', background: 'transparent' }} onClick={() => onNavigate('volunteer')}>Volunteer with us</Button>
         </div>
       </div>

@@ -137,7 +137,7 @@ export default function About() {
               The 2026 Policy Conference for Youth is FPDI's working answer: convene the people who can move the agenda, and hand young leaders a real seat at the table.
             </p>
             <div style={{ display: 'flex', gap: 16, marginTop: 'var(--space-5)', flexWrap: 'wrap' }}>
-              <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Apply now</Button>
+              <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Watch it live</Button>
               <Button variant="secondary" size="lg" onClick={() => onNavigate('program')}>See the programme</Button>
             </div>
           </div>

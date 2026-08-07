@@ -17,7 +17,12 @@ const META = {
   '/program': {
     title: 'Programme — FPDI Policy Conference 2026',
     description:
-      'The full-day programme for the 2026 Policy Conference for Youth — a panel, a Founder’s address, four breakout tracks, SpotOn talks, a fireside chat and the Policy Challenge finals.',
+      'The full-day programme for the 2026 Policy Conference for Youth, in four acts — a keynote and panel, a Founder’s session and fireside chat, a Model National Assembly, the Policy Challenge finals and three SpotOn talks. 9:00 AM – 3:40 PM.',
+  },
+  '/policy-challenge': {
+    title: 'The Policy Challenge — FPDI Policy Conference 2026',
+    description:
+      'A landmark year for FPDI’s flagship programme: 1,371 expressions of interest, 322 submissions across 33 of 36 states and 67 tertiary institutions, and approximately ₦4 million in prizes.',
   },
   '/speakers': {
     title: 'Speakers — FPDI Policy Conference 2026',
@@ -25,9 +30,9 @@ const META = {
       'Meet the speakers of the 2026 Policy Conference for Youth — policymakers, practitioners and changemakers leading the conversations. More voices are being confirmed.',
   },
   '/delegate': {
-    title: 'Apply as a delegate — FPDI Policy Conference 2026',
+    title: 'Register to watch live — FPDI Policy Conference 2026',
     description:
-      'Apply for a delegate seat at the 2026 Policy Conference for Youth. Applications are free and selection is competitive.',
+      'Delegate applications are closed and every physical seat is allocated. Register for free online participation and follow the full day of the 2026 Policy Conference for Youth live.',
   },
   '/volunteer': {
     title: 'Volunteer — FPDI Policy Conference 2026',

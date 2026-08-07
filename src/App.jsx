@@ -6,6 +6,7 @@ import Footer from './layout/Footer.jsx';
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
 import Program from './pages/Program.jsx';
+import PolicyChallenge from './pages/PolicyChallenge.jsx';
 import Speakers from './pages/Speakers.jsx';
 import Register from './pages/Register.jsx';
 import Volunteer from './pages/Volunteer.jsx';
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/program" element={<Program />} />
+          <Route path="/policy-challenge" element={<PolicyChallenge />} />
           <Route path="/speakers" element={<Speakers />} />
           <Route path="/delegate" element={<Register />} />
           {/* Old path kept as a redirect so existing links/bookmarks still work. */}
