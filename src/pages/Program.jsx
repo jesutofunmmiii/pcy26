@@ -7,6 +7,8 @@ const PAGE_PATHS = {
   home: '/',
   about: '/about',
   program: '/program',
+  challenge: '/policy-challenge',
+  speakers: '/speakers',
   register: '/delegate',
   volunteer: '/volunteer',
 };
@@ -15,43 +17,66 @@ export default function Program() {
   const navigate = useNavigate();
   const onNavigate = (page) => navigate(PAGE_PATHS[page] || '/');
 
-  // A single flat, chronological run of show for the full day.
-  const schedule = [
-    { time: '9:00', end: '10:00', type: 'Welcome', title: 'Registration + Breakfast', lead: 'Ushers', purpose: 'Delegates check in, collect their badges and settle in before the day opens.' },
-    { time: '10:00', end: '10:10', type: '', title: 'National Anthem & Introduction', lead: '', purpose: '' },
-    { time: '10:10', end: '10:25', type: 'Opening', title: 'Theatre Performance', lead: 'Theatre group', purpose: 'A spoken-word / theatre performance that emotionally hooks the audience on the realities of the institutional trust deficit.' },
-    { time: '10:25', end: '10:35', type: 'Welcome', title: 'Welcome & Conference Opening', lead: 'Host', purpose: 'The host orients attendees to the day’s theme and structure, setting a candid, solutions-focused tone.' },
-    { time: '10:35', end: '10:55', type: '', title: 'Keynote Address', lead: '', purpose: '' },
-    { time: '10:55', end: '11:00', type: '', title: 'Audience Polls Open', lead: '', purpose: '' },
-    { time: '11:00', end: '11:30', type: 'Panel', title: 'Panel Discussion', lead: 'Panel', purpose: 'A structured panel probing the structural roots of eroded trust — facilitated dialogue with audience Q&A via live Slido submissions.' },
-    { time: '11:30', end: '12:00', type: 'Keynote', title: "Founder's Session", lead: 'Founder', purpose: 'The Founder speaks directly to the room as the person who initiated this work — more personal, more forward-looking.' },
-    { time: '12:00', end: '12:20', type: 'Competition', title: 'Policy Challenge Finals', lead: 'Top 3 teams', purpose: 'The three finalist teams present reform proposals. Each team: 8 minutes to present + 2 minutes for judge questions.' },
-    { time: '12:20', end: '12:40', type: 'Panel', title: 'Fireside Chat', lead: 'Fireside', purpose: 'An intimate, reflective conversation on how trust is rebuilt between citizens and institutions, one interaction at a time.' },
-    { time: '12:40', end: '1:40', type: '', title: 'Model National Assembly Session', lead: '', purpose: '' },
-    { time: '1:40', end: '2:10', type: 'Break', title: 'Lunch Break', lead: '—', purpose: 'Catered meal, networking tables, and photo wall.' },
-    { time: '2:10', end: '2:20', type: '', title: 'Reconvene + Audience Energizer + Ads', lead: '', purpose: '' },
-    { time: '2:20', end: '2:35', type: 'Open House', title: 'SpotOn (TEDx-Style Talk 1)', lead: 'Speaker', purpose: 'Opens the afternoon with energy — a bold provocation to set the tone.' },
-    { time: '2:35', end: '2:50', type: 'Open House', title: 'SpotOn (TEDx-Style Talk 2)', lead: 'Speaker', purpose: 'A different register — data-driven or comparative, grounding the conversation in evidence.' },
-    { time: '2:50', end: '3:05', type: 'Open House', title: 'SpotOn (TEDx-Style Talk 3)', lead: 'Speaker', purpose: 'The midpoint — the Compere invites 2 minutes of live audience reaction via Slido.' },
-    { time: '3:05', end: '3:20', type: 'Competition', title: 'Policy Challenge Awards', lead: 'Judges', purpose: 'The winning team is announced; all three finalist briefs are included in the published communiqué.' },
-    { time: '3:20', end: '3:30', type: '', title: 'Vision Casting', lead: '', purpose: '' },
-    { time: '3:30', end: '3:40', type: 'Closing', title: 'Closing Ceremony & Networking', lead: 'Host', purpose: 'The host closes the day with a vote of thanks and next steps for delegates.' },
+  // Full-day run of show, 9:00 AM – 3:40 PM, in four acts.
+  const acts = [
+    {
+      act: 'Act one', window: '9:00 – 11:00', title: 'Arrival and framing',
+      items: [
+        { time: '9:00', end: '10:00', mins: '60 min', type: 'Logistics', title: 'Registration + breakfast', lead: 'Ushers / DJ' },
+        { time: '10:00', end: '10:10', mins: '10 min', type: 'Ceremony', title: 'National anthem & introduction', lead: 'MC' },
+        { time: '10:10', end: '10:25', mins: '15 min', type: 'Performance', title: 'Theatre performance', lead: 'Theatre group' },
+        { time: '10:25', end: '10:35', mins: '10 min', type: 'Welcome', title: 'Welcome & conference opening', lead: 'Arinola Daniel' },
+        { time: '10:35', end: '10:55', mins: '20 min', type: 'Keynote', title: 'Keynote address', lead: 'Seyi Adisa' },
+        { time: '10:55', end: '11:00', mins: '5 min', type: 'Transition', title: 'Audience polls open', lead: 'MC' },
+      ],
+    },
+    {
+      act: 'Act two', window: '11:00 – 1:40', title: 'The long working session',
+      items: [
+        { time: '11:00', end: '11:30', mins: '30 min', type: 'Panel', title: 'Panel discussion — "Real Talk: Rebuilding Trust in The Nigerian State"', lead: 'Ayokunnu Ojeniyi · Damilola O. Adefulire · Abolaji Olaleye Joy · Daniel Otabor · Chimchetaram Okoli (moderator)' },
+        { time: '11:30', end: '12:00', mins: '30 min', type: 'Keynote', title: "Founder's session", lead: 'Mr Ayokunnu Ojeniyi' },
+        { time: '12:00', end: '12:20', mins: '20 min', type: 'Competition', title: 'Policy Challenge finals', lead: 'Top 3 teams' },
+        { time: '12:20', end: '12:40', mins: '20 min', type: 'Fireside', title: 'Fireside chat — "The Smallest Unit of Trust: Character, Relationships, and the Rebuilding of the State"', lead: 'Arinola Daniel & Khalil Nur Khalil' },
+        { time: '12:40', end: '1:40', mins: '60 min', type: 'Simulation', title: 'Model National Assembly session', lead: 'Centre for Governance Development' },
+      ],
+    },
+    {
+      act: 'Act three', window: '1:40 – 3:05', title: 'Lunch and the SpotOn talks',
+      items: [
+        { time: '1:40', end: '2:10', mins: '30 min', type: 'Break', title: 'Lunch break', lead: '—' },
+        { time: '2:10', end: '2:20', mins: '10 min', type: 'Transition', title: 'Reconvene + energizer + ads', lead: 'MC' },
+        { time: '2:20', end: '2:35', mins: '15 min', type: 'SpotOn', title: 'SpotOn 1 — TEDx-style talk', lead: 'Daniel Otabor' },
+        { time: '2:35', end: '2:50', mins: '15 min', type: 'SpotOn', title: 'SpotOn 2 — TEDx-style talk', lead: 'Arinola Daniel' },
+        { time: '2:50', end: '3:05', mins: '15 min', type: 'SpotOn', title: 'SpotOn 3 — TEDx-style talk', lead: 'Adebayo Akande' },
+      ],
+    },
+    {
+      act: 'Act four', window: '3:05 – 3:40', title: 'Awards and close',
+      items: [
+        { time: '3:05', end: '3:20', mins: '15 min', type: 'Awards', title: 'Policy Challenge awards', lead: 'AO / Arinola Daniel + judges' },
+        { time: '3:20', end: '3:30', mins: '10 min', type: 'Closing', title: 'Vision casting', lead: 'Mr Ayokunnu Ojeniyi' },
+        { time: '3:30', end: '3:40', mins: '10 min', type: 'Closing', title: 'Closing ceremony & networking', lead: 'Arinola Daniel / MC' },
+      ],
+    },
   ];
 
   const typeColor = {
-    Opening: 'var(--green-500)', Welcome: 'var(--green-500)', Plenary: 'var(--green-700)',
-    Keynote: 'var(--green-700)', Panel: 'var(--green-500)', Workshops: 'var(--green-500)',
-    'Open House': 'var(--gold-700)', Competition: 'var(--gold-700)', Closing: 'var(--green-700)',
+    Logistics: 'var(--text-muted)', Ceremony: 'var(--green-500)', Performance: 'var(--gold-700)',
+    Welcome: 'var(--green-500)', Keynote: 'var(--green-700)', Panel: 'var(--green-500)',
+    Competition: 'var(--gold-700)', Fireside: 'var(--green-500)', Simulation: 'var(--green-700)',
+    SpotOn: 'var(--gold-700)', Awards: 'var(--gold-700)', Closing: 'var(--green-700)',
     Transition: 'var(--text-muted)', Break: 'var(--text-muted)',
   };
 
   const deepDives = [
-    { icon: 'users-round', tag: 'Panel', time: '35 mins', title: 'Panel — "Real Talk: Rebuilding Trust in The Nigerian State"', body: 'A structured, facilitated panel bringing distinct lenses to the trust-deficit question, driving toward actionable synthesis.', points: ['Opening frame + 90-second panelist positions.', 'Structured dialogue: one targeted question per panelist.', 'Synthesis round + audience Q&A via Slido.'] },
-    { icon: 'flame', tag: 'Keynote', time: '20 mins', title: "Founder's session", body: 'The Founder speaks to the room as the person who initiated this work. More personal and forward-looking than the panel — ending on a direct challenge to the audience.', points: ['Why this convening exists — and why now.', 'What the Policy Challenge has learned about engaging young Nigerians.', 'A direct challenge: what will you do differently after today?'] },
-    { icon: 'layout-grid', tag: 'Workshops', time: '40 mins', title: 'Breakout sessions', body: 'Four simultaneous small-group sessions, each anchored to a track. Groups are facilitated, not lectured — every room produces a concrete one-pager fed into the communiqué.', points: ['Policy & Governance', 'The Creative Economy', 'Technology & Innovation', 'Corporate Careers & Leadership'] },
-    { icon: 'presentation', tag: 'Open House', time: '4 talks', title: 'SpotOn talks', body: 'Four speakers, four distinct arguments. Each 10-minute talk makes a single well-argued case rather than surveying a topic broadly — sustaining the intellectual momentum of the afternoon.', points: ['Bold provocation to open the afternoon.', 'Evidence-driven, comparative grounding.', 'Live audience reaction at the midpoint.', 'A bridge into the debate and the close of the day.'] },
-    { icon: 'mic', tag: 'Panel', time: '20 mins', title: 'Fireside chat — "The Smallest Unit of Trust"', body: 'An intimate, reflective conversation that brings the day down to human scale — how trust is rebuilt between citizens and institutions, one interaction at a time.', points: ['A slower register after the SpotOn talks.', 'Personal stories over talking points.', 'Closes on what each delegate can rebuild first.'] },
-    { icon: 'trophy', tag: 'Competition', time: '30 mins', title: 'Policy Challenge finals', body: 'The finalist teams present reform proposals to the full conference — the culmination of months of research, mentorship and iteration. The winner is announced in the closing act.', points: ['Each team: 8 minutes to present + 2 minutes for judges.', 'Judged on evidence, feasibility, originality and clarity.', 'All three finalist briefs enter the published communiqué.'] },
+    { icon: 'mic', tag: 'Keynote', time: '20 mins', title: 'Keynote address', lead: 'Seyi Adisa', body: 'The morning’s framing address: what the erosion of institutional trust costs Nigeria, and where the work of rebuilding it has to begin.' },
+    { icon: 'users-round', tag: 'Panel', time: '30 mins', title: 'Real talk: rebuilding trust in the Nigerian state', lead: 'Moderated by Chimchetaram Okoli', body: 'Four voices from governance, development and civic practice take the theme apart on stage.', points: ['Ayokunnu Ojeniyi', 'Damilola O. Adefulire', 'Abolaji Olaleye Joy', 'Daniel Otabor'] },
+    { icon: 'flame', tag: 'Keynote', time: '30 mins', title: "Founder's session", lead: 'Mr Ayokunnu Ojeniyi', body: 'The founder speaks to the room as the person who began this work — why the convening exists, and what it asks of the people in it.' },
+    { icon: 'message-circle', tag: 'Fireside', time: '20 mins', title: 'The smallest unit of trust', lead: 'Arinola Daniel & Khalil Nur Khalil', body: 'A conversation that scales the theme down: character, relationships, and how personal trust compounds into institutional trust.' },
+    { icon: 'landmark', tag: 'Simulation', time: '60 mins', title: 'Model National Assembly session', lead: 'Centre for Governance Development', body: 'An hour on the floor. Delegates take legislative roles and move a bill through debate, testing how reform survives contact with process.' },
+    { icon: 'trophy', tag: 'Competition', time: 'Finals + awards', title: 'Policy Challenge', lead: 'Top 3 teams · Judges', body: 'The three finalist teams present their reform proposals before lunch; the awards close the day in act four.' },
+    { icon: 'presentation', tag: 'SpotOn', time: '3 × 15 mins', title: 'SpotOn talks', lead: 'Daniel Otabor · Arinola Daniel · Adebayo Akande', body: 'Three TEDx-style talks carry the afternoon. One argument each, made tightly.' },
+    { icon: 'drama', tag: 'Performance', time: '15 mins', title: 'Theatre performance', lead: 'Theatre group', body: 'The day opens in performance rather than in speech — the trust deficit as it is actually lived.' },
   ];
 
   return (
@@ -60,12 +85,12 @@ export default function Program() {
       <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)' }}>
         <img src="/assets/rising-arc.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '60%', objectFit: 'cover', opacity: 0.4 }} />
         <div style={{ position: 'relative', padding: 'var(--space-9) clamp(24px, 6vw, 120px) var(--space-8)' }}>
-          <p className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>Full-day programme · 10:00 AM – 4:00 PM</p>
+          <p className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>Full-day programme · 9:00 AM – 3:40 PM</p>
           <h1 className="rise rise-2" style={{ color: '#fff', fontSize: 'var(--text-4xl)', fontWeight: 500, lineHeight: 'var(--leading-tight)', maxWidth: '15ch', margin: 'var(--space-4) 0 var(--space-5)' }}>
-            One working day, <span style={{ color: 'var(--gold-500)' }}>end to end.</span>
+            One working day, <span style={{ color: 'var(--gold-500)' }}>in four acts.</span>
           </h1>
           <p className="rise rise-3" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'var(--text-lg)', maxWidth: '62ch' }}>
-            The day combines plenary engagements — a structured panel and a Founder's address — with four breakout rooms, four SpotOn talks, a fireside chat, and the Policy Challenge finals. Deliberately paced to sustain energy and reward participation.
+            A keynote and a panel to frame the argument, a Founder's session and a fireside chat to sharpen it, an hour on the floor of a Model National Assembly, the Policy Challenge finals, and three SpotOn talks. Wednesday, 12 August at the KAAF Auditorium, University of Ibadan.
           </p>
         </div>
       </section>
@@ -75,29 +100,38 @@ export default function Program() {
         <p className="eyebrow">Run of show</p>
         <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)' }}>The full programme.</h2>
 
-        <div style={{ borderTop: '1px solid var(--border-default)' }}>
-          {schedule.map((s, i) => {
-            const muted = s.type === 'Transition' || s.type === 'Break';
-            return (
-              <div key={i} className="qa-prog-row" style={{
-                display: 'grid', gridTemplateColumns: '132px 150px 1fr', gap: 'var(--space-5)',
-                padding: muted ? '14px 0' : 'var(--space-5) 0', borderBottom: '1px solid var(--border-default)',
-                alignItems: 'start', background: muted ? 'transparent' : 'transparent',
-              }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 600, color: muted ? 'var(--text-muted)' : 'var(--green-700)', whiteSpace: 'nowrap' }}>
-                  {s.time}<span style={{ color: 'var(--text-muted)', fontWeight: 500 }}>–{s.end}</span>
+        {acts.map((a) => (
+          <div key={a.act} style={{ marginBottom: 'var(--space-7)' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, flexWrap: 'wrap', paddingBottom: 'var(--space-3)', borderBottom: '1.5px solid var(--green-500)' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 600, color: 'var(--text-gold-safe)' }}>{a.act}</span>
+              <h3 style={{ margin: 0, fontSize: 'var(--text-xl)' }}>{a.title}</h3>
+              <span style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--text-muted)' }}>{a.window}</span>
+            </div>
+            {a.items.map((s, i) => {
+              const muted = s.type === 'Transition' || s.type === 'Break' || s.type === 'Logistics';
+              return (
+                <div key={i} className="qa-prog-row" style={{
+                  display: 'grid', gridTemplateColumns: '132px 132px 1fr', gap: 'var(--space-5)',
+                  padding: muted ? '14px 0' : 'var(--space-5) 0', borderBottom: '1px solid var(--border-default)', alignItems: 'start',
+                }}>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 14, fontWeight: 600, color: muted ? 'var(--text-muted)' : 'var(--green-700)', whiteSpace: 'nowrap' }}>
+                      {s.time}<span style={{ color: 'var(--text-muted)', fontWeight: 500 }}>–{s.end}</span>
+                    </div>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-muted)', marginTop: 3 }}>{s.mins}</div>
+                  </div>
+                  <div>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase', fontWeight: 600, color: typeColor[s.type] }}>{s.type}</span>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: muted ? 500 : 600, fontSize: muted ? 15 : 'var(--text-lg)', color: muted ? 'var(--text-body)' : 'var(--text-heading)', maxWidth: '48ch' }}>{s.title}</div>
+                    {s.lead !== '—' && <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-muted)', margin: '6px 0 0', textTransform: 'uppercase', letterSpacing: '0.04em', maxWidth: '62ch', lineHeight: 1.5 }}>{s.lead}</div>}
+                  </div>
                 </div>
-                <div>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase', fontWeight: 600, color: typeColor[s.type] }}>{s.type}</span>
-                </div>
-                <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: muted ? 500 : 600, fontSize: muted ? 15 : 'var(--text-lg)', color: muted ? 'var(--text-body)' : 'var(--text-heading)' }}>{s.title}</div>
-                  {!muted && <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-muted)', margin: '4px 0 0', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{s.lead}</div>}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        ))}
       </section>
 
       {/* session deep-dives */}
@@ -108,22 +142,25 @@ export default function Program() {
           <div className="qa-cards-2 reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-5)' }}>
             {deepDives.map((d) => (
               <Card key={d.title} className="card-hover" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                     <Icon name={d.icon} size={26} color="var(--green-500)" />
                     <h4 style={{ margin: 0 }}>{d.title}</h4>
                   </div>
                   <Badge variant="gold">{d.time}</Badge>
                 </div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11.5, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-muted)' }}>{d.lead}</div>
                 <p style={{ margin: 0, fontSize: 14, color: 'var(--text-body)' }}>{d.body}</p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, borderTop: '1px solid var(--border-default)', paddingTop: 14 }}>
-                  {d.points.map((p, i) => (
-                    <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                      <Icon name="chevron-right" size={16} color="var(--green-500)" />
-                      <span style={{ fontSize: 13.5, color: 'var(--text-body)' }}>{p}</span>
-                    </div>
-                  ))}
-                </div>
+                {d.points && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8, borderTop: '1px solid var(--border-default)', paddingTop: 14 }}>
+                    {d.points.map((p, i) => (
+                      <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                        <Icon name="chevron-right" size={16} color="var(--green-500)" />
+                        <span style={{ fontSize: 13.5, color: 'var(--text-body)' }}>{p}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </Card>
             ))}
           </div>
@@ -133,9 +170,9 @@ export default function Program() {
       {/* CTA */}
       <section className="reveal" style={{ background: 'var(--green-900)' }}>
         <div className="section" style={{ padding: 'var(--space-9) var(--layout-margin)', textAlign: 'center' }}>
-          <h2 style={{ color: '#fff', margin: '0 auto var(--space-5)', maxWidth: '22ch' }}>Be in the room for every session.</h2>
+          <h2 style={{ color: '#fff', margin: '0 auto var(--space-5)', maxWidth: '22ch' }}>Follow every session, live.</h2>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Apply now</Button>
+            <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Watch it live</Button>
             <Button variant="secondary" size="lg" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.5)', background: 'transparent' }} onClick={() => onNavigate('volunteer')}>Volunteer with us</Button>
           </div>
         </div>

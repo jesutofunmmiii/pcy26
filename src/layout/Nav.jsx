@@ -8,6 +8,7 @@ const PATH_TO_ID = {
   '/': 'home',
   '/about': 'about',
   '/program': 'program',
+  '/policy-challenge': 'challenge',
   '/speakers': 'speakers',
   '/delegate': 'register',
   '/volunteer': 'volunteer',
@@ -43,6 +44,7 @@ export function Nav() {
     { id: 'home', label: 'Home', to: '/' },
     { id: 'about', label: 'About', to: '/about' },
     { id: 'program', label: 'Programme', to: '/program' },
+    { id: 'challenge', label: 'Policy Challenge', to: '/policy-challenge' },
     { id: 'speakers', label: 'Speakers', to: '/speakers' },
     { id: 'volunteer', label: 'Volunteer', to: '/volunteer' },
   ];
@@ -118,7 +120,7 @@ export function Nav() {
             iconPosition="end"
             onClick={() => navigate('/delegate')}
           >
-            Apply now
+            Watch it live
           </Button>
         </nav>
 
@@ -173,7 +175,7 @@ export function Nav() {
           }}
           style={{ alignSelf: 'flex-start', marginTop: 'var(--space-2)' }}
         >
-          Apply now
+          Watch it live
         </Button>
       </div>
     </header>
