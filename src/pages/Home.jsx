@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Badge, Icon } from '../components/index.js';
+import PressSection from '../components/PressSection.jsx';
 import VenueMap from './VenueMap.jsx';
 
 // Maps the reference's `page` ids to router paths.
@@ -194,6 +195,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* ============ PCY2026 IN THE NEWS ============ */}
+      <PressSection />
 
       {/* ============ WATCH / IN ACTION ============ */}
       <Watch />
