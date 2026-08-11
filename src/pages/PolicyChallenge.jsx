@@ -137,8 +137,12 @@ export default function PolicyChallenge() {
               </div>
               <p style={{ margin: 0, fontSize: 14.5, color: 'var(--text-body)' }}>{c.body}</p>
               <div style={{ marginTop: 'auto', paddingTop: 6, display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
-                <Button variant={c.feature ? 'primary' : 'secondary'} icon="download" iconPosition="end" disabled>Download the compendium</Button>
-                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Available shortly</span>
+                {c.feature ? (
+                  <Button variant="primary" icon="download" iconPosition="end" href={`/${c.file}`} target="_blank" rel="noopener noreferrer">Download the compendium</Button>
+                ) : (
+                  <Button variant="secondary" icon="download" iconPosition="end" disabled>Download the compendium</Button>
+                )}
+                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{c.feature ? 'PDF · 1.6 MB · 27 pages' : 'Available shortly'}</span>
               </div>
             </Card>
           ))}

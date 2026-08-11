@@ -37,6 +37,7 @@ export function Button({
   disabled = false,
   children,
   onClick,
+  href,
   type = 'button',
   style,
   ...rest
@@ -44,11 +45,16 @@ export function Button({
   const v = VARIANTS[variant] || VARIANTS.primary;
   const s = SIZES[size] || SIZES.md;
   const [hover, setHover] = React.useState(false);
+  // Render as an anchor when an href is supplied, so links open normally
+  // (e.g. a PDF in a new tab) rather than acting as a form/SPA button.
+  const asLink = href != null;
+  const Tag = asLink ? 'a' : 'button';
+  const tagProps = asLink
+    ? { href, onClick }
+    : { type, disabled, onClick };
   return (
-    <button
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
+    <Tag
+      {...tagProps}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -65,6 +71,7 @@ export function Button({
         fontFamily: 'var(--font-body)',
         fontWeight: 'var(--weight-body-semibold)',
         fontSize: s.fontSize,
+        textDecoration: asLink ? 'none' : undefined,
         cursor: disabled ? 'not-allowed' : 'pointer',
         transition: `background var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out)`,
         transform: hover && !disabled ? 'translateY(-1px)' : 'none',
@@ -75,7 +82,7 @@ export function Button({
       {icon && iconPosition === 'start' ? <Icon name={icon} size={s.iconSize} /> : null}
       {children}
       {icon && iconPosition === 'end' ? <Icon name={icon} size={s.iconSize} /> : null}
-    </button>
+    </Tag>
   );
 }
 
