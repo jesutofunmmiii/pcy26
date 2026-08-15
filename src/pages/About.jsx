@@ -1,14 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Icon } from '../components/index.js';
+import { downloadCompendium } from '../lib/compendium.js';
 
-// Maps the reference's `page` ids to router paths.
 const PAGE_PATHS = {
-  home: '/',
-  about: '/about',
-  program: '/program',
-  register: '/delegate',
-  volunteer: '/volunteer',
+  home: '/', about: '/about', program: '/program', speakers: '/speakers', challenge: '/challenge', gallery: '/gallery',
 };
 
 export default function About() {
@@ -31,11 +27,11 @@ export default function About() {
     <div>
       {/* header */}
       <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)' }}>
-        <img src="/assets/rising-arc.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '60%', objectFit: 'cover', opacity: 0.4 }} />
+        <img data-no-reveal src="/assets/rising-arc.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '60%', objectFit: 'cover', opacity: 0.4 }} />
         <div style={{ position: 'relative', padding: 'var(--space-9) clamp(24px, 6vw, 120px) var(--space-8)' }}>
           <p className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>About FPDI</p>
           <h1 className="rise rise-2" style={{ color: '#fff', fontSize: 'var(--text-4xl)', fontWeight: 500, lineHeight: 'var(--leading-tight)', maxWidth: '16ch', margin: 'var(--space-4) 0 var(--space-5)' }}>
-            Because policy defines power — and <span style={{ color: 'var(--gold-500)' }}>leadership</span> shapes how it's used.
+            Because policy defines power — and <span style={{ color: 'var(--gold-500)' }}>leadership</span> shapes how it’s used.
           </h1>
           <p className="rise rise-3" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'var(--text-lg)', maxWidth: '60ch' }}>
             Future Pathways Development Initiative (FPDI) is an independent, pan-African organization established in 2022 to inspire reforms and strengthen governance outcomes across Africa through impactful, citizen-centred policy.
@@ -44,7 +40,7 @@ export default function About() {
       </section>
 
       {/* why we exist */}
-      <section className="section reveal" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
+      <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
         <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)', alignItems: 'center' }}>
           <div>
             <p className="eyebrow">Why we exist</p>
@@ -71,7 +67,7 @@ export default function About() {
         <div className="section">
           <p className="eyebrow">What guides us</p>
           <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)' }}>Vision, mission and goal.</h2>
-          <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
+          <div className="qa-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--space-5)' }}>
             {[
               { icon: 'eye', head: 'Our vision', body: 'To strengthen good governance through developing and implementing effective, citizen-driven policies — and to inspire and strengthen citizen action and engagement in Africa.' },
               { icon: 'target', head: 'Our mission', body: 'To catalyze a generation of African youth leaders who can influence, design and implement inclusive, forward-thinking public policies across the continent.', feature: true },
@@ -88,7 +84,7 @@ export default function About() {
       </section>
 
       {/* theory of change */}
-      <section className="reveal" style={{ background: 'var(--green-900)', color: '#fff' }}>
+      <section style={{ background: 'var(--green-900)', color: '#fff' }}>
         <div className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
           <p className="eyebrow" style={{ color: 'var(--gold-500)' }}>Our theory of change</p>
           <h2 style={{ color: '#fff', margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '20ch' }}>How change actually happens.</h2>
@@ -123,7 +119,7 @@ export default function About() {
       <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
         <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 'var(--space-8)', alignItems: 'flex-start' }}>
           <div>
-            <p className="eyebrow">Why we're hosting this</p>
+            <p className="eyebrow">Why we hosted this</p>
             <h2 style={{ margin: 'var(--space-3) 0 0', maxWidth: '14ch' }}>The legitimacy problem.</h2>
           </div>
           <div>
@@ -134,11 +130,11 @@ export default function About() {
               The trust deficit is a governance problem with real consequences: low tax compliance, disengagement from civic processes, and a legitimacy gap that emboldens those who profit from dysfunction. Nigeria stands at a critical juncture where a credible reform agenda — backed by political will and civic pressure — could meaningfully shift this trajectory.
             </p>
             <p style={{ color: 'var(--text-body)' }}>
-              The 2026 Policy Conference for Youth is FPDI's working answer: convene the people who can move the agenda, and hand young leaders a real seat at the table.
+              The 2026 Policy Conference for Youth was FPDI’s working answer: convene the people who can move the agenda, and hand young leaders a real seat at the table. On 12 August about 300 delegates did exactly that in Ibadan, and the proposals they defended are now published.
             </p>
             <div style={{ display: 'flex', gap: 16, marginTop: 'var(--space-5)', flexWrap: 'wrap' }}>
-              <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Watch it live</Button>
-              <Button variant="secondary" size="lg" onClick={() => onNavigate('program')}>See the programme</Button>
+              <Button variant="accent" size="lg" icon="download" iconPosition="end" onClick={downloadCompendium}>Download the compendium</Button>
+              <Button variant="secondary" size="lg" onClick={() => onNavigate('program')}>How the day ran</Button>
             </div>
           </div>
         </div>

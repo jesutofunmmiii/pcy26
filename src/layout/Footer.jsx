@@ -1,33 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { downloadCompendium } from '../lib/compendium.js';
 
 // Maps the reference's `page` ids to router paths.
 const ID_TO_PATH = {
   home: '/',
   about: '/about',
   program: '/program',
-  challenge: '/policy-challenge',
-  register: '/delegate',
-  volunteer: '/volunteer',
+  speakers: '/speakers',
+  challenge: '/challenge',
+  gallery: '/gallery',
 };
+
+const linkStyle = { fontSize: 14, cursor: 'pointer', color: 'rgba(255,255,255,0.78)', textDecoration: 'none' };
 
 export function Footer() {
   const cols = [
     {
-      head: 'Conference',
+      head: 'The conference',
       links: [
         ['Home', 'home'],
         ['About the conference', 'about'],
-        ['Full programme', 'program'],
-        ['Watch it live', 'register'],
+        ['How the day ran', 'program'],
+        ['Speakers', 'speakers'],
       ],
     },
     {
-      head: 'Get involved',
+      head: 'The record',
       links: [
-        ['Volunteer with us', 'volunteer'],
-        ['Register to stream', 'register'],
         ['The Policy Challenge', 'challenge'],
+        ['Photo gallery', 'gallery'],
       ],
     },
   ];
@@ -71,14 +73,26 @@ export function Footer() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {c.links.map(([label, id]) => (
-                <Link
-                  key={label}
-                  to={ID_TO_PATH[id]}
-                  style={{ fontSize: 14, cursor: 'pointer', color: 'rgba(255,255,255,0.78)' }}
-                >
+                <Link key={label} to={ID_TO_PATH[id]} style={linkStyle}>
                   {label}
                 </Link>
               ))}
+              {c.head === 'The record' ? (
+                <button
+                  type="button"
+                  onClick={downloadCompendium}
+                  style={{
+                    ...linkStyle,
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    textAlign: 'left',
+                    fontFamily: 'var(--font-body)',
+                  }}
+                >
+                  Download the compendium
+                </button>
+              ) : null}
             </div>
           </div>
         ))}
@@ -163,7 +177,7 @@ export function Footer() {
             color: 'rgba(255,255,255,0.5)',
           }}
         >
-          <span>KAAF Auditorium, Department of Human Nutrition and Dietetics, University of Ibadan · 12 August 2026</span>
+          <span>Held at KAAF Auditorium, University of Ibadan · 12 August 2026</span>
           <span>© 2026 FPDI · Paths that rise</span>
         </div>
       </div>
