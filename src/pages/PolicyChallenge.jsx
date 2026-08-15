@@ -1,16 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Badge, Icon } from '../components/index.js';
+import { downloadCompendium } from '../lib/compendium.js';
 
-// Maps the reference's `page` ids to router paths.
 const PAGE_PATHS = {
-  home: '/',
-  about: '/about',
-  program: '/program',
-  challenge: '/policy-challenge',
-  speakers: '/speakers',
-  register: '/delegate',
-  volunteer: '/volunteer',
+  home: '/', about: '/about', program: '/program', speakers: '/speakers', challenge: '/challenge', gallery: '/gallery',
 };
 
 export default function PolicyChallenge() {
@@ -25,10 +19,10 @@ export default function PolicyChallenge() {
   ];
 
   const prizes = [
-    { icon: 'award', text: 'Winning teams recognised on stage at the conference' },
-    { icon: 'banknote', text: 'A collective sum of approximately ₦4 million in prizes' },
-    { icon: 'briefcase', text: 'Pathways into paid policy internships' },
-    { icon: 'network', text: "Continued engagement with FPDI's network" },
+    { icon: 'trophy', text: 'Team SMETrust — ₦2,000,000 grand prize, on rebuilding trust in Nigeria’s tax system' },
+    { icon: 'award', text: 'Team Astrum — ₦1,000,000 first runner-up, on reforming the electricity sector' },
+    { icon: 'award', text: 'Team Nikao — ₦750,000 second runner-up, on the Police Force’s motto and its reality' },
+    { icon: 'briefcase', text: 'All three teams: paid policy internships and continued engagement with FPDI’s network' },
   ];
 
   const compendia = [
@@ -36,8 +30,7 @@ export default function PolicyChallenge() {
       year: '2026', badge: 'New',
       title: 'From 1,371 to 5: The Policy Proposals That Made It.',
       sub: 'Policy Challenge 2026 Compendium',
-      body: 'The five proposals shortlisted from a field of 1,371 expressions of interest and 322 submissions.',
-      file: 'assets/policy-challenge-2026-compendium.pdf',
+      body: 'The proposals shortlisted from a field of 1,371 expressions of interest and 322 submissions — including the three defended on stage in Ibadan.',
       feature: true,
     },
     {
@@ -45,7 +38,6 @@ export default function PolicyChallenge() {
       title: 'Where the work started.',
       sub: 'Policy Challenge 2025 Compendium',
       body: 'The proposals from the previous cycle — 734 expressions of interest and 134 submissions.',
-      file: 'assets/policy-challenge-2025-compendium.pdf',
     },
   ];
 
@@ -53,14 +45,14 @@ export default function PolicyChallenge() {
     <div>
       {/* header */}
       <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)' }}>
-        <img src="/assets/rising-arc.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '58%', objectFit: 'cover', opacity: 0.4 }} />
+        <img data-no-reveal src="/assets/rising-arc.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '58%', objectFit: 'cover', opacity: 0.4 }} />
         <div style={{ position: 'relative', padding: 'var(--space-9) clamp(24px, 6vw, 120px) var(--space-8)' }}>
-          <p className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>The Policy Challenge · 2026 cycle</p>
+          <p className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>The Policy Challenge · 2026 result</p>
           <h1 className="rise rise-2" style={{ color: '#fff', fontSize: 'var(--text-4xl)', fontWeight: 500, lineHeight: 'var(--leading-tight)', maxWidth: '19ch', margin: 'var(--space-4) 0 var(--space-5)' }}>
-            A landmark year for <span style={{ color: 'var(--gold-500)' }}>our flagship programme.</span>
+            A landmark year, <span style={{ color: 'var(--gold-500)' }}>and a decided one.</span>
           </h1>
           <p className="rise rise-3" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'var(--text-lg)', maxWidth: '62ch' }}>
-            The conference follows a landmark year for FPDI's flagship programme, The Policy Challenge, which recorded growth across every metric that matters.
+            The 2026 cycle of FPDI’s flagship programme grew on every metric that matters, and closed on 12 August with three teams on stage at the University of Ibadan. Team SMETrust took the ₦2 million grand prize for its proposal to rebuild trust in Nigeria’s tax system.
           </p>
         </div>
       </section>
@@ -69,7 +61,7 @@ export default function PolicyChallenge() {
       <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin) var(--space-8)' }}>
         <p className="eyebrow">The 2026 cycle in numbers</p>
         <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '24ch' }}>Nearly double the previous edition, on both sides of the funnel.</h2>
-        <div className="qa-cards reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-5)' }}>
+        <div className="qa-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-5)' }}>
           {metrics.map((m) => (
             <Card key={m.label} className="card-hover" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               <Icon name={m.icon} size={24} color="var(--green-500)" />
@@ -84,7 +76,7 @@ export default function PolicyChallenge() {
             The 2026 cycle drew 1,371 expressions of interest and 322 policy submissions — nearly double the 734 interests and 134 submissions recorded in the previous edition.
           </p>
           <p style={{ margin: 0, color: 'var(--text-body)' }}>
-            More significantly, submissions arrived from 33 of Nigeria's 36 states, with the organisation now holding roots in 67 tertiary institutions nationwide.
+            More significantly, submissions arrived from 33 of Nigeria’s 36 states, with the organisation now holding roots in 67 tertiary institutions nationwide.
           </p>
         </div>
       </section>
@@ -93,16 +85,16 @@ export default function PolicyChallenge() {
       <section style={{ background: 'var(--surface-green-tint)', padding: 'var(--space-9) 0' }}>
         <div className="section qa-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-8)', alignItems: 'center' }}>
           <div>
-            <p className="eyebrow">What the winners walk away with</p>
-            <h2 style={{ margin: 'var(--space-3) 0 var(--space-5)', maxWidth: '20ch' }}>Recognised on stage, then backed afterwards.</h2>
+            <p className="eyebrow">What the winners walked away with</p>
+            <h2 style={{ margin: 'var(--space-3) 0 var(--space-5)', maxWidth: '20ch' }}>Recognised on stage, and backed afterwards.</h2>
             <p style={{ margin: 0, color: 'var(--text-body)', maxWidth: 'var(--measure-max)' }}>
-              In keeping with last year's commitment, the winning teams of The Policy Challenge will be recognised at the conference and will walk away with a collective sum of approximately ₦4 million in prizes, alongside pathways into paid policy internships and continued engagement with FPDI's network.
+              Three finalist teams defended their proposals before a live panel of judges at 12:00, and the awards closed the day at 3:05. ₦3.75 million was awarded in total, alongside pathways into paid policy internships and continued engagement with FPDI’s network of policy practitioners and governance reform professionals.
             </p>
           </div>
           <Card featureCorner corner="top-right" padding="var(--space-7)" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-gold-safe)' }}>Prize package</div>
-              <Badge variant="gold">≈ ₦4m collective</Badge>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-gold-safe)' }}>The 2026 result</div>
+              <Badge variant="gold">₦3.75m awarded</Badge>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {prizes.map((p) => (
@@ -113,7 +105,7 @@ export default function PolicyChallenge() {
               ))}
             </div>
             <div style={{ borderTop: '1px solid var(--border-default)', paddingTop: 14 }}>
-              <p style={{ margin: 0, fontSize: 13.5, color: 'var(--text-muted)' }}>The finals run at 12:00 in act two; the awards close the day at 3:05.</p>
+              <p style={{ margin: 0, fontSize: 13.5, color: 'var(--text-muted)' }}>Judged live in act two; awarded in act four, before the closing ceremony.</p>
             </div>
           </Card>
         </div>
@@ -122,9 +114,9 @@ export default function PolicyChallenge() {
       {/* compendia */}
       <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin)' }}>
         <p className="eyebrow">Read the proposals</p>
-        <h2 style={{ margin: 'var(--space-3) 0 var(--space-3)', maxWidth: '22ch' }}>Two compendia, free to download.</h2>
-        <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-7)', maxWidth: 'var(--measure-max)' }}>Read the two cycles side by side and the shift between them is visible on the page.</p>
-        <div className="qa-stack" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
+        <h2 style={{ margin: 'var(--space-3) 0 var(--space-3)', maxWidth: '22ch' }}>The 2026 compendium is out.</h2>
+        <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-7)', maxWidth: 'var(--measure-max)' }}>It goes to government officials, development partners and newsrooms as a formal record of what this generation is proposing. Read the two cycles side by side and the shift between them is visible on the page.</p>
+        <div className="qa-cards-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
           {compendia.map((c) => (
             <Card key={c.year} className="card-hover" featureCorner={c.feature} corner="top-right" padding="var(--space-7)" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -138,11 +130,16 @@ export default function PolicyChallenge() {
               <p style={{ margin: 0, fontSize: 14.5, color: 'var(--text-body)' }}>{c.body}</p>
               <div style={{ marginTop: 'auto', paddingTop: 6, display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
                 {c.feature ? (
-                  <Button variant="primary" icon="download" iconPosition="end" href={`/${c.file}`} target="_blank" rel="noopener noreferrer">Download the compendium</Button>
+                  <React.Fragment>
+                    <Button variant="primary" icon="download" iconPosition="end" onClick={downloadCompendium}>Download the compendium</Button>
+                    <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>PDF · free</span>
+                  </React.Fragment>
                 ) : (
-                  <Button variant="secondary" icon="download" iconPosition="end" disabled>Download the compendium</Button>
+                  <React.Fragment>
+                    <Button variant="secondary" icon="download" iconPosition="end" disabled>Download the compendium</Button>
+                    <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>Available shortly</span>
+                  </React.Fragment>
                 )}
-                <span style={{ fontSize: 13, color: 'var(--text-muted)' }}>{c.feature ? 'PDF · 1.6 MB · 27 pages' : 'Available shortly'}</span>
               </div>
             </Card>
           ))}
@@ -152,10 +149,10 @@ export default function PolicyChallenge() {
       {/* CTA */}
       <section style={{ background: 'var(--green-900)' }}>
         <div className="section" style={{ padding: 'var(--space-9) var(--layout-margin)', textAlign: 'center' }}>
-          <h2 style={{ color: '#fff', margin: '0 auto var(--space-5)', maxWidth: '24ch' }}>Watch the finalists present, live.</h2>
+          <h2 style={{ color: '#fff', margin: '0 auto var(--space-5)', maxWidth: '24ch' }}>Read the proposals the judges heard.</h2>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Watch it live</Button>
-            <Button variant="secondary" size="lg" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.5)', background: 'transparent' }} onClick={() => onNavigate('program')}>See the programme</Button>
+            <Button variant="accent" size="lg" icon="download" iconPosition="end" onClick={downloadCompendium}>Download the compendium</Button>
+            <Button variant="secondary" size="lg" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.5)', background: 'transparent' }} onClick={() => onNavigate('program')}>How the day ran</Button>
           </div>
         </div>
       </section>

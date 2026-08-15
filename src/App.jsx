@@ -8,8 +8,7 @@ import About from './pages/About.jsx';
 import Program from './pages/Program.jsx';
 import PolicyChallenge from './pages/PolicyChallenge.jsx';
 import Speakers from './pages/Speakers.jsx';
-import Register from './pages/Register.jsx';
-import Volunteer from './pages/Volunteer.jsx';
+import GalleryPage from './pages/GalleryPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 import { ScrollProgress, useScrollReveal } from './lib/scrollEffects.jsx';
 import { usePageMeta } from './lib/pageMeta.js';
@@ -56,12 +55,18 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/program" element={<Program />} />
-          <Route path="/policy-challenge" element={<PolicyChallenge />} />
+          <Route path="/challenge" element={<PolicyChallenge />} />
           <Route path="/speakers" element={<Speakers />} />
-          <Route path="/delegate" element={<Register />} />
-          {/* Old path kept as a redirect so existing links/bookmarks still work. */}
-          <Route path="/register" element={<Navigate to="/delegate" replace />} />
-          <Route path="/volunteer" element={<Volunteer />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          {/* Old challenge path kept as a redirect so existing links/bookmarks still work. */}
+          <Route path="/policy-challenge" element={<Navigate to="/challenge" replace />} />
+          {/* Registration for the 2026 conference is closed and the event has passed;
+              the delegate/volunteer/virtual routes now redirect home. The /api/submit
+              backend is left untouched. */}
+          <Route path="/delegate" element={<Navigate to="/" replace />} />
+          <Route path="/volunteer" element={<Navigate to="/" replace />} />
+          <Route path="/register" element={<Navigate to="/" replace />} />
+          <Route path="/virtual" element={<Navigate to="/" replace />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

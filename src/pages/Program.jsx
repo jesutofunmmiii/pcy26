@@ -1,16 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Badge, Icon } from '../components/index.js';
+import { downloadCompendium } from '../lib/compendium.js';
 
-// Maps the reference's `page` ids to router paths.
 const PAGE_PATHS = {
-  home: '/',
-  about: '/about',
-  program: '/program',
-  challenge: '/policy-challenge',
-  speakers: '/speakers',
-  register: '/delegate',
-  volunteer: '/volunteer',
+  home: '/', about: '/about', program: '/program', speakers: '/speakers', challenge: '/challenge', gallery: '/gallery',
 };
 
 export default function Program() {
@@ -33,7 +27,7 @@ export default function Program() {
     {
       act: 'Act two', window: '11:00 – 1:40', title: 'The long working session',
       items: [
-        { time: '11:00', end: '11:30', mins: '30 min', type: 'Panel', title: 'Panel discussion — "Real Talk: Rebuilding Trust in The Nigerian State"', lead: 'Ayokunnu Ojeniyi · Damilola O. Adefulire · Abolaji Olaleye Joy · Daniel Otabor · Chimchetaram Okoli (moderator)' },
+        { time: '11:00', end: '11:30', mins: '30 min', type: 'Panel', title: 'Panel discussion — "Real Talk: Rebuilding Trust in The Nigerian State"', lead: 'Ayokunnu Ojeniyi · Damilola O. Adefulire · Abolaji Olaleye Joy · Daniel Otabor · Gloria Babarinde (moderator)' },
         { time: '11:30', end: '12:00', mins: '30 min', type: 'Keynote', title: "Founder's session", lead: 'Mr Ayokunnu Ojeniyi' },
         { time: '12:00', end: '12:20', mins: '20 min', type: 'Competition', title: 'Policy Challenge finals', lead: 'Top 3 teams' },
         { time: '12:20', end: '12:40', mins: '20 min', type: 'Fireside', title: 'Fireside chat — "The Smallest Unit of Trust: Character, Relationships, and the Rebuilding of the State"', lead: 'Arinola Daniel & Khalil Nur Khalil' },
@@ -69,28 +63,28 @@ export default function Program() {
   };
 
   const deepDives = [
-    { icon: 'mic', tag: 'Keynote', time: '20 mins', title: 'Keynote address', lead: 'Seyi Adisa', body: 'The morning’s framing address: what the erosion of institutional trust costs Nigeria, and where the work of rebuilding it has to begin.' },
-    { icon: 'users-round', tag: 'Panel', time: '30 mins', title: 'Real talk: rebuilding trust in the Nigerian state', lead: 'Moderated by Chimchetaram Okoli', body: 'Four voices from governance, development and civic practice take the theme apart on stage.', points: ['Ayokunnu Ojeniyi', 'Damilola O. Adefulire', 'Abolaji Olaleye Joy', 'Daniel Otabor'] },
-    { icon: 'flame', tag: 'Keynote', time: '30 mins', title: "Founder's session", lead: 'Mr Ayokunnu Ojeniyi', body: 'The founder speaks to the room as the person who began this work — why the convening exists, and what it asks of the people in it.' },
-    { icon: 'message-circle', tag: 'Fireside', time: '20 mins', title: 'The smallest unit of trust', lead: 'Arinola Daniel & Khalil Nur Khalil', body: 'A conversation that scales the theme down: character, relationships, and how personal trust compounds into institutional trust.' },
-    { icon: 'landmark', tag: 'Simulation', time: '60 mins', title: 'Model National Assembly session', lead: 'Centre for Governance Development', body: 'An hour on the floor. Delegates take legislative roles and move a bill through debate, testing how reform survives contact with process.' },
-    { icon: 'trophy', tag: 'Competition', time: 'Finals + awards', title: 'Policy Challenge', lead: 'Top 3 teams · Judges', body: 'The three finalist teams present their reform proposals before lunch; the awards close the day in act four.' },
-    { icon: 'presentation', tag: 'SpotOn', time: '3 × 15 mins', title: 'SpotOn talks', lead: 'Daniel Otabor · Arinola Daniel · Adebayo Akande', body: 'Three TEDx-style talks carry the afternoon. One argument each, made tightly.' },
-    { icon: 'drama', tag: 'Performance', time: '15 mins', title: 'Theatre performance', lead: 'Theatre group', body: 'The day opens in performance rather than in speech — the trust deficit as it is actually lived.' },
+    { icon: 'mic', tag: 'Keynote', time: '20 mins', title: 'Keynote address', lead: 'Seyi Adisa', body: 'The morning’s framing address: what the erosion of institutional trust costs Nigeria, and where the work of rebuilding it has to begin. “A win not felt by everyone is a win for no one.”' },
+    { icon: 'users-round', tag: 'Panel', time: '30 mins', title: 'Real talk: rebuilding trust in the Nigerian state', lead: 'Moderated by Gloria Babarinde', body: 'Four voices from governance, development and civic practice took the theme apart on stage, unscripted.', points: ['Ayokunnu Ojeniyi', 'Damilola O. Adefulire', 'Abolaji Olaleye Joy', 'Daniel Otabor'] },
+    { icon: 'flame', tag: 'Keynote', time: '30 mins', title: "Founder's session", lead: 'Mr Ayokunnu Ojeniyi', body: 'The founder spoke to the room as the person who began this work — why the convening exists, and what it asks of the people in it.' },
+    { icon: 'message-circle', tag: 'Fireside', time: '20 mins', title: 'The smallest unit of trust', lead: 'Arinola Daniel & Khalil Nur Khalil', body: 'A conversation that scaled the theme down: character, relationships, and how personal trust compounds into institutional trust.' },
+    { icon: 'landmark', tag: 'Simulation', time: '60 mins', title: 'Model National Assembly session', lead: 'Centre for Governance Development', body: 'An hour on the floor. Delegates took legislative roles and moved a bill through debate, testing how reform survives contact with process.' },
+    { icon: 'trophy', tag: 'Competition', time: 'Finals + awards', title: 'Policy Challenge', lead: 'Top 3 teams · Judges', body: 'The three finalist teams presented their reform proposals before lunch; Team SMETrust took the ₦2m grand prize when the awards closed the day in act four.' },
+    { icon: 'presentation', tag: 'SpotOn', time: '3 × 15 mins', title: 'SpotOn talks', lead: 'Daniel Otabor · Arinola Daniel · Adebayo Akande', body: 'Three TEDx-style talks carried the afternoon. One argument each, made tightly.' },
+    { icon: 'drama', tag: 'Performance', time: '15 mins', title: 'Theatre performance', lead: 'Theatre group', body: 'The day opened in performance rather than in speech — the trust deficit as it is actually lived.' },
   ];
 
   return (
     <div>
       {/* header */}
       <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--green-900)' }}>
-        <img src="/assets/rising-arc.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '60%', objectFit: 'cover', opacity: 0.4 }} />
+        <img data-no-reveal src="/assets/rising-arc.svg" alt="" style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '60%', objectFit: 'cover', opacity: 0.4 }} />
         <div style={{ position: 'relative', padding: 'var(--space-9) clamp(24px, 6vw, 120px) var(--space-8)' }}>
-          <p className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>Full-day programme · 9:00 AM – 3:40 PM</p>
+          <p className="rise rise-1" style={{ display: 'inline-block', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--gold-500)', border: '1px solid rgba(255,195,0,0.5)', borderRadius: 'var(--radius-pill)', padding: '8px 18px', fontWeight: 600 }}>Run of show · 12 August 2026</p>
           <h1 className="rise rise-2" style={{ color: '#fff', fontSize: 'var(--text-4xl)', fontWeight: 500, lineHeight: 'var(--leading-tight)', maxWidth: '15ch', margin: 'var(--space-4) 0 var(--space-5)' }}>
             One working day, <span style={{ color: 'var(--gold-500)' }}>in four acts.</span>
           </h1>
           <p className="rise rise-3" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 'var(--text-lg)', maxWidth: '62ch' }}>
-            A keynote and a panel to frame the argument, a Founder's session and a fireside chat to sharpen it, an hour on the floor of a Model National Assembly, the Policy Challenge finals, and three SpotOn talks. Wednesday, 12 August at the KAAF Auditorium, University of Ibadan.
+            A keynote and a panel framed the argument, a Founder’s session and a fireside chat sharpened it, an hour on the floor of a Model National Assembly tested it against process, and the Policy Challenge finals settled it. This is how the day ran on Wednesday, 12 August at the KAAF Auditorium, University of Ibadan.
           </p>
         </div>
       </section>
@@ -98,7 +92,7 @@ export default function Program() {
       {/* timeline */}
       <section className="section" style={{ padding: 'var(--space-9) var(--layout-margin) var(--space-8)' }}>
         <p className="eyebrow">Run of show</p>
-        <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)' }}>The full programme.</h2>
+        <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)' }}>The full programme, as it ran.</h2>
 
         {acts.map((a) => (
           <div key={a.act} style={{ marginBottom: 'var(--space-7)' }}>
@@ -138,8 +132,8 @@ export default function Program() {
       <section style={{ background: 'var(--surface-green-tint)', padding: 'var(--space-9) 0' }}>
         <div className="section">
           <p className="eyebrow">Session deep-dives</p>
-          <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '20ch' }}>What each session is designed to do.</h2>
-          <div className="qa-cards-2 reveal-stagger" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-5)' }}>
+          <h2 style={{ margin: 'var(--space-3) 0 var(--space-7)', maxWidth: '20ch' }}>What each session did.</h2>
+          <div className="qa-cards-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 'var(--space-5)' }}>
             {deepDives.map((d) => (
               <Card key={d.title} className="card-hover" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
@@ -168,12 +162,12 @@ export default function Program() {
       </section>
 
       {/* CTA */}
-      <section className="reveal" style={{ background: 'var(--green-900)' }}>
+      <section style={{ background: 'var(--green-900)' }}>
         <div className="section" style={{ padding: 'var(--space-9) var(--layout-margin)', textAlign: 'center' }}>
-          <h2 style={{ color: '#fff', margin: '0 auto var(--space-5)', maxWidth: '22ch' }}>Follow every session, live.</h2>
+          <h2 style={{ color: '#fff', margin: '0 auto var(--space-5)', maxWidth: '22ch' }}>Every session, on the record.</h2>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Button variant="accent" size="lg" icon="arrow-right" iconPosition="end" onClick={() => onNavigate('register')}>Watch it live</Button>
-            <Button variant="secondary" size="lg" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.5)', background: 'transparent' }} onClick={() => onNavigate('volunteer')}>Volunteer with us</Button>
+            <Button variant="accent" size="lg" icon="download" iconPosition="end" onClick={downloadCompendium}>Download the compendium</Button>
+            <Button variant="secondary" size="lg" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.5)', background: 'transparent' }} onClick={() => onNavigate('gallery')}>See the photographs</Button>
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button, Icon } from '../components/index.js';
+import { downloadCompendium } from '../lib/compendium.js';
 
 // Maps a route path to the reference's `page` id, used for active-link styling
 // and to decide the transparent-over-hero overlay (home only).
@@ -8,15 +9,13 @@ const PATH_TO_ID = {
   '/': 'home',
   '/about': 'about',
   '/program': 'program',
-  '/policy-challenge': 'challenge',
+  '/challenge': 'challenge',
   '/speakers': 'speakers',
-  '/delegate': 'register',
-  '/volunteer': 'volunteer',
+  '/gallery': 'gallery',
 };
 
 export function Nav() {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
   const page = PATH_TO_ID[pathname] || '';
   const overlay = pathname === '/';
   const [scrolled, setScrolled] = React.useState(false);
@@ -44,9 +43,9 @@ export function Nav() {
     { id: 'home', label: 'Home', to: '/' },
     { id: 'about', label: 'About', to: '/about' },
     { id: 'program', label: 'Programme', to: '/program' },
-    { id: 'challenge', label: 'Policy Challenge', to: '/policy-challenge' },
+    { id: 'challenge', label: 'Policy Challenge', to: '/challenge' },
     { id: 'speakers', label: 'Speakers', to: '/speakers' },
-    { id: 'volunteer', label: 'Volunteer', to: '/volunteer' },
+    { id: 'gallery', label: 'Gallery', to: '/gallery' },
   ];
 
   // Desktop link colour: gold/white over the transparent hero, green/body on solid.
@@ -116,11 +115,11 @@ export function Nav() {
           <Button
             variant="accent"
             size="sm"
-            icon="arrow-right"
+            icon="download"
             iconPosition="end"
-            onClick={() => navigate('/delegate')}
+            onClick={downloadCompendium}
           >
-            Watch it live
+            Compendium
           </Button>
         </nav>
 
@@ -167,15 +166,15 @@ export function Nav() {
         <Button
           variant="accent"
           size="sm"
-          icon="arrow-right"
+          icon="download"
           iconPosition="end"
           onClick={() => {
             setMenuOpen(false);
-            navigate('/delegate');
+            downloadCompendium();
           }}
           style={{ alignSelf: 'flex-start', marginTop: 'var(--space-2)' }}
         >
-          Watch it live
+          Compendium
         </Button>
       </div>
     </header>
