@@ -119,7 +119,7 @@ export function Nav() {
             iconPosition="end"
             onClick={downloadCompendium}
           >
-            Download The Policy Challenge 2026 Compendium
+            Download TPC 26 Compendium
           </Button>
         </nav>
 
@@ -174,7 +174,7 @@ export function Nav() {
           }}
           style={{ alignSelf: 'flex-start', marginTop: 'var(--space-2)' }}
         >
-          Download The Policy Challenge 2026 Compendium
+          Download TPC 26 Compendium
         </Button>
       </div>
     </header>
